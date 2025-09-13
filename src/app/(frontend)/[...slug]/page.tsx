@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Hero } from '../components/Hero'
+import { MediaCardSlider } from '../components/MediaCardSlider'
 
 export const dynamic = 'force-dynamic'
 
@@ -44,6 +45,14 @@ export default async function Page({ params }: Params) {
       {doc.content && (
         <pre style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(doc.content, null, 2)}</pre>
       )}
+      {/* Sections */}
+      {/* @ts-expect-error - sections is a blocks field added dynamically */}
+      {Array.isArray(doc.sections) && doc.sections.map((block: any, i: number) => {
+        if (block.blockType === 'mediaCardSlider') {
+          return <MediaCardSlider key={i} items={block.items || []} />
+        }
+        return null
+      })}
     </main>
   )
 }

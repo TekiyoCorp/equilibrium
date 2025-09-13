@@ -209,3 +209,52 @@ svg {
   gap: 16px;
   flex-wrap: wrap;
 }
+
+/* Full-bleed section wrapper - prevents horizontal scroll on page */
+.section-full-bleed {
+  position: relative;
+  width: 100vw; /* Occupe toute la largeur de la fenêtre */
+  overflow: hidden; /* Empêche le scroll horizontal de la page */
+  height: 100vh;
+  padding-left: 201px; /* Décale le début du slider à 201px */
+  display: flex; /* Empêche le collapse des marges enfants */
+  align-items: center; /* Centre verticalement le carrousel */
+}
+
+/* Embla base - suivant les meilleures pratiques Context7 */
+.section-full-bleed .embla {
+  overflow: visible; /* Autorise l'overflow des cartes à droite */
+  width: 100%;
+  height: calc(100vh - 266px); /* 100vh - (133px top + 133px bottom) */
+  margin: 133px 0; /* Gouttières haut/bas de 133px autour des cartes */
+}
+.section-full-bleed .embla__container {
+  display: flex;
+  gap: 24px; /* Utilise le gap natif plutôt que marge négative */
+}
+.section-full-bleed .embla__slide {
+  /* 4 slides par vue avec 3 gaps de 24px */
+  flex: 0 0 calc((100% - 72px) / 4);
+  min-width: 0;
+}
+
+/* Card presentation - assure que les cardes restent dans le flow */
+.media-card {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+.media-card .image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.media-card .card-text {
+  margin: 12px 16px 16px;
+}
+
+/* Anciennes règles full-bleed et flèches supprimées pour éviter les conflits */

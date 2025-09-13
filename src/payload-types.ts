@@ -201,6 +201,18 @@ export interface Page {
           }
       )[]
     | null;
+  sections?:
+    | {
+        items: {
+          image: number | Media;
+          text?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaCardSlider';
+      }[]
+    | null;
   title: string;
   slug: string;
   content?: {
@@ -363,6 +375,23 @@ export interface PagesSelect<T extends boolean = true> {
               ctaLabel?: T;
               ctaHref?: T;
               background?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  sections?:
+    | T
+    | {
+        mediaCardSlider?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    image?: T;
+                    text?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

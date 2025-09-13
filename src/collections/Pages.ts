@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 import { CenterHero } from '../blocks/Hero/CenterHero'
 import { RightHero } from '../blocks/Hero/RightHero'
 import { ContactHero } from '../blocks/Hero/ContactHero'
+import { MediaCardSlider } from '../blocks/MediaCardSlider'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -19,6 +20,12 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       maxRows: 1,
       blocks: [CenterHero, RightHero, ContactHero],
+    },
+    {
+      name: 'sections',
+      label: 'Sections',
+      type: 'blocks',
+      blocks: [MediaCardSlider],
     },
     {
       name: 'title',
