@@ -215,7 +215,7 @@ svg {
   position: relative;
   width: 100vw; /* Occupe toute la largeur de la fenêtre */
   overflow: hidden; /* Empêche le scroll horizontal de la page */
-  height: 100vh;
+  height: 100dvh;
   padding-left: 201px; /* Décale le début du slider à 201px */
   display: flex; /* Empêche le collapse des marges enfants */
   align-items: center; /* Centre verticalement le carrousel */
