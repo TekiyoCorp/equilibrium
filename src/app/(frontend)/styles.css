@@ -162,3 +162,50 @@ svg {
     }
   }
 }
+
+/* Heroes */
+.hero {
+  padding: 64px 24px;
+}
+.hero .sub {
+  opacity: 0.8;
+  max-width: 64ch;
+}
+.hero .btn {
+  display: inline-block;
+  margin-top: 16px;
+  background: #111;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+}
+.bg-light {
+  background: #f6f6f9;
+}
+.bg-dark {
+  background: #111827;
+  color: #fff;
+}
+.hero-center {
+  text-align: center;
+}
+.hero-right {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 900px) {
+  .hero-right {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+  }
+}
+.hero-right .media img {
+  border-radius: 10px;
+}
+.hero-contact .contacts {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}

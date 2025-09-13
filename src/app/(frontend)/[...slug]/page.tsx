@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { Hero } from '../components/Hero'
 
 export const dynamic = 'force-dynamic'
 
@@ -21,6 +22,7 @@ export default async function Page({ params }: Params) {
   const result = await payload.find({
     collection: 'pages',
     draft: true,
+    depth: 1,
     limit: 1,
     where: {
       slug: {
@@ -34,6 +36,9 @@ export default async function Page({ params }: Params) {
 
   return (
     <main>
+      {/* Hero */}
+      {/* @ts-expect-error - hero added dynamically via blocks */}
+      <Hero hero={doc.hero as any} />
       <h1>{doc.title}</h1>
       {/* Simple render of richText content as JSON for now */}
       {doc.content && (

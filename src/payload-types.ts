@@ -164,6 +164,43 @@ export interface Media {
  */
 export interface Page {
   id: number;
+  hero?:
+    | (
+        | {
+            heading: string;
+            subheading?: string | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            background?: ('light' | 'dark') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'centerHero';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            image?: (number | null) | Media;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            background?: ('light' | 'dark') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'rightHero';
+          }
+        | {
+            heading: string;
+            subheading?: string | null;
+            email?: string | null;
+            phone?: string | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            background?: ('light' | 'dark') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactHero';
+          }
+      )[]
+    | null;
   title: string;
   slug: string;
   content?: {
@@ -290,6 +327,46 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "pages_select".
  */
 export interface PagesSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        centerHero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              background?: T;
+              id?: T;
+              blockName?: T;
+            };
+        rightHero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              image?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              background?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactHero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              email?: T;
+              phone?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              background?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   title?: T;
   slug?: T;
   content?: T;
