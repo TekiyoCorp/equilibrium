@@ -4,6 +4,7 @@ import { CourseCards } from './CourseCards'
 import { OverlayFeatureSection } from './OverlayFeatureSection'
 import { TextMediaTiles } from './TextMediaTiles'
 import { ConceptSection } from './ConceptSection'
+import { FaqSection } from './FaqSection'
 import type { Media } from '@/payload-types'
 
 type SectionsProps = {
@@ -66,6 +67,10 @@ export function Sections({ sections }: SectionsProps) {
               ctaHref={b.ctaHref}
             />
           )
+        }
+        if ((block as any).blockType === 'faqSection') {
+          const b = block as any
+          return <FaqSection key={index} title={b.title} items={b.items || []} />
         }
         return null
       })}

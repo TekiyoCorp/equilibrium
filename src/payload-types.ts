@@ -283,7 +283,20 @@ export interface Page {
             ctaHref?: string | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'newSection';
+            blockType: 'conceptSection';
+          }
+        | {
+            title?: string | null;
+            items?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqSection';
           }
       )[]
     | null;
@@ -523,7 +536,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        newSection?:
+        conceptSection?:
           | T
           | {
               title?: T;
@@ -548,6 +561,20 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               ctaLabel?: T;
               ctaHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqSection?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
