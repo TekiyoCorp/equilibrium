@@ -205,16 +205,32 @@ export interface Page {
       )[]
     | null;
   sections?:
-    | {
-        items: {
-          image: number | Media;
-          text?: string | null;
-          id?: string | null;
-        }[];
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'mediaCardSlider';
-      }[]
+    | (
+        | {
+            items: {
+              image: number | Media;
+              text?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaCardSlider';
+          }
+        | {
+            title?: string | null;
+            items: {
+              image: number | Media;
+              eyebrow?: string | null;
+              heading?: string | null;
+              id?: string | null;
+            }[];
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'courseCards';
+          }
+      )[]
     | null;
   title: string;
   slug: string;
@@ -398,6 +414,23 @@ export interface PagesSelect<T extends boolean = true> {
                     text?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        courseCards?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    image?: T;
+                    eyebrow?: T;
+                    heading?: T;
+                    id?: T;
+                  };
+              ctaLabel?: T;
+              ctaHref?: T;
               id?: T;
               blockName?: T;
             };

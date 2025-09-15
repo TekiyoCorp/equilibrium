@@ -3,6 +3,7 @@ import { CenterHero } from '../blocks/Hero/CenterHero'
 import { RightHero } from '../blocks/Hero/RightHero'
 import { ContactHero } from '../blocks/Hero/ContactHero'
 import { MediaCardSlider } from '../blocks/MediaCardSlider'
+import { CourseCards } from '../blocks/CourseCards'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -25,7 +26,7 @@ export const Pages: CollectionConfig = {
       name: 'sections',
       label: 'Sections',
       type: 'blocks',
-      blocks: [MediaCardSlider],
+      blocks: [MediaCardSlider, CourseCards],
     },
     {
       name: 'title',

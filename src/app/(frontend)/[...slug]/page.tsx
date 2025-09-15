@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Hero } from '../components/Hero'
 import { MediaCardSlider } from '../components/MediaCardSlider'
+import { CourseCards } from '../components/CourseCards'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,12 +48,24 @@ export default async function Page({ params }: Params) {
       )}
       {/* Sections */}
       {/* @ts-expect-error - sections is a blocks field added dynamically */}
-      {Array.isArray(doc.sections) && doc.sections.map((block: any, i: number) => {
-        if (block.blockType === 'mediaCardSlider') {
-          return <MediaCardSlider key={i} items={block.items || []} />
-        }
-        return null
-      })}
+      {Array.isArray(doc.sections) &&
+        doc.sections.map((block: any, i: number) => {
+          if (block.blockType === 'mediaCardSlider') {
+            return <MediaCardSlider key={i} items={block.items || []} />
+          }
+          if (block.blockType === 'courseCards') {
+            return (
+              <CourseCards
+                key={i}
+                title={block.title}
+                items={block.items || []}
+                ctaLabel={block.ctaLabel}
+                ctaHref={block.ctaHref}
+              />
+            )
+          }
+          return null
+        })}
     </main>
   )
 }

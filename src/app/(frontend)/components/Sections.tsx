@@ -1,5 +1,6 @@
 import React from 'react'
 import { MediaCardSlider } from './MediaCardSlider'
+import { CourseCards } from './CourseCards'
 
 type SectionsProps = {
   sections?: Array<{
@@ -16,6 +17,18 @@ export function Sections({ sections }: SectionsProps) {
       {sections.map((block, index) => {
         if (block.blockType === 'mediaCardSlider') {
           return <MediaCardSlider key={index} items={block.items} />
+        }
+        if ((block as any).blockType === 'courseCards') {
+          const b = block as any
+          return (
+            <CourseCards
+              key={index}
+              title={b.title}
+              items={b.items}
+              ctaHref={b.ctaHref}
+              ctaLabel={b.ctaLabel}
+            />
+          )
         }
         return null
       })}
