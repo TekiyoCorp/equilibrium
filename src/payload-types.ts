@@ -247,6 +247,19 @@ export interface Page {
             blockName?: string | null;
             blockType: 'overlayFeatureSection';
           }
+        | {
+            items: {
+              lead?: string | null;
+              body?: string | null;
+              image: number | Media;
+              imagePlacement?: ('top' | 'bottom') | null;
+              imageAlign?: ('left' | 'center' | 'right') | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textMediaTiles';
+          }
       )[]
     | null;
   title: string;
@@ -464,6 +477,22 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     title?: T;
                     description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        textMediaTiles?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    lead?: T;
+                    body?: T;
+                    image?: T;
+                    imagePlacement?: T;
+                    imageAlign?: T;
                     id?: T;
                   };
               id?: T;

@@ -457,3 +457,61 @@ svg {
   color: rgba(0, 0, 0, 0.6);
   max-width: 263px;
 }
+
+/* Text + Media Tiles (three rounded cards, light gray bg) */
+.text-media-tiles {
+  padding: 64px 24px;
+  display: flex;
+  justify-content: center;
+}
+.tmt-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 960px) {
+  .tmt-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+  .tmt-grid > .tmt-card:first-child {
+    grid-row: span 2;
+  }
+}
+.tmt-card {
+  background: #f2f2f2;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+}
+.tmt-text {
+  max-width: 370px;
+  text-align: center;
+  color: #1d1d1f;
+}
+.tmt-text p {
+  margin: 0;
+}
+.tmt-image {
+  width: 100%;
+  display: flex;
+}
+.tmt-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.tmt-image--left {
+  justify-content: flex-start;
+}
+.tmt-image--center {
+  justify-content: center;
+}
+.tmt-image--right {
+  justify-content: flex-end;
+}
