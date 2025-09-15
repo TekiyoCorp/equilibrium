@@ -385,3 +385,75 @@ svg {
   display: flex;
   justify-content: center;
 }
+
+/* Overlay Feature Hero (COACHES design) */
+.overlay-feature-hero {
+  position: relative;
+  min-height: 100dvh;
+  background-size: cover;
+  background-position: center;
+  color: #0b0b0b;
+}
+.overlay-feature-hero .overlay-word {
+  position: absolute;
+  top: 312px;
+  left: 50%;
+  transform: translate(calc(-50% + -75px), -50%);
+  font-size: 245px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.overlay-feature-hero .overlay-content {
+  position: absolute;
+  left: 65px;
+  right: 63px;
+  bottom: 0;
+  transform: translateY(-120px);
+}
+.overlay-feature-hero .ofh-heading {
+  margin: 0 0 12px 0;
+  font-size: 46px;
+  line-height: 1.1;
+  letter-spacing: -0.06em;
+}
+.overlay-feature-hero .ofh-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #079495;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 51px;
+  text-decoration: none;
+  float: right;
+}
+.overlay-feature-hero .ofh-separator {
+  clear: both;
+  height: 1px;
+  background: #c9c9c9;
+  margin: 22px 0;
+}
+.overlay-feature-hero .ofh-features {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 29px;
+}
+@media (min-width: 900px) {
+  .overlay-feature-hero .ofh-features {
+    grid-template-columns: repeat(3, minmax(0, 364px));
+  }
+}
+.overlay-feature-hero .ofh-feature-title {
+  font-size: 24px;
+  letter-spacing: -0.06em;
+}
+.overlay-feature-hero .ofh-feature-desc {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+  max-width: 263px;
+}

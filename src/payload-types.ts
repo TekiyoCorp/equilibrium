@@ -230,6 +230,23 @@ export interface Page {
             blockName?: string | null;
             blockType: 'courseCards';
           }
+        | {
+            overlayWord?: string | null;
+            backgroundImage: number | Media;
+            heading?: string | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            items?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'overlayFeatureSection';
+          }
       )[]
     | null;
   title: string;
@@ -431,6 +448,24 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               ctaLabel?: T;
               ctaHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        overlayFeatureSection?:
+          | T
+          | {
+              overlayWord?: T;
+              backgroundImage?: T;
+              heading?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

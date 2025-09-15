@@ -136,5 +136,7 @@ export function Hero({ hero }: HeroProps) {
     )
   }
 
+  // overlayFeatureHero removed; now a section rendered via Sections component
+
   return null
 }
