@@ -171,6 +171,7 @@ export interface Page {
             subheading?: string | null;
             ctaLabel?: string | null;
             ctaHref?: string | null;
+            backgroundImage?: (number | null) | Media;
             background?: ('light' | 'dark') | null;
             id?: string | null;
             blockName?: string | null;
@@ -182,6 +183,7 @@ export interface Page {
             image?: (number | null) | Media;
             ctaLabel?: string | null;
             ctaHref?: string | null;
+            backgroundImage?: (number | null) | Media;
             background?: ('light' | 'dark') | null;
             id?: string | null;
             blockName?: string | null;
@@ -194,6 +196,7 @@ export interface Page {
             phone?: string | null;
             ctaLabel?: string | null;
             ctaHref?: string | null;
+            backgroundImage?: (number | null) | Media;
             background?: ('light' | 'dark') | null;
             id?: string | null;
             blockName?: string | null;
@@ -349,6 +352,7 @@ export interface PagesSelect<T extends boolean = true> {
               subheading?: T;
               ctaLabel?: T;
               ctaHref?: T;
+              backgroundImage?: T;
               background?: T;
               id?: T;
               blockName?: T;
@@ -361,6 +365,7 @@ export interface PagesSelect<T extends boolean = true> {
               image?: T;
               ctaLabel?: T;
               ctaHref?: T;
+              backgroundImage?: T;
               background?: T;
               id?: T;
               blockName?: T;
@@ -374,6 +379,7 @@ export interface PagesSelect<T extends boolean = true> {
               phone?: T;
               ctaLabel?: T;
               ctaHref?: T;
+              backgroundImage?: T;
               background?: T;
               id?: T;
               blockName?: T;

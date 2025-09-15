@@ -10,6 +10,7 @@ type HeroProps = {
         subheading?: string | null
         ctaLabel?: string | null
         ctaHref?: string | null
+        backgroundImage?: number | Media | null
         background?: 'light' | 'dark' | null
       })
     | ({ blockType: 'rightHero' } & {
@@ -18,6 +19,7 @@ type HeroProps = {
         image?: number | Media | null
         ctaLabel?: string | null
         ctaHref?: string | null
+        backgroundImage?: number | Media | null
         background?: 'light' | 'dark' | null
       })
     | ({ blockType: 'contactHero' } & {
@@ -27,6 +29,7 @@ type HeroProps = {
         phone?: string | null
         ctaLabel?: string | null
         ctaHref?: string | null
+        backgroundImage?: number | Media | null
         background?: 'light' | 'dark' | null
       })
   >
@@ -37,18 +40,31 @@ export function Hero({ hero }: HeroProps) {
   const block = hero[0]
 
   const bgClass = (block as any).background === 'dark' ? 'bg-dark' : 'bg-light'
+  const backgroundImage = (block as any).backgroundImage as Media | number | undefined
+  const backgroundImageObj =
+    typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
 
   if (block.blockType === 'centerHero') {
     const b = block as any
     return (
-      <section className={`hero hero-center ${bgClass}`}>
-        {b.heading && <h1>{b.heading}</h1>}
-        {b.subheading && <p className="sub">{b.subheading}</p>}
-        {b.ctaHref && b.ctaLabel && (
-          <a className="btn" href={b.ctaHref}>
-            {b.ctaLabel}
-          </a>
-        )}
+      <section
+        className={`hero hero-center ${bgClass}`}
+        style={
+          backgroundImageObj?.url
+            ? { backgroundImage: `url(${backgroundImageObj.url})` }
+            : undefined
+        }
+      >
+        {backgroundImageObj?.url && <div className="hero-overlay" />}
+        <div className="hero-content">
+          {b.heading && <h1>{b.heading}</h1>}
+          {b.subheading && <p className="sub">{b.subheading}</p>}
+          {b.ctaHref && b.ctaLabel && (
+            <a className="btn" href={b.ctaHref}>
+              {b.ctaLabel}
+            </a>
+          )}
+        </div>
       </section>
     )
   }
@@ -58,21 +74,31 @@ export function Hero({ hero }: HeroProps) {
     const media = b.image as Media | number | undefined
     const mediaObj = typeof media === 'object' ? (media as Media) : undefined
     return (
-      <section className={`hero hero-right ${bgClass}`}>
-        <div className="copy">
-          {b.heading && <h1>{b.heading}</h1>}
-          {b.subheading && <p className="sub">{b.subheading}</p>}
-          {b.ctaHref && b.ctaLabel && (
-            <a className="btn" href={b.ctaHref}>
-              {b.ctaLabel}
-            </a>
+      <section
+        className={`hero hero-right ${bgClass}`}
+        style={
+          backgroundImageObj?.url
+            ? { backgroundImage: `url(${backgroundImageObj.url})` }
+            : undefined
+        }
+      >
+        {backgroundImageObj?.url && <div className="hero-overlay" />}
+        <div className="hero-content">
+          <div className="copy">
+            {b.heading && <h1>{b.heading}</h1>}
+            {b.subheading && <p className="sub">{b.subheading}</p>}
+            {b.ctaHref && b.ctaLabel && (
+              <a className="btn" href={b.ctaHref}>
+                {b.ctaLabel}
+              </a>
+            )}
+          </div>
+          {mediaObj?.url && (
+            <div className="media">
+              <Image alt={mediaObj.alt} src={mediaObj.url} width={640} height={400} />
+            </div>
           )}
         </div>
-        {mediaObj?.url && (
-          <div className="media">
-            <Image alt={mediaObj.alt} src={mediaObj.url} width={640} height={400} />
-          </div>
-        )}
       </section>
     )
   }
@@ -80,22 +106,32 @@ export function Hero({ hero }: HeroProps) {
   if (block.blockType === 'contactHero') {
     const b = block as any
     return (
-      <section className={`hero hero-contact ${bgClass}`}>
-        {b.heading && <h1>{b.heading}</h1>}
-        {b.subheading && <p className="sub">{b.subheading}</p>}
-        <div className="contacts">
-          {b.email && (
-            <a href={`mailto:${b.email}`} className="contact">
-              {b.email}
+      <section
+        className={`hero hero-contact ${bgClass}`}
+        style={
+          backgroundImageObj?.url
+            ? { backgroundImage: `url(${backgroundImageObj.url})` }
+            : undefined
+        }
+      >
+        {backgroundImageObj?.url && <div className="hero-overlay" />}
+        <div className="hero-content">
+          {b.heading && <h1>{b.heading}</h1>}
+          {b.subheading && <p className="sub">{b.subheading}</p>}
+          <div className="contacts">
+            {b.email && (
+              <a href={`mailto:${b.email}`} className="contact">
+                {b.email}
+              </a>
+            )}
+            {b.phone && <span className="contact">{b.phone}</span>}
+          </div>
+          {b.ctaHref && b.ctaLabel && (
+            <a className="btn" href={b.ctaHref}>
+              {b.ctaLabel}
             </a>
           )}
-          {b.phone && <span className="contact">{b.phone}</span>}
         </div>
-        {b.ctaHref && b.ctaLabel && (
-          <a className="btn" href={b.ctaHref}>
-            {b.ctaLabel}
-          </a>
-        )}
       </section>
     )
   }

@@ -166,6 +166,36 @@ svg {
 /* Heroes */
 .hero {
   padding: 64px 24px;
+  min-height: 100dvh; /* Full viewport height incl. mobile UI */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35.4%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
 }
 .hero .sub {
   opacity: 0.8;
@@ -174,10 +204,12 @@ svg {
 .hero .btn {
   display: inline-block;
   margin-top: 16px;
-  background: #111;
+  background: #079495;
   color: #fff;
-  padding: 10px 16px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  border-radius: 51px;
+  text-decoration: none;
+  line-height: 1.2;
 }
 .bg-light {
   background: #f6f6f9;
@@ -188,14 +220,36 @@ svg {
 }
 .hero-center {
   text-align: center;
+  align-items: center;
+  gap: 12px;
 }
-.hero-right {
+.hero-center .hero-content {
+  align-items: center;
+  gap: 12px;
+}
+.hero-center .hero-content > * {
+  max-width: 606px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-center h1 {
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+.bg-dark .sub {
+  color: #d4cdbf;
+  opacity: 1;
+}
+.hero-right .hero-content {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
+  align-content: center; /* center rows within full-height grid */
 }
 @media (min-width: 900px) {
-  .hero-right {
+  .hero-right .hero-content {
     grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
   }

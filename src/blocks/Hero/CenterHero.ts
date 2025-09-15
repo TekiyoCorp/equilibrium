@@ -25,6 +25,11 @@ export const CenterHero: Block = {
       type: 'text',
     },
     {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
       name: 'background',
       type: 'select',
       defaultValue: 'light',
