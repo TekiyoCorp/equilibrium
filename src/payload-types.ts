@@ -260,6 +260,31 @@ export interface Page {
             blockName?: string | null;
             blockType: 'textMediaTiles';
           }
+        | {
+            title?: string | null;
+            subtitle?: string | null;
+            backgroundImage?: (number | null) | Media;
+            layout?: ('default' | 'grid' | 'carousel') | null;
+            items?:
+              | {
+                  type?: ('text' | 'image' | 'card') | null;
+                  image?: (number | null) | Media;
+                  title?: string | null;
+                  description?: string | null;
+                  link?: {
+                    href?: string | null;
+                    label?: string | null;
+                    openInNewTab?: boolean | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newSection';
+          }
       )[]
     | null;
   title: string;
@@ -495,6 +520,34 @@ export interface PagesSelect<T extends boolean = true> {
                     imageAlign?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        newSection?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              backgroundImage?: T;
+              layout?: T;
+              items?:
+                | T
+                | {
+                    type?: T;
+                    image?: T;
+                    title?: T;
+                    description?: T;
+                    link?:
+                      | T
+                      | {
+                          href?: T;
+                          label?: T;
+                          openInNewTab?: T;
+                        };
+                    id?: T;
+                  };
+              ctaLabel?: T;
+              ctaHref?: T;
               id?: T;
               blockName?: T;
             };

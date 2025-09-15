@@ -6,6 +6,7 @@ import { MediaCardSlider } from '../blocks/MediaCardSlider'
 import { CourseCards } from '../blocks/CourseCards'
 import { OverlayFeatureSection } from '../blocks/OverlayFeatureSection'
 import { TextMediaTiles } from '../blocks/TextMediaTiles'
+import { ConceptSection } from '../blocks/ConceptSection'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -28,7 +29,7 @@ export const Pages: CollectionConfig = {
       name: 'sections',
       label: 'Sections',
       type: 'blocks',
-      blocks: [MediaCardSlider, CourseCards, OverlayFeatureSection, TextMediaTiles],
+      blocks: [MediaCardSlider, CourseCards, OverlayFeatureSection, TextMediaTiles, ConceptSection],
     },
     {
       name: 'title',

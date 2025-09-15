@@ -3,6 +3,7 @@ import { MediaCardSlider } from './MediaCardSlider'
 import { CourseCards } from './CourseCards'
 import { OverlayFeatureSection } from './OverlayFeatureSection'
 import { TextMediaTiles } from './TextMediaTiles'
+import { ConceptSection } from './ConceptSection'
 import type { Media } from '@/payload-types'
 
 type SectionsProps = {
@@ -50,6 +51,21 @@ export function Sections({ sections }: SectionsProps) {
         if ((block as any).blockType === 'textMediaTiles') {
           const b = block as any
           return <TextMediaTiles key={index} items={b.items || []} />
+        }
+        if ((block as any).blockType === 'conceptSection') {
+          const b = block as any
+          return (
+            <ConceptSection
+              key={index}
+              title={b.title}
+              subtitle={b.subtitle}
+              backgroundImage={b.backgroundImage}
+              layout={b.layout}
+              items={b.items || []}
+              ctaLabel={b.ctaLabel}
+              ctaHref={b.ctaHref}
+            />
+          )
         }
         return null
       })}
