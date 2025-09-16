@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import { TiPlus } from 'react-icons/ti'
 import type { Media } from '@/payload-types'
@@ -29,12 +28,17 @@ export function CourseCards({
           const media = item.image
           const mediaObj = typeof media === 'object' ? (media as Media) : undefined
           return (
-            <article className={styles.courseCard} key={`course-${idx}-${mediaObj?.id ?? 'no-id'}`}>
-              {mediaObj?.url && (
-                <div className={styles.courseCardImage}>
-                  <Image alt={mediaObj.alt || ''} src={mediaObj.url} width={746} height={970} />
-                </div>
-              )}
+            <article
+              className={styles.courseCard}
+              key={`course-${idx}-${mediaObj?.id ?? 'no-id'}`}
+              style={
+                mediaObj?.url
+                  ? {
+                      background: `linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(${mediaObj.url}) lightgray 50% / cover no-repeat`,
+                    }
+                  : undefined
+              }
+            >
               <div className={styles.courseCardOverlay}>
                 {item.eyebrow && <span className={styles.courseCardEyebrow}>{item.eyebrow}</span>}
                 {item.heading && <h3 className={styles.courseCardHeading}>{item.heading}</h3>}

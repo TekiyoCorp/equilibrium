@@ -48,10 +48,10 @@
   line-height: 1.2;
 }
 .bgLight {
-  background: #f6f6f9;
+  background-color: #f6f6f9;
 }
 .bgDark {
-  background: #111827;
+  background-color: #111827;
   color: #fff;
 }
 .heroCenter {

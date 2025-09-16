@@ -71,6 +71,7 @@
   backdrop-filter: blur(5.8px);
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #d6d6d7;
 }
 .courseCardsCta {
   display: flex;
