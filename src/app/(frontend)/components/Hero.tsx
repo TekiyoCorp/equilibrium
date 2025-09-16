@@ -40,10 +40,11 @@ export function Hero({ hero }: HeroProps) {
   if (!hero || hero.length === 0) return null
   const block = hero[0]
 
-  const bgClass = (block as any).background === 'dark' ? styles.bgDark : styles.bgLight
   const backgroundImage = (block as any).backgroundImage as Media | number | undefined
   const backgroundImageObj =
     typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
+  const isDarkBackground = (block as any).background === 'dark' || !!backgroundImageObj?.url
+  const bgClass = isDarkBackground ? styles.bgDark : styles.bgLight
 
   if (block.blockType === 'centerHero') {
     const b = block as any
@@ -87,7 +88,7 @@ export function Hero({ hero }: HeroProps) {
         <div className={styles.heroContent}>
           <div className="copy">
             {b.heading && <h1>{b.heading}</h1>}
-            {b.subheading && <p className="sub">{b.subheading}</p>}
+            {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
             {b.ctaHref && b.ctaLabel && (
               <a className={styles.btn} href={b.ctaHref}>
                 {b.ctaLabel}
@@ -95,7 +96,7 @@ export function Hero({ hero }: HeroProps) {
             )}
           </div>
           {mediaObj?.url && (
-            <div className="media">
+            <div className={styles.media}>
               <Image alt={mediaObj.alt} src={mediaObj.url} width={640} height={400} />
             </div>
           )}
@@ -118,8 +119,8 @@ export function Hero({ hero }: HeroProps) {
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
         <div className={styles.heroContent}>
           {b.heading && <h1>{b.heading}</h1>}
-          {b.subheading && <p className="sub">{b.subheading}</p>}
-          <div className="contacts">
+          {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
+          <div className={styles.contacts}>
             {b.email && (
               <a href={`mailto:${b.email}`} className="contact">
                 {b.email}
