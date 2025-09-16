@@ -113,3 +113,29 @@
   object-fit: cover;
   display: block;
 }
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .root {
+    height: auto;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .container {
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+  }
+  .leftCard,
+  .rightColumn {
+    width: 100%;
+    height: auto;
+  }
+  .rightCard {
+    height: auto;
+  }
+  .imageLarge {
+    width: 100%;
+    height: auto;
+  }
+}

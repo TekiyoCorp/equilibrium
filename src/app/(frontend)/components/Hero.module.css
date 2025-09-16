@@ -9,6 +9,8 @@
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 .heroOverlay {
   position: absolute;
@@ -68,7 +70,7 @@
   margin-right: auto;
 }
 .heroCenter h1 {
-  font-size: 48px;
+  font-size: clamp(28px, 6vw, 56px);
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin: 0;
@@ -91,10 +93,32 @@
 }
 .heroRight .media img {
   border-radius: 10px;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .heroContact .contacts {
   margin-top: 16px;
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* Typography adjustments */
+.sub {
+  font-size: clamp(16px, 2.6vw, 20px);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }

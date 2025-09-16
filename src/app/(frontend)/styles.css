@@ -12,6 +12,7 @@ html {
 
   background: rgb(255, 255, 255);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 html,
@@ -28,6 +29,7 @@ body {
   margin: 0;
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  overflow-x: hidden;
 
   @media (max-width: 1024px) {
     font-size: 15px;

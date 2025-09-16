@@ -5,6 +5,7 @@
   background-size: cover;
   background-position: center;
   color: #0b0b0b;
+  overflow: hidden;
 }
 .overlayWord {
   position: absolute;
@@ -89,4 +90,21 @@
   );
   pointer-events: none;
   z-index: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .overlayWord {
+    top: 180px;
+    transform: translate(-50%, -50%);
+    font-size: clamp(64px, 22vw, 120px);
+  }
+  .overlayContent {
+    left: 18px;
+    right: 18px;
+    transform: translateY(-60px);
+  }
+  .heading {
+    font-size: 32px;
+  }
 }

@@ -90,7 +90,15 @@ export function Hero({ hero }: HeroProps) {
           </div>
           {mediaObj?.url && (
             <div className={styles.media}>
-              <Image alt={mediaObj.alt} src={mediaObj.url} width={640} height={400} />
+              <Image
+                alt={mediaObj.alt}
+                src={mediaObj.url}
+                width={640}
+                height={400}
+                sizes="(min-width: 900px) 40vw, 100vw"
+                style={{ width: '100%', height: 'auto' }}
+                priority
+              />
             </div>
           )}
         </div>

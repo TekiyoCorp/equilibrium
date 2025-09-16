@@ -147,3 +147,34 @@
 .navButton:first-child svg {
   transform: scaleY(-1);
 }
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .sectionFullBleed {
+    height: auto;
+    padding-left: 18px;
+    padding-right: 18px;
+    align-items: flex-start;
+  }
+  .container {
+    gap: 18px;
+    align-items: stretch;
+  }
+  .title {
+    font-size: 28px;
+    letter-spacing: -2px;
+    white-space: normal;
+  }
+  .sliderWrapper {
+    width: 100%;
+  }
+  .emblaContainer {
+    gap: 16px;
+  }
+  .emblaSlide {
+    flex: 0 0 80%;
+  }
+  .navigation {
+    right: 18px;
+  }
+}

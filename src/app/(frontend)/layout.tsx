@@ -8,6 +8,12 @@ export const metadata = {
   title: 'Payload Blank Template',
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
