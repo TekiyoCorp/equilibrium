@@ -38,17 +38,8 @@ export default async function Page({ params }: Params) {
   return (
     <>
       {/* Hero */}
-      {/* @ts-expect-error - hero added dynamically via blocks */}
       <Hero hero={doc.hero as any} />
-      <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        <h1>{doc.title}</h1>
-        {/* Simple render of richText content as JSON for now */}
-        {doc.content && (
-          <pre style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(doc.content, null, 2)}</pre>
-        )}
-      </div>
       {/* Sections */}
-      {/* @ts-expect-error - sections is a blocks field added dynamically */}
       <Sections sections={doc.sections as any} />
     </>
   )
