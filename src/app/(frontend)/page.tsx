@@ -5,6 +5,8 @@ import React from 'react'
 import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
+import { Hero } from './components/Hero'
+import { Sections } from './components/Sections'
 import './styles.css'
 
 export default async function HomePage() {
@@ -13,6 +15,40 @@ export default async function HomePage() {
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
+  // Essayer de récupérer la page "home"
+  let homePage = null
+  try {
+    const result = await payload.find({
+      collection: 'pages',
+      where: {
+        slug: {
+          equals: 'home',
+        },
+      },
+      limit: 1,
+    })
+    homePage = result.docs[0] || null
+  } catch (error) {
+    console.error('Erreur lors de la récupération de la page home:', error)
+  }
+
+  // Si la page "home" existe, l'afficher
+  if (homePage) {
+    console.log('Page home trouvée:', homePage)
+    console.log('Hero data:', homePage.hero)
+    console.log('Sections data:', homePage.sections)
+
+    return (
+      <div className="home-page">
+        {homePage.hero && homePage.hero.length > 0 && <Hero hero={homePage.hero as any} />}
+        {homePage.sections && homePage.sections.length > 0 && (
+          <Sections sections={homePage.sections as any} />
+        )}
+      </div>
+    )
+  }
+
+  // Sinon, afficher la page de configuration par défaut
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (

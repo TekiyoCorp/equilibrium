@@ -2,6 +2,7 @@ import Image from 'next/image'
 import type { Media, Page } from '@/payload-types'
 import styles from './Hero.module.css'
 import { Button as UniversalButton } from './Button'
+import FadeIn from '@/app/animation/fade-in'
 
 type HeroBlock = NonNullable<Page['content']> // placeholder to satisfy types import
 
@@ -38,8 +39,20 @@ type HeroProps = {
 }
 
 export function Hero({ hero }: HeroProps) {
-  if (!hero || hero.length === 0) return null
+  console.log('Hero component received:', hero)
+
+  if (!hero || hero.length === 0) {
+    console.log('Hero: No hero data or empty array')
+    return null
+  }
+
   const block = hero[0]
+  console.log('Hero block:', block)
+
+  if (!block) {
+    console.log('Hero: Block is null/undefined')
+    return null
+  }
 
   const backgroundImage = (block as any).backgroundImage as Media | number | undefined
   const backgroundImageObj =
@@ -61,9 +74,11 @@ export function Hero({ hero }: HeroProps) {
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
 
         <div className={styles.heroContent}>
-          {b.heading && <h1>{b.heading}</h1>}
-          {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
-          {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+          <FadeIn from="bottom" duration={1.5}>
+            {b.heading && <h1>{b.heading}</h1>}
+            {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
+            {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+          </FadeIn>
         </div>
       </section>
     )
