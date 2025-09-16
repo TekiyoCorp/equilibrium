@@ -36,12 +36,14 @@ export function OverlayFeatureSection({
         </div>
       )}
       <div className={styles.overlayContent}>
-        {heading && <h2 className={styles.heading}>{heading}</h2>}
-        {ctaHref && ctaLabel && (
-          <a className={styles.cta} href={ctaHref}>
-            {ctaLabel}
-          </a>
-        )}
+        <div className={styles.headerRow}>
+          {heading && <h2 className={styles.heading}>{heading}</h2>}
+          {ctaHref && ctaLabel && (
+            <a className={styles.cta} href={ctaHref}>
+              {ctaLabel}
+            </a>
+          )}
+        </div>
         <div className={styles.separator} />
         <div className={styles.features}>
           {(items || []).slice(0, 3).map((it, idx) => (
