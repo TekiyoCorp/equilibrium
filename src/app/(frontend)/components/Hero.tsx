@@ -2,6 +2,7 @@ import Image from 'next/image'
 import type { Media, Page } from '@/payload-types'
 import styles from './Hero.module.css'
 import { Button as UniversalButton } from './Button'
+import FadeIn from '@/app/animation/fade-in'
 
 type HeroBlock = NonNullable<Page['content']> // placeholder to satisfy types import
 
@@ -59,11 +60,13 @@ export function Hero({ hero }: HeroProps) {
         }
       >
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
-        <div className={styles.heroContent}>
-          {b.heading && <h1>{b.heading}</h1>}
-          {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
-          {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
-        </div>
+        <FadeIn from="bottom" duration={1.5}>
+          <div className={styles.heroContent}>
+            {b.heading && <h1>{b.heading}</h1>}
+            {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
+            {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+          </div>
+        </FadeIn>
       </section>
     )
   }

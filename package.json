@@ -27,6 +27,7 @@
     "dotenv": "16.4.7",
     "embla-carousel-react": "^8.6.0",
     "graphql": "^16.8.1",
+    "motion": "^12.23.13",
     "next": "15.4.4",
     "payload": "3.55.1",
     "react": "19.1.0",

@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Inter Display';
+  src: url('/fonts/InterDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Display';
+  src: url('/fonts/InterDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-mono: 'Roboto Mono', monospace;
 }
@@ -22,7 +38,7 @@ body,
 }
 
 body {
-  font-family: system-ui;
+  font-family: 'Inter Display', system-ui;
   font-size: 18px;
   line-height: 32px;
 
