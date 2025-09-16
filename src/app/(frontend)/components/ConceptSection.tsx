@@ -4,22 +4,25 @@ import Image from 'next/image'
 import React from 'react'
 import type { Media } from '@/payload-types'
 import styles from './ConceptSection.module.css'
+import { Button as UniversalButton } from './Button'
 
 type ConceptSectionProps = {
   title?: string | null
   subtitle?: string | null
   backgroundImage?: number | Media | null
-  ctaLabel?: string | null
-  ctaHref?: string | null
+  button?: Array<{
+    label: string
+    href: string
+    linkType?: 'url' | 'page'
+    page?: number | Media | null | any
+    variant?: 'primary' | 'secondary' | 'ghost'
+    target?: '_self' | '_blank'
+    fullWidth?: boolean
+    ariaLabel?: string
+  }>
 }
 
-export function ConceptSection({
-  title,
-  subtitle,
-  backgroundImage,
-  ctaLabel,
-  ctaHref,
-}: ConceptSectionProps) {
+export function ConceptSection({ title, subtitle, backgroundImage, button }: ConceptSectionProps) {
   const backgroundImageObj =
     typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
 
@@ -34,10 +37,17 @@ export function ConceptSection({
             <h2 className={styles['concept-section__heading']}>
               {title || subtitle || 'Lorem ipsum is a dummy.'}
             </h2>
-            {ctaHref && ctaLabel && (
-              <a href={ctaHref} className={styles['concept-section__cta']}>
-                {ctaLabel}
-              </a>
+            {Array.isArray(button) && button[0] && (
+              <UniversalButton
+                label={button[0].label}
+                href={button[0].href || '#'}
+                linkType={button[0].linkType || 'url'}
+                page={button[0].page as any}
+                variant={button[0].variant}
+                target={button[0].target}
+                fullWidth={button[0].fullWidth}
+                ariaLabel={button[0].ariaLabel}
+              />
             )}
           </div>
           <div className={styles['concept-section__image']}>

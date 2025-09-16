@@ -2,6 +2,7 @@ import React from 'react'
 import { TiPlus } from 'react-icons/ti'
 import type { Media } from '@/payload-types'
 import styles from './CourseCards.module.css'
+import { Button as UniversalButton } from './Button'
 
 type CourseCard = {
   image: number | Media
@@ -12,13 +13,20 @@ type CourseCard = {
 export function CourseCards({
   title,
   items,
-  ctaLabel,
-  ctaHref,
+  button,
 }: {
   title?: string | null
   items: CourseCard[]
-  ctaLabel?: string | null
-  ctaHref?: string | null
+  button?: Array<{
+    label: string
+    href: string
+    linkType?: 'url' | 'page'
+    page?: number | Media | null | any
+    variant?: 'primary' | 'secondary' | 'ghost'
+    target?: '_self' | '_blank'
+    fullWidth?: boolean
+    ariaLabel?: string
+  }>
 }) {
   return (
     <section className={styles.courseCards}>
@@ -50,11 +58,18 @@ export function CourseCards({
           )
         })}
       </div>
-      {ctaHref && ctaLabel && (
+      {Array.isArray(button) && button[0] && (
         <div className={styles.courseCardsCta}>
-          <a className={styles.btn} href={ctaHref}>
-            {ctaLabel}
-          </a>
+          <UniversalButton
+            label={button[0].label}
+            href={button[0].href || '#'}
+            linkType={button[0].linkType || 'url'}
+            page={button[0].page as any}
+            variant={button[0].variant}
+            target={button[0].target}
+            fullWidth={button[0].fullWidth}
+            ariaLabel={button[0].ariaLabel}
+          />
         </div>
       )}
     </section>

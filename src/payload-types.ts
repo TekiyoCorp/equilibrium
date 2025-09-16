@@ -175,8 +175,21 @@ export interface Page {
         | {
             heading: string;
             subheading?: string | null;
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
+            link?:
+              | {
+                  label: string;
+                  linkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  target?: ('_self' | '_blank') | null;
+                  fullWidth?: boolean | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'link';
+                }[]
+              | null;
             backgroundImage?: (number | null) | Media;
             background?: ('light' | 'dark') | null;
             id?: string | null;
@@ -187,8 +200,21 @@ export interface Page {
             heading: string;
             subheading?: string | null;
             image?: (number | null) | Media;
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
+            link?:
+              | {
+                  label: string;
+                  linkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  target?: ('_self' | '_blank') | null;
+                  fullWidth?: boolean | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'link';
+                }[]
+              | null;
             backgroundImage?: (number | null) | Media;
             background?: ('light' | 'dark') | null;
             id?: string | null;
@@ -200,8 +226,21 @@ export interface Page {
             subheading?: string | null;
             email?: string | null;
             phone?: string | null;
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
+            link?:
+              | {
+                  label: string;
+                  linkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  target?: ('_self' | '_blank') | null;
+                  fullWidth?: boolean | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'link';
+                }[]
+              | null;
             backgroundImage?: (number | null) | Media;
             background?: ('light' | 'dark') | null;
             id?: string | null;
@@ -230,8 +269,21 @@ export interface Page {
               heading?: string | null;
               id?: string | null;
             }[];
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
+            button?:
+              | {
+                  label: string;
+                  linkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  target?: ('_self' | '_blank') | null;
+                  fullWidth?: boolean | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'button';
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'courseCards';
@@ -240,8 +292,21 @@ export interface Page {
             overlayWord?: string | null;
             backgroundImage: number | Media;
             heading?: string | null;
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
+            button?:
+              | {
+                  label: string;
+                  linkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  target?: ('_self' | '_blank') | null;
+                  fullWidth?: boolean | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'button';
+                }[]
+              | null;
             items?:
               | {
                   title: string;
@@ -270,8 +335,21 @@ export interface Page {
             title?: string | null;
             subtitle?: string | null;
             backgroundImage?: (number | null) | Media;
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
+            button?:
+              | {
+                  label: string;
+                  linkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  target?: ('_self' | '_blank') | null;
+                  fullWidth?: boolean | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'button';
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'conceptSection';
@@ -288,6 +366,19 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'faqSection';
+          }
+        | {
+            label: string;
+            linkType?: ('url' | 'page') | null;
+            href?: string | null;
+            page?: (number | null) | Page;
+            variant?: ('primary' | 'secondary' | 'ghost') | null;
+            target?: ('_self' | '_blank') | null;
+            fullWidth?: boolean | null;
+            ariaLabel?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'button';
           }
       )[]
     | null;
@@ -425,8 +516,24 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               heading?: T;
               subheading?: T;
-              ctaLabel?: T;
-              ctaHref?: T;
+              link?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          linkType?: T;
+                          href?: T;
+                          page?: T;
+                          variant?: T;
+                          target?: T;
+                          fullWidth?: T;
+                          ariaLabel?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               backgroundImage?: T;
               background?: T;
               id?: T;
@@ -438,8 +545,24 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               image?: T;
-              ctaLabel?: T;
-              ctaHref?: T;
+              link?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          linkType?: T;
+                          href?: T;
+                          page?: T;
+                          variant?: T;
+                          target?: T;
+                          fullWidth?: T;
+                          ariaLabel?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               backgroundImage?: T;
               background?: T;
               id?: T;
@@ -452,8 +575,24 @@ export interface PagesSelect<T extends boolean = true> {
               subheading?: T;
               email?: T;
               phone?: T;
-              ctaLabel?: T;
-              ctaHref?: T;
+              link?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          label?: T;
+                          linkType?: T;
+                          href?: T;
+                          page?: T;
+                          variant?: T;
+                          target?: T;
+                          fullWidth?: T;
+                          ariaLabel?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               backgroundImage?: T;
               background?: T;
               id?: T;
@@ -488,8 +627,24 @@ export interface PagesSelect<T extends boolean = true> {
                     heading?: T;
                     id?: T;
                   };
-              ctaLabel?: T;
-              ctaHref?: T;
+              button?:
+                | T
+                | {
+                    button?:
+                      | T
+                      | {
+                          label?: T;
+                          linkType?: T;
+                          href?: T;
+                          page?: T;
+                          variant?: T;
+                          target?: T;
+                          fullWidth?: T;
+                          ariaLabel?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               id?: T;
               blockName?: T;
             };
@@ -499,8 +654,24 @@ export interface PagesSelect<T extends boolean = true> {
               overlayWord?: T;
               backgroundImage?: T;
               heading?: T;
-              ctaLabel?: T;
-              ctaHref?: T;
+              button?:
+                | T
+                | {
+                    button?:
+                      | T
+                      | {
+                          label?: T;
+                          linkType?: T;
+                          href?: T;
+                          page?: T;
+                          variant?: T;
+                          target?: T;
+                          fullWidth?: T;
+                          ariaLabel?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               items?:
                 | T
                 | {
@@ -533,8 +704,24 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               subtitle?: T;
               backgroundImage?: T;
-              ctaLabel?: T;
-              ctaHref?: T;
+              button?:
+                | T
+                | {
+                    button?:
+                      | T
+                      | {
+                          label?: T;
+                          linkType?: T;
+                          href?: T;
+                          page?: T;
+                          variant?: T;
+                          target?: T;
+                          fullWidth?: T;
+                          ariaLabel?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               id?: T;
               blockName?: T;
             };
@@ -549,6 +736,20 @@ export interface PagesSelect<T extends boolean = true> {
                     answer?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        button?:
+          | T
+          | {
+              label?: T;
+              linkType?: T;
+              href?: T;
+              page?: T;
+              variant?: T;
+              target?: T;
+              fullWidth?: T;
+              ariaLabel?: T;
               id?: T;
               blockName?: T;
             };
@@ -604,16 +805,33 @@ export interface Header {
   nav?:
     | {
         label: string;
-        href: string;
-        newTab?: boolean | null;
+        linkType?: ('url' | 'page') | null;
+        href?: string | null;
+        page?: (number | null) | Page;
+        variant?: ('primary' | 'secondary' | 'ghost') | null;
+        target?: ('_self' | '_blank') | null;
+        fullWidth?: boolean | null;
+        ariaLabel?: string | null;
         id?: string | null;
+        blockName?: string | null;
+        blockType: 'link';
       }[]
     | null;
-  cta?: {
-    label?: string | null;
-    href?: string | null;
-    newTab?: boolean | null;
-  };
+  cta?:
+    | {
+        label: string;
+        linkType?: ('url' | 'page') | null;
+        href?: string | null;
+        page?: (number | null) | Page;
+        variant?: ('primary' | 'secondary' | 'ghost') | null;
+        target?: ('_self' | '_blank') | null;
+        fullWidth?: boolean | null;
+        ariaLabel?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'link';
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -668,17 +886,38 @@ export interface HeaderSelect<T extends boolean = true> {
   nav?:
     | T
     | {
-        label?: T;
-        href?: T;
-        newTab?: T;
-        id?: T;
+        link?:
+          | T
+          | {
+              label?: T;
+              linkType?: T;
+              href?: T;
+              page?: T;
+              variant?: T;
+              target?: T;
+              fullWidth?: T;
+              ariaLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   cta?:
     | T
     | {
-        label?: T;
-        href?: T;
-        newTab?: T;
+        link?:
+          | T
+          | {
+              label?: T;
+              linkType?: T;
+              href?: T;
+              page?: T;
+              variant?: T;
+              target?: T;
+              fullWidth?: T;
+              ariaLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

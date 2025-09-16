@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { Button } from './Button'
 
 export const ConceptSection: Block = {
   slug: 'conceptSection',
@@ -24,14 +25,11 @@ export const ConceptSection: Block = {
       relationTo: 'media',
     },
     {
-      name: 'ctaLabel',
-      label: 'Main CTA Label',
-      type: 'text',
-    },
-    {
-      name: 'ctaHref',
-      label: 'Main CTA URL',
-      type: 'text',
+      name: 'button',
+      label: 'Button',
+      type: 'blocks',
+      maxRows: 1,
+      blocks: [Button],
     },
   ],
 }

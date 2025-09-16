@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import type { Media, Page } from '@/payload-types'
 import styles from './Hero.module.css'
+import { Button as UniversalButton } from './Button'
 
 type HeroBlock = NonNullable<Page['content']> // placeholder to satisfy types import
 
@@ -61,11 +62,7 @@ export function Hero({ hero }: HeroProps) {
         <div className={styles.heroContent}>
           {b.heading && <h1>{b.heading}</h1>}
           {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
-          {b.ctaHref && b.ctaLabel && (
-            <a className={styles.btn} href={b.ctaHref}>
-              {b.ctaLabel}
-            </a>
-          )}
+          {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
         </div>
       </section>
     )
@@ -89,11 +86,7 @@ export function Hero({ hero }: HeroProps) {
           <div className="copy">
             {b.heading && <h1>{b.heading}</h1>}
             {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
-            {b.ctaHref && b.ctaLabel && (
-              <a className={styles.btn} href={b.ctaHref}>
-                {b.ctaLabel}
-              </a>
-            )}
+            {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
           </div>
           {mediaObj?.url && (
             <div className={styles.media}>
@@ -128,11 +121,7 @@ export function Hero({ hero }: HeroProps) {
             )}
             {b.phone && <span className="contact">{b.phone}</span>}
           </div>
-          {b.ctaHref && b.ctaLabel && (
-            <a className={styles.btn} href={b.ctaHref}>
-              {b.ctaLabel}
-            </a>
-          )}
+          {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
         </div>
       </section>
     )

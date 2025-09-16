@@ -1,13 +1,22 @@
 import React from 'react'
 import type { Media } from '@/payload-types'
 import styles from './OverlayFeatureSection.module.css'
+import { Button as UniversalButton } from './Button'
 
 type OverlayFeatureSectionProps = {
   overlayWord?: string | null
   backgroundImage?: Media | number | null
   heading?: string | null
-  ctaLabel?: string | null
-  ctaHref?: string | null
+  button?: Array<{
+    label: string
+    href: string
+    linkType?: 'url' | 'page'
+    page?: number | Media | null | any
+    variant?: 'primary' | 'secondary' | 'ghost'
+    target?: '_self' | '_blank'
+    fullWidth?: boolean
+    ariaLabel?: string
+  }>
   items?: Array<{
     title?: string | null
     description?: string | null
@@ -18,8 +27,7 @@ export function OverlayFeatureSection({
   overlayWord,
   backgroundImage,
   heading,
-  ctaLabel,
-  ctaHref,
+  button,
   items,
 }: OverlayFeatureSectionProps) {
   const bg = backgroundImage as Media | number | undefined
@@ -38,10 +46,17 @@ export function OverlayFeatureSection({
       <div className={styles.overlayContent}>
         <div className={styles.headerRow}>
           {heading && <h2 className={styles.heading}>{heading}</h2>}
-          {ctaHref && ctaLabel && (
-            <a className={styles.cta} href={ctaHref}>
-              {ctaLabel}
-            </a>
+          {Array.isArray(button) && button[0] && (
+            <UniversalButton
+              label={button[0].label}
+              href={button[0].href || '#'}
+              linkType={button[0].linkType || 'url'}
+              page={button[0].page as any}
+              variant={button[0].variant}
+              target={button[0].target}
+              fullWidth={button[0].fullWidth}
+              ariaLabel={button[0].ariaLabel}
+            />
           )}
         </div>
         <div className={styles.separator} />

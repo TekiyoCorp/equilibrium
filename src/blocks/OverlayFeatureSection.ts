@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { Button } from './Button'
 
 export const OverlayFeatureSection: Block = {
   slug: 'overlayFeatureSection',
@@ -25,14 +26,11 @@ export const OverlayFeatureSection: Block = {
       type: 'text',
     },
     {
-      name: 'ctaLabel',
-      label: 'CTA Label',
-      type: 'text',
-    },
-    {
-      name: 'ctaHref',
-      label: 'CTA Href',
-      type: 'text',
+      name: 'button',
+      label: 'Button',
+      type: 'blocks',
+      maxRows: 1,
+      blocks: [Button],
     },
     {
       name: 'items',

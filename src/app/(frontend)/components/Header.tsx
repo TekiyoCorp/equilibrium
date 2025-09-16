@@ -2,13 +2,24 @@ import React from 'react'
 import styles from './Header.module.css'
 import { getPayload } from 'payload'
 import payloadConfigPromise from '@/payload.config'
+import { Button as UniversalButton } from './Button'
 
-type NavItem = { label?: string | null; href?: string | null; newTab?: boolean | null }
+type LinkBlock = {
+  label: string
+  linkType?: 'url' | 'page' | null
+  href?: string | null
+  page?: any
+  variant?: 'primary' | 'secondary' | 'ghost' | null
+  target?: '_self' | '_blank' | null
+  fullWidth?: boolean | null
+  ariaLabel?: string | null
+  blockType: 'link'
+}
 
 type HeaderData = {
   logo?: { image?: { url?: string | null; alt?: string | null } | null; alt?: string | null } | null
-  nav?: NavItem[]
-  cta?: { label?: string | null; href?: string | null; newTab?: boolean | null } | null
+  nav?: LinkBlock[] | null
+  cta?: LinkBlock[] | null
 }
 
 export async function Header() {
@@ -22,8 +33,13 @@ export async function Header() {
     data = null
   }
 
-  const navItems = data?.nav || []
-  const cta = data?.cta
+  const navItems = (data?.nav || []).filter(
+    (b): b is LinkBlock => b && (b as any).blockType === 'link',
+  )
+  const ctaBlock =
+    Array.isArray(data?.cta) && data?.cta[0] && (data?.cta[0] as any).blockType === 'link'
+      ? (data?.cta[0] as LinkBlock)
+      : undefined
   const logo = data?.logo
 
   return (
@@ -45,32 +61,32 @@ export async function Header() {
           <ul className={styles['nav-list']}>
             {navItems.map((item, i) => (
               <li key={i} className={styles['nav-item']}>
-                {item.href ? (
+                {item.linkType === 'url' ? (
                   <a
-                    href={item.href}
-                    target={item.newTab ? '_blank' : undefined}
-                    rel={item.newTab ? 'noreferrer' : undefined}
+                    href={item.href || '#'}
+                    target={item.target || undefined}
+                    rel={item.target === '_blank' ? 'noreferrer' : undefined}
+                    aria-label={item.ariaLabel || item.label}
                   >
                     {item.label || item.href}
                   </a>
                 ) : (
-                  <span>{item.label}</span>
+                  // For page links, we expect `page` to be populated with the Page object (depth=1)
+                  <a
+                    href={
+                      typeof item.page === 'object' && item.page?.slug ? `/${item.page.slug}` : '#'
+                    }
+                    aria-label={item.ariaLabel || item.label}
+                  >
+                    {item.label}
+                  </a>
                 )}
               </li>
             ))}
           </ul>
         </nav>
 
-        {cta?.href && (
-          <a
-            className={styles['cta']}
-            href={cta.href}
-            target={cta.newTab ? '_blank' : undefined}
-            rel={cta.newTab ? 'noreferrer' : undefined}
-          >
-            {cta.label || 'Get started'}
-          </a>
-        )}
+        {ctaBlock && <UniversalButton block={ctaBlock} />}
       </div>
     </header>
   )

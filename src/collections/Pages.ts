@@ -8,6 +8,7 @@ import { OverlayFeatureSection } from '../blocks/OverlayFeatureSection'
 import { TextMediaTiles } from '../blocks/TextMediaTiles'
 import { ConceptSection } from '../blocks/ConceptSection'
 import { FaqSection } from '../blocks/FaqSection'
+import { Button } from '../blocks/Button'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -37,6 +38,7 @@ export const Pages: CollectionConfig = {
         TextMediaTiles,
         ConceptSection,
         FaqSection,
+        Button,
       ],
     },
     {

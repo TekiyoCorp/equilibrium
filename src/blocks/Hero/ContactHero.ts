@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { Link } from '../Link'
 
 export const ContactHero: Block = {
   slug: 'contactHero',
@@ -25,12 +26,11 @@ export const ContactHero: Block = {
       type: 'text',
     },
     {
-      name: 'ctaLabel',
-      type: 'text',
-    },
-    {
-      name: 'ctaHref',
-      type: 'text',
+      name: 'link',
+      label: 'Link',
+      type: 'blocks',
+      maxRows: 1,
+      blocks: [Link],
     },
     {
       name: 'backgroundImage',

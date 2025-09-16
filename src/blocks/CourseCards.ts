@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { Button } from './Button'
 
 export const CourseCards: Block = {
   slug: 'courseCards',
@@ -39,14 +40,11 @@ export const CourseCards: Block = {
       ],
     },
     {
-      name: 'ctaLabel',
-      label: 'CTA Label',
-      type: 'text',
-    },
-    {
-      name: 'ctaHref',
-      label: 'CTA Href',
-      type: 'text',
+      name: 'button',
+      label: 'Button',
+      type: 'blocks',
+      maxRows: 1,
+      blocks: [Button],
     },
   ],
 }

@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { Link } from './Link'
 
 export const HeaderGlobal: GlobalConfig = {
   slug: 'header',
@@ -21,23 +22,15 @@ export const HeaderGlobal: GlobalConfig = {
     {
       name: 'nav',
       label: 'Navigation',
-      type: 'array',
-      labels: { singular: 'Nav Item', plural: 'Nav Items' },
-      fields: [
-        { name: 'label', label: 'Label', type: 'text', required: true },
-        { name: 'href', label: 'URL', type: 'text', required: true },
-        { name: 'newTab', label: 'Open in new tab', type: 'checkbox', defaultValue: false },
-      ],
+      type: 'blocks',
+      blocks: [Link],
     },
     {
       name: 'cta',
       label: 'Call To Action',
-      type: 'group',
-      fields: [
-        { name: 'label', label: 'Label', type: 'text' },
-        { name: 'href', label: 'URL', type: 'text' },
-        { name: 'newTab', label: 'Open in new tab', type: 'checkbox', defaultValue: false },
-      ],
+      type: 'blocks',
+      maxRows: 1,
+      blocks: [Link],
     },
   ],
 }
