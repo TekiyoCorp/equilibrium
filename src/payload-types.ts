@@ -645,6 +645,12 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  logo?: {
+    /**
+     * Upload a logo image
+     */
+    image?: (number | null) | Media;
+  };
   legal?: {
     copyright?: string | null;
     byline?: string | null;
@@ -676,6 +682,11 @@ export interface FooterSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  logo?:
+    | T
+    | {
+        image?: T;
       };
   legal?:
     | T

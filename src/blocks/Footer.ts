@@ -59,6 +59,22 @@ export const FooterGlobal: GlobalConfig = {
       ],
     },
     {
+      name: 'logo',
+      label: 'Logo',
+      type: 'group',
+      fields: [
+        {
+          name: 'image',
+          label: 'Logo Image',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            description: 'Upload a logo image',
+          },
+        },
+      ],
+    },
+    {
       name: 'legal',
       label: 'Legal Section',
       type: 'group',

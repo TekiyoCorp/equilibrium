@@ -19,6 +19,12 @@ type FooterColumn = {
 
 type FooterData = {
   columns?: FooterColumn[]
+  logo?: {
+    image?: {
+      url?: string | null
+      alt?: string | null
+    } | null
+  } | null
   legal?: { copyright?: string | null; byline?: string | null } | null
 }
 
@@ -28,13 +34,13 @@ export async function Footer() {
 
   let data: FooterData | null = null
   try {
-    // @ts-expect-error Payload types are generated at build; method exists at runtime
     data = (await payload.findGlobal({ slug: 'footer', draft: true, depth: 1 })) as FooterData
   } catch {
     data = null
   }
 
   const columns = data?.columns || []
+  const logo = data?.logo
   const legal = data?.legal
 
   return (
@@ -73,9 +79,18 @@ export async function Footer() {
           </div>
         )}
       </div>
-      <div className="footer-logo-bar" aria-hidden="true">
-        <div className="logo-stripe" />
-        <div className="logo-wordmark">EQUILIBRIUM</div>
+      <div className="footer-logo-bar">
+        <div className="logo-wordmark">
+          {logo?.image?.url ? (
+            <img
+              src={logo.image.url}
+              alt={logo.image.alt || 'Logo'}
+              className="footer-logo-image"
+            />
+          ) : (
+            'EQUILIBRIUM'
+          )}
+        </div>
       </div>
     </footer>
   )
