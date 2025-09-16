@@ -1,41 +1,149 @@
 /* Media Card Slider (scoped) */
 .sectionFullBleed {
   position: relative;
-  width: 100vw;
-  overflow: hidden;
-  height: 100dvh;
-  padding-left: 201px;
+  width: 100%;
+  /* Avoid vertical clipping so nav can appear below cards */
+  height: auto;
+  background: white;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding-left: 201px;
+  overflow-x: clip;
+  overflow-y: visible;
 }
+
+.container {
+  width: 100%;
+  max-width: 1232px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: normal;
+  letter-spacing: -3px;
+  background: linear-gradient(to right, #000000, #00b7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.sliderWrapper {
+  position: relative;
+  /* Make the slideshow span to the right edge from the left padding */
+  width: calc(100% - 201px);
+  /* Reserve space for navigation below the cards */
+  padding-bottom: 43px;
+}
+
 .embla {
   overflow: visible;
   width: 100%;
-  height: calc(100vh - 266px);
-  margin: 133px 0;
 }
+
 .emblaContainer {
   display: flex;
-  gap: 24px;
+  gap: 28px;
+  align-items: center;
 }
+
 .emblaSlide {
-  flex: 0 0 calc((100% - 72px) / 4);
+  flex: 0 0 287px;
   min-width: 0;
 }
+
 .mediaCard {
   width: 100%;
-  height: auto;
-  background: #fff;
-  color: #111;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.imageWrap {
+  width: 100%;
+  max-height: 348px;
+  aspect-ratio: 287 / 348;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  background: #f5f5f7;
 }
-.imageWrap img {
+
+.cardImage {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
+
+.cardTextWrap {
+  width: 100%;
+}
+
 .cardText {
-  margin: 12px 16px 16px;
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: normal;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.cardTextBold {
+  color: #1d1d1f;
+}
+
+.cardTextLight {
+  color: #86868b;
+  font-weight: 400;
+}
+
+.navigation {
+  position: absolute;
+  right: 43px;
+  bottom: 0;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navButton {
+  width: 38px;
+  height: 38px;
+  border-radius: 38px;
+  background: rgba(210, 210, 215, 0.64);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1d1d1f;
+}
+
+.navButton:hover {
+  background: rgba(210, 210, 215, 0.8);
+}
+
+.navButton:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.navButton svg {
+  width: 11px;
+  height: 15px;
+}
+
+.navButton:first-child svg {
+  transform: scaleY(-1);
 }
