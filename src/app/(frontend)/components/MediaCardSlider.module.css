@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   /* Avoid vertical clipping so nav can appear below cards */
-  height: auto;
+  height: 100dvh;
   background: white;
   display: flex;
   align-items: center;
