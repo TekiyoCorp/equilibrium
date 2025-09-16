@@ -61,8 +61,6 @@ export function Sections({ sections }: SectionsProps) {
               title={b.title}
               subtitle={b.subtitle}
               backgroundImage={b.backgroundImage}
-              layout={b.layout}
-              items={b.items || []}
               ctaLabel={b.ctaLabel}
               ctaHref={b.ctaHref}
             />

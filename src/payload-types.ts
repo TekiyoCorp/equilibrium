@@ -268,21 +268,6 @@ export interface Page {
             title?: string | null;
             subtitle?: string | null;
             backgroundImage?: (number | null) | Media;
-            layout?: ('default' | 'grid' | 'carousel') | null;
-            items?:
-              | {
-                  type?: ('text' | 'image' | 'card') | null;
-                  image?: (number | null) | Media;
-                  title?: string | null;
-                  description?: string | null;
-                  link?: {
-                    href?: string | null;
-                    label?: string | null;
-                    openInNewTab?: boolean | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
             ctaLabel?: string | null;
             ctaHref?: string | null;
             id?: string | null;
@@ -546,23 +531,6 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               subtitle?: T;
               backgroundImage?: T;
-              layout?: T;
-              items?:
-                | T
-                | {
-                    type?: T;
-                    image?: T;
-                    title?: T;
-                    description?: T;
-                    link?:
-                      | T
-                      | {
-                          href?: T;
-                          label?: T;
-                          openInNewTab?: T;
-                        };
-                    id?: T;
-                  };
               ctaLabel?: T;
               ctaHref?: T;
               id?: T;

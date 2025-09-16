@@ -5,24 +5,10 @@ import React from 'react'
 import type { Media } from '@/payload-types'
 import styles from './ConceptSection.module.css'
 
-type ConceptSectionItem = {
-  type?: 'text' | 'image' | 'card'
-  image?: number | Media | null
-  title?: string | null
-  description?: string | null
-  link?: {
-    href?: string | null
-    label?: string | null
-    openInNewTab?: boolean | null
-  } | null
-}
-
 type ConceptSectionProps = {
   title?: string | null
   subtitle?: string | null
   backgroundImage?: number | Media | null
-  layout?: 'default' | 'grid' | 'carousel'
-  items?: ConceptSectionItem[]
   ctaLabel?: string | null
   ctaHref?: string | null
 }
@@ -31,8 +17,6 @@ export function ConceptSection({
   title,
   subtitle,
   backgroundImage,
-  layout = 'default',
-  items = [],
   ctaLabel,
   ctaHref,
 }: ConceptSectionProps) {

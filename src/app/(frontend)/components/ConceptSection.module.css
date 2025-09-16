@@ -1,15 +1,20 @@
 /* ConceptSection Component Styles */
 .concept-section {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   min-height: 832px;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .concept-section__container {
   position: relative;
   width: 100%;
-  height: 100%;
+  max-width: 1217px; /* 178px + 272px + 101px + 666px */
+  height: 832px;
+  margin: 0 auto;
 }
 
 .concept-section__content {
@@ -80,11 +85,12 @@
 
 .concept-section__image {
   position: absolute;
-  right: 0;
+  left: 551px;
   top: 0;
   width: 666px;
-  height: 832px;
+  height: 100%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 67.668%, #ffffff 97.536%);
+  overflow: hidden;
 }
 
 .concept-section__img {
@@ -95,18 +101,30 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
+  .concept-section__container {
+    max-width: 95%;
+    padding: 0 2rem;
+  }
+
   .concept-section__text {
     left: 120px;
   }
 
   .concept-section__image {
-    width: 50%;
+    left: calc(120px + 272px + 101px); /* text left + text width + gap */
+    width: calc(100% - 120px - 272px - 101px);
   }
 }
 
 @media (max-width: 768px) {
   .concept-section {
+    height: auto;
+    min-height: 600px;
+    align-items: stretch;
+  }
+
+  .concept-section__container {
     height: auto;
     min-height: 600px;
   }
@@ -122,10 +140,13 @@
     width: auto;
     padding: 2rem;
     order: 2;
+    align-items: center;
+    text-align: center;
   }
 
   .concept-section__image {
     position: relative;
+    left: auto;
     width: 100%;
     height: 400px;
     order: 1;
