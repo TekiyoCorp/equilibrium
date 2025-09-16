@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import { TiPlus } from 'react-icons/ti'
 import type { Media } from '@/payload-types'
 import styles from './CourseCards.module.css'
 
@@ -37,7 +38,9 @@ export function CourseCards({
               <div className={styles.courseCardOverlay}>
                 {item.eyebrow && <span className={styles.courseCardEyebrow}>{item.eyebrow}</span>}
                 {item.heading && <h3 className={styles.courseCardHeading}>{item.heading}</h3>}
-                <button className={styles.courseCardIcon} aria-label="Open card" />
+                <button className={styles.courseCardIcon} aria-label="Open card">
+                  <TiPlus />
+                </button>
               </div>
             </article>
           )
