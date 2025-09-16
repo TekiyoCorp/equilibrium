@@ -65,6 +65,7 @@
   font-weight: 500;
   padding: 8px 4px;
   border-radius: 6px;
+  mix-blend-mode: difference;
 }
 .nav-item a:hover {
   background: rgba(255, 255, 255, 0.08);
@@ -169,6 +170,7 @@
   color: #fff;
   padding: 10px 8px;
   border-radius: 8px;
+  mix-blend-mode: difference;
 }
 .mobileItem a:hover {
   background: rgba(255, 255, 255, 0.08);

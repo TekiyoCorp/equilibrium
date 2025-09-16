@@ -110,7 +110,7 @@
 .navigation {
   position: absolute;
   right: 43px;
-  bottom: 0;
+  bottom: -43px;
   display: flex;
   gap: 20px;
   align-items: center;
@@ -176,5 +176,6 @@
   }
   .navigation {
     right: 18px;
+    bottom: -43px;
   }
 }
