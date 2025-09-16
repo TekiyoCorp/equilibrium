@@ -1,0 +1,41 @@
+/* Media Card Slider (scoped) */
+.sectionFullBleed {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  height: 100dvh;
+  padding-left: 201px;
+  display: flex;
+  align-items: center;
+}
+.embla {
+  overflow: visible;
+  width: 100%;
+  height: calc(100vh - 266px);
+  margin: 133px 0;
+}
+.emblaContainer {
+  display: flex;
+  gap: 24px;
+}
+.emblaSlide {
+  flex: 0 0 calc((100% - 72px) / 4);
+  min-width: 0;
+}
+.mediaCard {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+.imageWrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.cardText {
+  margin: 12px 16px 16px;
+}

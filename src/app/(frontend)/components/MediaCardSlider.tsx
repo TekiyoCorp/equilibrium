@@ -4,6 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import type { Media } from '@/payload-types'
+import styles from './MediaCardSlider.module.css'
 
 type MediaCardItem = {
   image: number | Media
@@ -18,21 +19,21 @@ export function MediaCardSlider({ items }: { items: MediaCardItem[] }) {
   })
 
   return (
-    <section className="section-full-bleed media-card-slider">
-      <div className="embla embla--visible-overflow" ref={emblaRef}>
-        <div className="embla__container">
+    <section className={styles.sectionFullBleed}>
+      <div className={styles.embla} ref={emblaRef}>
+        <div className={styles.emblaContainer}>
           {items?.map((item, idx) => {
             const media = item.image
             const mediaObj = typeof media === 'object' ? (media as Media) : undefined
             return (
-              <div className="embla__slide" key={`slide-${idx}-${mediaObj?.id ?? 'no-id'}`}>
-                <div className="media-card">
+              <div className={styles.emblaSlide} key={`slide-${idx}-${mediaObj?.id ?? 'no-id'}`}>
+                <div className={styles.mediaCard}>
                   {mediaObj?.url && (
-                    <div className="image-wrap">
+                    <div className={styles.imageWrap}>
                       <Image alt={mediaObj.alt || ''} src={mediaObj.url} width={640} height={400} />
                     </div>
                   )}
-                  {item.text && <p className="card-text">{item.text}</p>}
+                  {item.text && <p className={styles.cardText}>{item.text}</p>}
                 </div>
               </div>
             )

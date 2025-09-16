@@ -1,0 +1,57 @@
+/* Text + Media Tiles (scoped) */
+.root {
+  padding: 64px 24px;
+  display: flex;
+  justify-content: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+  .grid > .card:first-child {
+    grid-row: span 2;
+  }
+}
+.card {
+  background: #f2f2f2;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+}
+.text {
+  max-width: 370px;
+  text-align: center;
+  color: #1d1d1f;
+}
+.text p {
+  margin: 0;
+}
+.image {
+  width: 100%;
+  display: flex;
+}
+.image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.imageLeft {
+  justify-content: flex-start;
+}
+.imageCenter {
+  justify-content: center;
+}
+.imageRight {
+  justify-content: flex-end;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Media } from '@/payload-types'
+import styles from './TextMediaTiles.module.css'
 
 type TextMediaTilesProps = {
   items: Array<{
@@ -13,29 +14,45 @@ type TextMediaTilesProps = {
 
 export function TextMediaTiles({ items }: TextMediaTilesProps) {
   return (
-    <section className="text-media-tiles">
-      <div className="tmt-grid">
+    <section className={styles.root}>
+      <div className={styles.grid}>
         {items.slice(0, 3).map((it, idx) => {
           const media = it.image as Media | number | undefined
           const mediaObj = typeof media === 'object' ? (media as Media) : undefined
           const placeBottom = (it.imagePlacement || 'bottom') === 'bottom'
           const align = it.imageAlign || 'center'
           return (
-            <article className="tmt-card" key={`tmt-${idx}`}>
+            <article className={styles.card} key={`tmt-${idx}`}>
               {!placeBottom && mediaObj?.url && (
-                <div className={`tmt-image tmt-image--${align}`}>
+                <div
+                  className={`${styles.image} ${
+                    align === 'left'
+                      ? styles.imageLeft
+                      : align === 'right'
+                        ? styles.imageRight
+                        : styles.imageCenter
+                  }`}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img alt={mediaObj.alt || ''} src={mediaObj.url} />
                 </div>
               )}
-              <div className="tmt-text">
+              <div className={styles.text}>
                 <p>
                   {it.lead && <strong>{it.lead} </strong>}
                   {it.body}
                 </p>
               </div>
               {placeBottom && mediaObj?.url && (
-                <div className={`tmt-image tmt-image--${align}`}>
+                <div
+                  className={`${styles.image} ${
+                    align === 'left'
+                      ? styles.imageLeft
+                      : align === 'right'
+                        ? styles.imageRight
+                        : styles.imageCenter
+                  }`}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img alt={mediaObj.alt || ''} src={mediaObj.url} />
                 </div>

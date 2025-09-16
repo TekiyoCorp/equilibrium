@@ -1,0 +1,100 @@
+/* Hero (scoped) */
+.hero {
+  padding: 64px 24px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35.4%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+.sub {
+  opacity: 0.8;
+  max-width: 64ch;
+}
+.btn {
+  display: inline-block;
+  margin-top: 16px;
+  background: #079495;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 51px;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.bgLight {
+  background: #f6f6f9;
+}
+.bgDark {
+  background: #111827;
+  color: #fff;
+}
+.heroCenter {
+  text-align: center;
+  align-items: center;
+  gap: 12px;
+}
+.heroCenter .heroContent {
+  align-items: center;
+  gap: 12px;
+}
+.heroCenter .heroContent > * {
+  max-width: 606px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.heroCenter h1 {
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+.bgDark .sub {
+  color: #d4cdbf;
+  opacity: 1;
+}
+.heroRight .heroContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-content: center;
+}
+@media (min-width: 900px) {
+  .heroRight .heroContent {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+  }
+}
+.heroRight .media img {
+  border-radius: 10px;
+}
+.heroContact .contacts {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}

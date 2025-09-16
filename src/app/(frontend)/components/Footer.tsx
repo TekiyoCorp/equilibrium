@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Footer.module.css'
 import { getPayload } from 'payload'
 import payloadConfigPromise from '@/payload.config'
 
@@ -44,10 +45,10 @@ export async function Footer() {
   const legal = data?.legal
 
   return (
-    <footer className="site-footer" data-node-id="949:1010">
-      <div className="footer-grid">
+    <footer className={styles['site-footer']} data-node-id="949:1010">
+      <div className={styles['footer-grid']}>
         {columns.map((col, idx) => (
-          <div className="footer-col" key={idx}>
+          <div className={styles['footer-col']} key={idx}>
             {col.title && <h4>{col.title}</h4>}
             <ul>
               {(col.items || []).map((item, i) => {
@@ -70,7 +71,7 @@ export async function Footer() {
           </div>
         ))}
         {(legal?.copyright || legal?.byline) && (
-          <div className="footer-col">
+          <div className={styles['footer-col']}>
             <h4>Legal</h4>
             <ul>
               {legal?.copyright && <li>{legal.copyright}</li>}
@@ -79,13 +80,13 @@ export async function Footer() {
           </div>
         )}
       </div>
-      <div className="footer-logo-bar">
-        <div className="logo-wordmark">
+      <div className={styles['footer-logo-bar']}>
+        <div className={styles['logo-wordmark']}>
           {logo?.image?.url ? (
             <img
               src={logo.image.url}
               alt={logo.image.alt || 'Logo'}
-              className="footer-logo-image"
+              className={styles['footer-logo-image']}
             />
           ) : (
             'EQUILIBRIUM'

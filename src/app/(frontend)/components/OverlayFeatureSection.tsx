@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Media } from '@/payload-types'
+import styles from './OverlayFeatureSection.module.css'
 
 type OverlayFeatureSectionProps = {
   overlayWord?: string | null
@@ -26,32 +27,32 @@ export function OverlayFeatureSection({
 
   return (
     <section
-      className="overlay-feature-hero"
+      className={styles.root}
       style={bgObj?.url ? { backgroundImage: `url(${bgObj.url})` } : undefined}
     >
       {overlayWord && (
-        <div className="overlay-word" aria-hidden>
+        <div className={styles.overlayWord} aria-hidden>
           {overlayWord}
         </div>
       )}
-      <div className="overlay-content">
-        {heading && <h2 className="ofh-heading">{heading}</h2>}
+      <div className={styles.overlayContent}>
+        {heading && <h2 className={styles.heading}>{heading}</h2>}
         {ctaHref && ctaLabel && (
-          <a className="ofh-cta" href={ctaHref}>
+          <a className={styles.cta} href={ctaHref}>
             {ctaLabel}
           </a>
         )}
-        <div className="ofh-separator" />
-        <div className="ofh-features">
+        <div className={styles.separator} />
+        <div className={styles.features}>
           {(items || []).slice(0, 3).map((it, idx) => (
-            <div className="ofh-feature" key={`ofh-${idx}`}>
-              {it.title && <div className="ofh-feature-title">{it.title}</div>}
-              {it.description && <div className="ofh-feature-desc">{it.description}</div>}
+            <div key={`ofh-${idx}`}>
+              {it.title && <div className={styles.featureTitle}>{it.title}</div>}
+              {it.description && <div className={styles.featureDesc}>{it.description}</div>}
             </div>
           ))}
         </div>
       </div>
-      <div className="hero-overlay" />
+      <div className={styles.heroOverlay} />
     </section>
   )
 }
