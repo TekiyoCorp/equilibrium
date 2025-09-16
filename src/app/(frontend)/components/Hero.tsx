@@ -74,9 +74,13 @@ export function Hero({ hero }: HeroProps) {
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
 
         <div className={styles.heroContent}>
-          <FadeIn from="bottom" duration={1.5}>
+          <FadeIn from="bottom" duration={1.2}>
             {b.heading && <h1>{b.heading}</h1>}
+          </FadeIn>
+          <FadeIn from="bottom" duration={1.2} delay={0.2}>
             {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
+          </FadeIn>
+          <FadeIn from="bottom" duration={1.2} delay={0.4}>
             {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
           </FadeIn>
         </div>
@@ -100,22 +104,30 @@ export function Hero({ hero }: HeroProps) {
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
         <div className={styles.heroContent}>
           <div className="copy">
-            {b.heading && <h1>{b.heading}</h1>}
-            {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
-            {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+            <FadeIn from="left" duration={1.2}>
+              {b.heading && <h1>{b.heading}</h1>}
+            </FadeIn>
+            <FadeIn from="left" duration={1.2} delay={0.2}>
+              {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
+            </FadeIn>
+            <FadeIn from="left" duration={1.2} delay={0.4}>
+              {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+            </FadeIn>
           </div>
           {mediaObj?.url && (
-            <div className={styles.media}>
-              <Image
-                alt={mediaObj.alt}
-                src={mediaObj.url}
-                width={640}
-                height={400}
-                sizes="(min-width: 900px) 40vw, 100vw"
-                style={{ width: '100%', height: 'auto' }}
-                priority
-              />
-            </div>
+            <FadeIn from="right" duration={1.2} delay={0.3}>
+              <div className={styles.media}>
+                <Image
+                  alt={mediaObj.alt}
+                  src={mediaObj.url}
+                  width={640}
+                  height={400}
+                  sizes="(min-width: 900px) 40vw, 100vw"
+                  style={{ width: '100%', height: 'auto' }}
+                  priority
+                />
+              </div>
+            </FadeIn>
           )}
         </div>
       </section>
@@ -135,17 +147,25 @@ export function Hero({ hero }: HeroProps) {
       >
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
         <div className={styles.heroContent}>
-          {b.heading && <h1>{b.heading}</h1>}
-          {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
-          <div className={styles.contacts}>
-            {b.email && (
-              <a href={`mailto:${b.email}`} className="contact">
-                {b.email}
-              </a>
-            )}
-            {b.phone && <span className="contact">{b.phone}</span>}
-          </div>
-          {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+          <FadeIn from="bottom" duration={1.2}>
+            {b.heading && <h1>{b.heading}</h1>}
+          </FadeIn>
+          <FadeIn from="bottom" duration={1.2} delay={0.2}>
+            {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
+          </FadeIn>
+          <FadeIn from="bottom" duration={1.2} delay={0.4}>
+            <div className={styles.contacts}>
+              {b.email && (
+                <a href={`mailto:${b.email}`} className="contact">
+                  {b.email}
+                </a>
+              )}
+              {b.phone && <span className="contact">{b.phone}</span>}
+            </div>
+          </FadeIn>
+          <FadeIn from="bottom" duration={1.2} delay={0.6}>
+            {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+          </FadeIn>
         </div>
       </section>
     )

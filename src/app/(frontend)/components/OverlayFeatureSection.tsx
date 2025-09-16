@@ -2,6 +2,7 @@ import React from 'react'
 import type { Media } from '@/payload-types'
 import styles from './OverlayFeatureSection.module.css'
 import { Button as UniversalButton } from './Button'
+import FadeIn from '@/app/animation/fade-in'
 
 type OverlayFeatureSectionProps = {
   overlayWord?: string | null
@@ -45,27 +46,37 @@ export function OverlayFeatureSection({
       )}
       <div className={styles.overlayContent}>
         <div className={styles.headerRow}>
-          {heading && <h2 className={styles.heading}>{heading}</h2>}
-          {Array.isArray(button) && button[0] && (
-            <UniversalButton
-              label={button[0].label}
-              href={button[0].href || '#'}
-              linkType={button[0].linkType || 'url'}
-              page={button[0].page as any}
-              variant={button[0].variant}
-              target={button[0].target}
-              fullWidth={button[0].fullWidth}
-              ariaLabel={button[0].ariaLabel}
-            />
-          )}
+          <FadeIn from="bottom" duration={1.2}>
+            {heading && <h2 className={styles.heading}>{heading}</h2>}
+          </FadeIn>
+          <FadeIn from="bottom" duration={1.2} delay={0.2}>
+            {Array.isArray(button) && button[0] && (
+              <UniversalButton
+                label={button[0].label}
+                href={button[0].href || '#'}
+                linkType={button[0].linkType || 'url'}
+                page={button[0].page as any}
+                variant={button[0].variant}
+                target={button[0].target}
+                fullWidth={button[0].fullWidth}
+                ariaLabel={button[0].ariaLabel}
+              />
+            )}
+          </FadeIn>
         </div>
-        <div className={styles.separator} />
+
+        <FadeIn from="left" duration={1} delay={0.3}>
+          <div className={styles.separator} />
+        </FadeIn>
+
         <div className={styles.features}>
           {(items || []).slice(0, 3).map((it, idx) => (
-            <div key={`ofh-${idx}`}>
-              {it.title && <div className={styles.featureTitle}>{it.title}</div>}
-              {it.description && <div className={styles.featureDesc}>{it.description}</div>}
-            </div>
+            <FadeIn key={`ofh-${idx}`} from="bottom" duration={1} delay={0.5 + idx * 0.2}>
+              <div>
+                {it.title && <div className={styles.featureTitle}>{it.title}</div>}
+                {it.description && <div className={styles.featureDesc}>{it.description}</div>}
+              </div>
+            </FadeIn>
           ))}
         </div>
       </div>

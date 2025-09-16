@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Media } from '@/payload-types'
 import styles from './TextMediaTiles.module.css'
+import FadeIn from '@/app/animation/fade-in'
 
 type TextMediaTilesProps = {
   items: Array<{
@@ -31,56 +32,62 @@ export function TextMediaTiles({ items }: TextMediaTilesProps) {
       <div className={styles.container}>
         {/* Grande carte à gauche */}
         {firstItem && (
-          <div className={styles.leftCard}>
-            {firstMedia?.url && (
-              <div className={`${styles.image} ${styles.imageLarge}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img alt={firstMedia.alt || ''} src={firstMedia.url} />
+          <FadeIn from="left" duration={1.2}>
+            <div className={styles.leftCard}>
+              {firstMedia?.url && (
+                <div className={`${styles.image} ${styles.imageLarge}`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img alt={firstMedia.alt || ''} src={firstMedia.url} />
+                </div>
+              )}
+              <div className={styles.text}>
+                <p>
+                  {firstItem.lead && <strong>{firstItem.lead} </strong>}
+                  <span>{firstItem.body}</span>
+                </p>
               </div>
-            )}
-            <div className={styles.text}>
-              <p>
-                {firstItem.lead && <strong>{firstItem.lead} </strong>}
-                <span>{firstItem.body}</span>
-              </p>
             </div>
-          </div>
+          </FadeIn>
         )}
 
         {/* Colonne de droite avec deux petites cartes */}
         <div className={styles.rightColumn}>
           {secondItem && (
-            <div className={styles.rightCard}>
-              <div className={`${styles.text} ${styles.textSmall}`}>
-                <p>
-                  {secondItem.lead && <strong>{secondItem.lead} </strong>}
-                  <span>{secondItem.body}</span>
-                </p>
-              </div>
-              {secondMedia?.url && (
-                <div className={`${styles.image} ${styles.imageSmall}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt={secondMedia.alt || ''} src={secondMedia.url} />
+            <FadeIn from="right" duration={1.2} delay={0.3}>
+              <div className={styles.rightCard}>
+                <div className={`${styles.text} ${styles.textSmall}`}>
+                  <p>
+                    {secondItem.lead && <strong>{secondItem.lead} </strong>}
+                    <span>{secondItem.body}</span>
+                  </p>
                 </div>
-              )}
-            </div>
+                {secondMedia?.url && (
+                  <div className={`${styles.image} ${styles.imageSmall}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img alt={secondMedia.alt || ''} src={secondMedia.url} />
+                  </div>
+                )}
+              </div>
+            </FadeIn>
           )}
 
           {thirdItem && (
-            <div className={styles.rightCard}>
-              <div className={`${styles.text} ${styles.textSmall}`}>
-                <p>
-                  {thirdItem.lead && <strong>{thirdItem.lead} </strong>}
-                  <span>{thirdItem.body}</span>
-                </p>
-              </div>
-              {thirdMedia?.url && (
-                <div className={`${styles.image} ${styles.imageSmall}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt={thirdMedia.alt || ''} src={thirdMedia.url} />
+            <FadeIn from="right" duration={1.2} delay={0.5}>
+              <div className={styles.rightCard}>
+                <div className={`${styles.text} ${styles.textSmall}`}>
+                  <p>
+                    {thirdItem.lead && <strong>{thirdItem.lead} </strong>}
+                    <span>{thirdItem.body}</span>
+                  </p>
                 </div>
-              )}
-            </div>
+                {thirdMedia?.url && (
+                  <div className={`${styles.image} ${styles.imageSmall}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img alt={thirdMedia.alt || ''} src={thirdMedia.url} />
+                  </div>
+                )}
+              </div>
+            </FadeIn>
           )}
         </div>
       </div>
