@@ -7,7 +7,6 @@ import { ConceptSection } from './ConceptSection'
 import { FaqSection } from './FaqSection'
 import { Button as UniversalButton } from './Button'
 import { DetailedCourseGrid } from './DetailedCourseGrid'
-import type { Media } from '@/payload-types'
 
 type SectionsProps = {
   sections?: Array<{

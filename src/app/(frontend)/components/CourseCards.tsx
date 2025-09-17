@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useState } from 'react'
 import { TiPlus } from 'react-icons/ti'
@@ -6,7 +6,7 @@ import type { Media } from '@/payload-types'
 import styles from './CourseCards.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 
 type CourseCard = {
   image: number | Media
@@ -35,7 +35,7 @@ export function CourseCards({
   const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set())
 
   const toggleCard = (index: number) => {
-    setExpandedCards(prev => {
+    setExpandedCards((prev) => {
       const newSet = new Set(prev)
       if (newSet.has(index)) {
         newSet.delete(index)
@@ -84,7 +84,7 @@ export function CourseCards({
                     />
                   )}
                 </AnimatePresence>
-                
+
                 <div className={styles.courseCardOverlay}>
                   <AnimatePresence mode="wait">
                     {!expandedCards.has(idx) ? (
@@ -94,8 +94,12 @@ export function CourseCards({
                         exit={{ opacity: 0, y: -30 }}
                         transition={{ duration: 0.15 }}
                       >
-                        {item.eyebrow && <span className={styles.courseCardEyebrow}>{item.eyebrow}</span>}
-                        {item.heading && <h3 className={styles.courseCardHeading}>{item.heading}</h3>}
+                        {item.eyebrow && (
+                          <span className={styles.courseCardEyebrow}>{item.eyebrow}</span>
+                        )}
+                        {item.heading && (
+                          <h3 className={styles.courseCardHeading}>{item.heading}</h3>
+                        )}
                       </motion.div>
                     ) : (
                       <motion.div
@@ -107,14 +111,15 @@ export function CourseCards({
                         className={styles.expandedContent}
                       >
                         <p className={styles.expandedText}>
-                          Découvrez nos formations expertes conçues pour développer vos compétences et accélérer votre carrière professionnelle.
+                          Découvrez nos formations expertes conçues pour développer vos compétences
+                          et accélérer votre carrière professionnelle.
                         </p>
                       </motion.div>
                     )}
                   </AnimatePresence>
-                  <button 
-                    className={`${styles.courseCardIcon} ${expandedCards.has(idx) ? styles.rotated : ''}`} 
-                    aria-label={expandedCards.has(idx) ? "Close card" : "Open card"}
+                  <button
+                    className={`${styles.courseCardIcon} ${expandedCards.has(idx) ? styles.rotated : ''}`}
+                    aria-label={expandedCards.has(idx) ? 'Close card' : 'Open card'}
                     onClick={() => toggleCard(idx)}
                     type="button"
                   >

@@ -3,7 +3,7 @@
 import React from 'react'
 import styles from './Header.module.css'
 import { Button as UniversalButton } from './Button'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 
 export type LinkBlock = {
   label: string
@@ -108,13 +108,13 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
               <nav className={styles['nav']} aria-label="Mobile">
                 <ul className={styles['nav-list']}>
                   {navItems.map((item, i) => (
-                    <motion.li 
-                      key={`m-${i}`} 
+                    <motion.li
+                      key={`m-${i}`}
                       className={styles['nav-item']}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      transition={{ delay: 0.1 + (i * 0.05), duration: 0.2 }}
+                      transition={{ delay: 0.1 + i * 0.05, duration: 0.2 }}
                     >
                       {item.linkType === 'url' ? (
                         <a
@@ -145,7 +145,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
               </nav>
 
               {ctaBlock && (
-                <motion.div 
+                <motion.div
                   className={styles['ctaWrap']}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -159,7 +159,6 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
           )}
         </AnimatePresence>
       </div>
-
     </header>
   )
 }
