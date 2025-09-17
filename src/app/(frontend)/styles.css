@@ -9,7 +9,7 @@
 @font-face {
   font-family: 'Inter Display';
   src: url('/fonts/InterDisplay-Medium.woff2') format('woff2');
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -63,7 +63,7 @@ h1 {
   margin: 40px 0;
   font-size: 64px;
   line-height: 70px;
-  font-weight: bold;
+  font-weight: 400;
 
   @media (max-width: 1024px) {
     margin: 24px 0;
@@ -197,3 +197,12 @@ svg {
 /* TextMediaTiles moved to components/TextMediaTiles.module.css */
 
 /* Footer moved to scoped CSS module: components/Footer.module.css */
+
+/* Mobile sections gap */
+@media (max-width: 900px) {
+  .sections-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+  }
+}

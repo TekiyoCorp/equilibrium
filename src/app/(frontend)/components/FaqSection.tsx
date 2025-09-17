@@ -13,7 +13,7 @@ export function FaqSection({ title, items = [] }: { title?: string | null; items
 
   return (
     <section className="faq-section" style={{ padding: '64px 24px' }}>
-      <FadeIn from="bottom" duration={1.2}>
+      <FadeIn from="bottom" duration={0.4}>
         {title && (
           <h2
             style={{
@@ -22,6 +22,7 @@ export function FaqSection({ title, items = [] }: { title?: string | null; items
               lineHeight: 1.1,
               letterSpacing: '-0.06em',
               textAlign: 'center',
+              fontWeight: 400,
             }}
           >
             {title}
@@ -36,7 +37,7 @@ export function FaqSection({ title, items = [] }: { title?: string | null; items
         {items.map((it, idx) => {
           const isOpen = openIndex === idx
           return (
-            <FadeIn key={`faq-${idx}`} from="bottom" duration={1} delay={0.3 + idx * 0.15}>
+            <FadeIn key={`faq-${idx}`} from="bottom" duration={0.3} delay={0.1 + idx * 0.05}>
               <div
                 className={`faq-item${isOpen ? ' is-open' : ''}`}
                 style={{
@@ -62,6 +63,7 @@ export function FaqSection({ title, items = [] }: { title?: string | null; items
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     cursor: 'pointer',
+                    fontWeight: 400,
                   }}
                 >
                   <span>{it.question}</span>
@@ -71,7 +73,7 @@ export function FaqSection({ title, items = [] }: { title?: string | null; items
                   <div
                     id={`faq-panel-${idx}`}
                     className="faq-answer"
-                    style={{ marginTop: 10, opacity: 0.9 }}
+                    style={{ marginTop: 10, opacity: 0.9, fontWeight: 400 }}
                   >
                     {it.answer}
                   </div>

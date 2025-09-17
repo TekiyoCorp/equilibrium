@@ -32,7 +32,7 @@ export function TextMediaTiles({ items }: TextMediaTilesProps) {
       <div className={styles.container}>
         {/* Grande carte à gauche */}
         {firstItem && (
-          <FadeIn from="left" duration={1.2}>
+          <FadeIn from="left" duration={0.4}>
             <div className={styles.leftCard}>
               {firstMedia?.url && (
                 <div className={`${styles.image} ${styles.imageLarge}`}>
@@ -40,6 +40,7 @@ export function TextMediaTiles({ items }: TextMediaTilesProps) {
                   <img alt={firstMedia.alt || ''} src={firstMedia.url} />
                 </div>
               )}
+              <div className={styles.gradientOverlay} />
               <div className={styles.text}>
                 <p>
                   {firstItem.lead && <strong>{firstItem.lead} </strong>}
@@ -53,8 +54,9 @@ export function TextMediaTiles({ items }: TextMediaTilesProps) {
         {/* Colonne de droite avec deux petites cartes */}
         <div className={styles.rightColumn}>
           {secondItem && (
-            <FadeIn from="right" duration={1.2} delay={0.3}>
+            <FadeIn from="right" duration={0.4} delay={0.1}>
               <div className={styles.rightCard}>
+                <div className={styles.gradientOverlay} />
                 <div className={`${styles.text} ${styles.textSmall}`}>
                   <p>
                     {secondItem.lead && <strong>{secondItem.lead} </strong>}
@@ -72,8 +74,9 @@ export function TextMediaTiles({ items }: TextMediaTilesProps) {
           )}
 
           {thirdItem && (
-            <FadeIn from="right" duration={1.2} delay={0.5}>
+            <FadeIn from="right" duration={0.4} delay={0.2}>
               <div className={styles.rightCard}>
+                <div className={styles.gradientOverlay} />
                 <div className={`${styles.text} ${styles.textSmall}`}>
                   <p>
                     {thirdItem.lead && <strong>{thirdItem.lead} </strong>}

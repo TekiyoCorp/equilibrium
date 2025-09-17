@@ -46,10 +46,10 @@ export function OverlayFeatureSection({
       )}
       <div className={styles.overlayContent}>
         <div className={styles.headerRow}>
-          <FadeIn from="bottom" duration={1.2}>
+          <FadeIn from="bottom" duration={0.4}>
             {heading && <h2 className={styles.heading}>{heading}</h2>}
           </FadeIn>
-          <FadeIn from="bottom" duration={1.2} delay={0.2}>
+          <FadeIn from="bottom" duration={0.4} delay={0.1}>
             {Array.isArray(button) && button[0] && (
               <UniversalButton
                 label={button[0].label}
@@ -65,13 +65,13 @@ export function OverlayFeatureSection({
           </FadeIn>
         </div>
 
-        <FadeIn from="left" duration={1} delay={0.3}>
+        <FadeIn from="left" duration={0.3} delay={0.15}>
           <div className={styles.separator} />
         </FadeIn>
 
         <div className={styles.features}>
           {(items || []).slice(0, 3).map((it, idx) => (
-            <FadeIn key={`ofh-${idx}`} from="bottom" duration={1} delay={0.5 + idx * 0.2}>
+            <FadeIn key={`ofh-${idx}`} from="bottom" duration={0.3} delay={0.2 + idx * 0.1}>
               <div>
                 {it.title && <div className={styles.featureTitle}>{it.title}</div>}
                 {it.description && <div className={styles.featureDesc}>{it.description}</div>}

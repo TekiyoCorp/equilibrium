@@ -53,14 +53,25 @@ export async function Footer() {
             <ul>
               {(col.items || []).map((item, i) => {
                 if (item.type === 'link' && item.link?.href) {
+                  const isTekiyoLink = item.link.label === 'Propulsé par Tekiyo'
                   return (
                     <li key={i}>
                       <a
-                        href={item.link.href}
-                        target={item.link.newTab ? '_blank' : undefined}
-                        rel={item.link.newTab ? 'noreferrer' : undefined}
+                        href={isTekiyoLink ? "https://tekiyo.fr" : item.link.href}
+                        target={item.link.newTab || isTekiyoLink ? '_blank' : undefined}
+                        rel={item.link.newTab || isTekiyoLink ? 'noreferrer' : undefined}
+                        className={isTekiyoLink ? styles['tekiyo-link'] : undefined}
                       >
                         {item.link.label || item.link.href}
+                        {isTekiyoLink && (
+                          <div className={styles['tekiyo-preview']}>
+                            <iframe 
+                              src="https://tekiyo.fr" 
+                              title="Tekiyo Preview"
+                              sandbox="allow-same-origin allow-scripts"
+                            />
+                          </div>
+                        )}
                       </a>
                     </li>
                   )
@@ -70,15 +81,29 @@ export async function Footer() {
             </ul>
           </div>
         ))}
-        {(legal?.copyright || legal?.byline) && (
-          <div className={styles['footer-col']}>
-            <h4>Legal</h4>
-            <ul>
-              {legal?.copyright && <li>{legal.copyright}</li>}
-              {legal?.byline && <li>{legal.byline}</li>}
-            </ul>
-          </div>
-        )}
+        <div className={styles['footer-col']}>
+          <h4>Legal</h4>
+          <ul>
+            <li>© 2025 Equilibrium</li>
+            <li>
+              <a
+                href="https://tekiyo.fr"
+                target="_blank"
+                rel="noreferrer"
+                className={styles['tekiyo-link']}
+              >
+                Propulsé par Tekiyo
+                <div className={styles['tekiyo-preview']}>
+                  <iframe 
+                    src="https://tekiyo.fr" 
+                    title="Tekiyo Preview"
+                    sandbox="allow-same-origin allow-scripts"
+                  />
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className={styles['footer-logo-bar']}>
         <div className={styles['logo-wordmark']}>

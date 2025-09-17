@@ -5,7 +5,7 @@ import { Footer } from './components/Footer'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Home',
 }
 
 export const viewport = {

@@ -17,10 +17,10 @@ const FadeIn: React.FC<FadeInProps> = ({
   children,
   from,
   opacity = true,
-  duration = 1,
+  duration = 0.4,
   delay = 0,
   stagger = false,
-  staggerDelay = 0.1,
+  staggerDelay = 0.05,
 }) => {
   const initialPosition = () => {
     switch (from) {

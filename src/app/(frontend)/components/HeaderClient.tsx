@@ -3,6 +3,7 @@
 import React from 'react'
 import styles from './Header.module.css'
 import { Button as UniversalButton } from './Button'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export type LinkBlock = {
   label: string
@@ -47,18 +48,6 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
           )}
         </a>
 
-        <button
-          aria-expanded={open}
-          aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-          className={styles['menuToggle']}
-          onClick={toggle}
-        >
-          <span className={styles['menuBar']} />
-          <span className={styles['menuBar']} />
-          <span className={styles['menuBar']} />
-          <span className={styles['menuLabel']}>Menu</span>
-        </button>
-
         <nav className={styles['nav']} aria-label="Primary">
           <ul className={styles['nav-list']}>
             {navItems.map((item, i) => (
@@ -89,51 +78,88 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
           </ul>
         </nav>
 
+        <button
+          aria-expanded={open}
+          aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+          className={styles['menuToggle']}
+          onClick={toggle}
+        >
+          <span className={styles['menuBar']} />
+          <span className={styles['menuBar']} />
+          <span className={styles['menuBar']} />
+          <span className={styles['menuLabel']}>Menu</span>
+        </button>
+
         {ctaBlock && (
           <div className={styles['ctaWrap']}>
             <UniversalButton block={ctaBlock} />
           </div>
         )}
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              className={styles['mobileMenuContent']}
+            >
+              <nav className={styles['nav']} aria-label="Mobile">
+                <ul className={styles['nav-list']}>
+                  {navItems.map((item, i) => (
+                    <motion.li 
+                      key={`m-${i}`} 
+                      className={styles['nav-item']}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ delay: 0.1 + (i * 0.05), duration: 0.2 }}
+                    >
+                      {item.linkType === 'url' ? (
+                        <a
+                          href={item.href || '#'}
+                          target={item.target || undefined}
+                          rel={item.target === '_blank' ? 'noreferrer' : undefined}
+                          aria-label={item.ariaLabel || item.label}
+                          onClick={() => setOpen(false)}
+                        >
+                          {item.label || item.href}
+                        </a>
+                      ) : (
+                        <a
+                          href={
+                            typeof item.page === 'object' && (item.page as any)?.slug
+                              ? `/${(item.page as any).slug}`
+                              : '#'
+                          }
+                          aria-label={item.ariaLabel || item.label}
+                          onClick={() => setOpen(false)}
+                        >
+                          {item.label}
+                        </a>
+                      )}
+                    </motion.li>
+                  ))}
+                </ul>
+              </nav>
+
+              {ctaBlock && (
+                <motion.div 
+                  className={styles['ctaWrap']}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ delay: 0.25, duration: 0.2 }}
+                >
+                  <UniversalButton block={ctaBlock} />
+                </motion.div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className={open ? styles['mobileMenuOpen'] : styles['mobileMenuClosed']}>
-        <nav aria-label="Mobile">
-          <ul className={styles['mobileList']}>
-            {navItems.map((item, i) => (
-              <li key={`m-${i}`} className={styles['mobileItem']}>
-                {item.linkType === 'url' ? (
-                  <a
-                    href={item.href || '#'}
-                    target={item.target || undefined}
-                    rel={item.target === '_blank' ? 'noreferrer' : undefined}
-                    aria-label={item.ariaLabel || item.label}
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label || item.href}
-                  </a>
-                ) : (
-                  <a
-                    href={
-                      typeof item.page === 'object' && (item.page as any)?.slug
-                        ? `/${(item.page as any).slug}`
-                        : '#'
-                    }
-                    aria-label={item.ariaLabel || item.label}
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                )}
-              </li>
-            ))}
-            {ctaBlock && (
-              <li className={styles['mobileItem']}>
-                <UniversalButton block={ctaBlock} />
-              </li>
-            )}
-          </ul>
-        </nav>
-      </div>
     </header>
   )
 }

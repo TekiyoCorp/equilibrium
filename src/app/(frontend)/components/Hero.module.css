@@ -35,6 +35,15 @@
   justify-content: flex-end;
   padding-bottom: 37px;
 }
+
+@media (max-width: 900px) {
+  .heroContent > * {
+    margin-bottom: 12px;
+  }
+  .heroContent > *:last-child {
+    margin-bottom: 0;
+  }
+}
 .sub {
   opacity: 0.8;
   max-width: 64ch;
@@ -48,6 +57,7 @@
   border-radius: 51px;
   text-decoration: none;
   line-height: 1.2;
+  font-weight: 400;
 }
 .bgLight {
   background-color: #f6f6f9;
@@ -74,6 +84,7 @@
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin: 0;
+  font-weight: 400;
 }
 .bgDark .sub {
   color: #d4cdbf;

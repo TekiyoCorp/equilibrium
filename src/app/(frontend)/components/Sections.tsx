@@ -19,7 +19,7 @@ export function Sections({ sections }: SectionsProps) {
   if (!sections || sections.length === 0) return null
 
   return (
-    <>
+    <div className="sections-wrapper">
       {sections.map((block, index) => {
         if (block.blockType === 'mediaCardSlider') {
           return <MediaCardSlider key={index} items={block.items} />
@@ -80,6 +80,6 @@ export function Sections({ sections }: SectionsProps) {
         }
         return null
       })}
-    </>
+    </div>
   )
 }

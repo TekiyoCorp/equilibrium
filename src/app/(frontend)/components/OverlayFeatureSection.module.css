@@ -40,6 +40,7 @@
   font-size: 46px;
   line-height: 1.1;
   letter-spacing: -0.06em;
+  font-weight: 400;
 }
 .cta {
   display: inline-flex;
@@ -70,11 +71,13 @@
 .featureTitle {
   font-size: 24px;
   letter-spacing: -0.06em;
+  font-weight: 400;
 }
 .featureDesc {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.6);
   max-width: 263px;
+  font-weight: 400;
 }
 .heroOverlay {
   position: absolute;
