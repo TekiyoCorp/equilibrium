@@ -58,8 +58,8 @@ export function ConceptSection({ title, subtitle, backgroundImage, button }: Con
             </FadeIn>
           </div>
 
-          <FadeIn from="right" duration={1.2} delay={0.3}>
-            <div className={styles['concept-section__image']}>
+          <div className={styles['concept-section__image']}>
+            <FadeIn from="right" duration={1.2} delay={0.8}>
               {backgroundImageObj?.url && (
                 <Image
                   alt={backgroundImageObj.alt || ''}
@@ -69,8 +69,8 @@ export function ConceptSection({ title, subtitle, backgroundImage, button }: Con
                   style={{ objectFit: 'cover' }}
                 />
               )}
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
       </div>
     </section>

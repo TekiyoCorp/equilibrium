@@ -139,7 +139,7 @@
     top: auto;
     width: auto;
     padding: 2rem;
-    order: 2;
+    order: 1;
     align-items: center;
     text-align: center;
   }
@@ -149,7 +149,7 @@
     left: auto;
     width: 100%;
     height: 400px;
-    order: 1;
+    order: 2;
   }
 
   .concept-section__heading {
