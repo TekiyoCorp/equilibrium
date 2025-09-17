@@ -289,6 +289,23 @@ export interface Page {
             blockType: 'courseCards';
           }
         | {
+            title?: string | null;
+            items: {
+              image: number | Media;
+              heading: string;
+              timeLabel?: string | null;
+              timeValue?: string | null;
+              difficulty?: number | null;
+              scheduleLabel?: string | null;
+              weekdaySchedule?: string | null;
+              weekendSchedule?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'detailedCourseGrid';
+          }
+        | {
             overlayWord?: string | null;
             backgroundImage: number | Media;
             heading?: string | null;
@@ -644,6 +661,26 @@ export interface PagesSelect<T extends boolean = true> {
                           id?: T;
                           blockName?: T;
                         };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        detailedCourseGrid?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    image?: T;
+                    heading?: T;
+                    timeLabel?: T;
+                    timeValue?: T;
+                    difficulty?: T;
+                    scheduleLabel?: T;
+                    weekdaySchedule?: T;
+                    weekendSchedule?: T;
+                    id?: T;
                   };
               id?: T;
               blockName?: T;

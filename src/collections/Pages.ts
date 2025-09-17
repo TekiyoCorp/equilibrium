@@ -9,6 +9,7 @@ import { TextMediaTiles } from '../blocks/TextMediaTiles'
 import { ConceptSection } from '../blocks/ConceptSection'
 import { FaqSection } from '../blocks/FaqSection'
 import { Button } from '../blocks/Button'
+import { DetailedCourseGrid } from '../blocks/DetailedCourseGrid'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -34,6 +35,7 @@ export const Pages: CollectionConfig = {
       blocks: [
         MediaCardSlider,
         CourseCards,
+        DetailedCourseGrid,
         OverlayFeatureSection,
         TextMediaTiles,
         ConceptSection,

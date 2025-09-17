@@ -6,6 +6,7 @@ import { TextMediaTiles } from './TextMediaTiles'
 import { ConceptSection } from './ConceptSection'
 import { FaqSection } from './FaqSection'
 import { Button as UniversalButton } from './Button'
+import { DetailedCourseGrid } from './DetailedCourseGrid'
 import type { Media } from '@/payload-types'
 
 type SectionsProps = {
@@ -40,6 +41,10 @@ export function Sections({ sections }: SectionsProps) {
               items={b.items}
             />
           )
+        }
+        if ((block as any).blockType === 'detailedCourseGrid') {
+          const b = block as any
+          return <DetailedCourseGrid key={index} title={b.title} items={b.items || []} />
         }
         if ((block as any).blockType === 'textMediaTiles') {
           const b = block as any
