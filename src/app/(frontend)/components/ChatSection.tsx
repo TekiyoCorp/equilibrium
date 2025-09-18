@@ -68,7 +68,7 @@ export function ChatSection({
 
         <FadeIn from="bottom" duration={0.6} delay={0.8}>
           <a
-            href={whatsappUrl}
+            href={whatsappUrl || '#'}
             className={styles.whatsappButton}
             target="_blank"
             rel="noopener noreferrer"
