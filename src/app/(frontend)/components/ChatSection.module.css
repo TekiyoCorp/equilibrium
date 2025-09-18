@@ -1,0 +1,227 @@
+.root {
+  padding: 4rem 0;
+  background: #ffffff;
+  position: relative;
+}
+
+.container {
+  min-height: 100dvh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.title {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 500;
+  font-size: 2.25rem;
+  line-height: 1.083;
+  color: #000000;
+  text-align: center;
+  letter-spacing: -0.18px;
+  margin: 0;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75px;
+  width: fit-content;
+  max-width: 80%;
+}
+
+.messageContainer.user {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.messageContainer.equilibrium {
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+.senderName {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 400;
+  font-size: 0.59rem;
+  line-height: 1;
+  color: #8e8d94;
+  letter-spacing: 0.47px;
+  padding-left: 0.69rem;
+  margin-bottom: 0.75px;
+}
+
+.messageBubble {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.52rem 0;
+  border-radius: 1.84rem;
+}
+
+.userBubble {
+  background: #278eff;
+  color: white;
+  flex-direction: row;
+}
+
+.equilibriumBubble {
+  background: #26252a;
+  color: white;
+  flex-direction: row-reverse;
+}
+
+.bubbleTail {
+  width: 0.7rem;
+  height: 1.01rem;
+  background: inherit;
+  border-radius: 1.84rem 0 0 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.bubbleTail::after {
+  content: '';
+  position: absolute;
+  inset: -0.5px;
+  border: 1px solid inherit;
+  border-radius: 1.84rem 0 0 0;
+  pointer-events: none;
+}
+
+.bubbleTailEnd {
+  width: 0.7rem;
+  height: 1.01rem;
+  background: inherit;
+  border-radius: 1.84rem 0 0 0;
+  position: relative;
+  flex-shrink: 0;
+  transform: rotate(180deg) scaleY(-1);
+}
+
+.bubbleTailEnd::after {
+  content: '';
+  position: absolute;
+  inset: -0.5px;
+  border: 1px solid inherit;
+  border-radius: 1.84rem 0 0 0;
+  pointer-events: none;
+}
+
+.messageContent {
+  flex: 1;
+  padding: 0 0.18rem;
+  min-width: 0;
+}
+
+.messageContent p {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 400;
+  font-size: 0.97rem;
+  line-height: 0.908;
+  margin: 0;
+  letter-spacing: -0.078px;
+}
+
+.whatsappButton {
+  display: flex;
+  align-items: center;
+  gap: 0.81rem;
+  background: #079495;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.whatsappButton:hover {
+  background: #067a7b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(7, 148, 149, 0.3);
+}
+
+.whatsappText {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: white;
+  letter-spacing: -1.08px;
+}
+
+.whatsappIcon {
+  width: 1.14rem;
+  height: 1.14rem;
+  border-radius: 1.89rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .title {
+    font-size: 1.875rem;
+  }
+
+  .messageContainer {
+    max-width: 90%;
+  }
+
+  .senderName {
+    font-size: 0.5rem;
+  }
+
+  .messageContent p {
+    font-size: 0.875rem;
+  }
+
+  .whatsappText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    padding: 2rem 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .chatContainer {
+    gap: 1rem;
+  }
+
+  .whatsappButton {
+    padding: 0.75rem 1.25rem;
+    gap: 0.5rem;
+  }
+}

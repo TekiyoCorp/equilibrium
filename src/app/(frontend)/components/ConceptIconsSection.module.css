@@ -1,0 +1,165 @@
+/* ConceptIconsSection Component Styles */
+.concept-icons-section {
+  position: relative;
+  padding: 80px 0;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.concept-icons-section__container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.concept-icons-section__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.concept-icons-section__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 120px;
+}
+
+.concept-icons-section__icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.concept-icons-section__img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.concept-icons-section__item:hover .concept-icons-section__img {
+  transform: scale(1.1);
+}
+
+.concept-icons-section__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  color: #666;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.concept-icons-section__label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000000;
+  letter-spacing: 0.1px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .concept-icons-section__content {
+    gap: 60px;
+  }
+
+  .concept-icons-section__icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .concept-icons-section__label {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .concept-icons-section {
+    padding: 60px 0;
+  }
+
+  .concept-icons-section__container {
+    padding: 0 1rem;
+  }
+
+  .concept-icons-section__content {
+    gap: 40px;
+    flex-direction: column;
+  }
+
+  .concept-icons-section__item {
+    min-width: 100px;
+  }
+
+  .concept-icons-section__icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 12px;
+  }
+
+  .concept-icons-section__label {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .concept-icons-section {
+    padding: 40px 0;
+  }
+
+  .concept-icons-section__content {
+    gap: 30px;
+  }
+
+  .concept-icons-section__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .concept-icons-section__label {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+/* Animation enhancements */
+.concept-icons-section__item {
+  transition: transform 0.3s ease;
+}
+
+.concept-icons-section__item:hover {
+  transform: translateY(-5px);
+}
+
+/* Focus states for accessibility */
+.concept-icons-section__item:focus-within {
+  outline: 2px solid #079495;
+  outline-offset: 4px;
+  border-radius: 8px;
+}

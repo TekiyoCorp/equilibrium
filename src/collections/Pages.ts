@@ -14,6 +14,8 @@ import { CoachesGrid } from '../blocks/CoachesGrid'
 import { NewConceptSection } from '../blocks/NewConceptSection'
 import { TextImageBlock } from '../blocks/TextImageBlock'
 import { Location } from '../blocks/Location'
+import { ChatSection } from '../blocks/ChatSection'
+import { ConceptIconsSection } from '../blocks/ConceptIconsSection'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -48,6 +50,8 @@ export const Pages: CollectionConfig = {
         FaqSection,
         CoachesGrid,
         Location,
+        ChatSection,
+        ConceptIconsSection,
         Button,
       ],
     },

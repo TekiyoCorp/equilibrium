@@ -467,6 +467,36 @@ export interface Page {
             blockType: 'location';
           }
         | {
+            title?: string | null;
+            messages: {
+              sender: 'user' | 'equilibrium';
+              senderName: string;
+              text: string;
+              id?: string | null;
+            }[];
+            whatsappText?: string | null;
+            whatsappIcon?: (number | null) | Media;
+            whatsappUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'chatSection';
+          }
+        | {
+            title?: string | null;
+            items?:
+              | {
+                  icon: number | Media;
+                  label?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            backgroundColor?: ('#ffffff' | '#f8f9fa' | 'custom') | null;
+            customBackgroundColor?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'conceptIconsSection';
+          }
+        | {
             label: string;
             linkType?: ('url' | 'page') | null;
             href?: string | null;
@@ -950,6 +980,40 @@ export interface PagesSelect<T extends boolean = true> {
               mapPlaceholder?: T;
               whatsappText?: T;
               whatsappIcon?: T;
+              id?: T;
+              blockName?: T;
+            };
+        chatSection?:
+          | T
+          | {
+              title?: T;
+              messages?:
+                | T
+                | {
+                    sender?: T;
+                    senderName?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              whatsappText?: T;
+              whatsappIcon?: T;
+              whatsappUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        conceptIconsSection?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              backgroundColor?: T;
+              customBackgroundColor?: T;
               id?: T;
               blockName?: T;
             };

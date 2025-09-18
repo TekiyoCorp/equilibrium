@@ -11,6 +11,8 @@ import { CoachesGrid } from './CoachesGrid'
 import { NewConceptSection } from './NewConceptSection'
 import { TextImageBlock } from './TextImageBlock'
 import { Location } from './Location'
+import { ChatSection } from './ChatSection'
+import { ConceptIconsSection } from './ConceptIconsSection'
 
 type SectionsProps = {
   sections?: Array<{
@@ -118,6 +120,31 @@ export function Sections({ sections }: SectionsProps) {
               mapPlaceholder={b.mapPlaceholder}
               whatsappText={b.whatsappText}
               whatsappIcon={b.whatsappIcon}
+            />
+          )
+        }
+        if ((block as any).blockType === 'chatSection') {
+          const b = block as any
+          return (
+            <ChatSection
+              key={index}
+              title={b.title}
+              messages={b.messages}
+              whatsappText={b.whatsappText}
+              whatsappIcon={b.whatsappIcon}
+              whatsappUrl={b.whatsappUrl}
+            />
+          )
+        }
+        if ((block as any).blockType === 'conceptIconsSection') {
+          const b = block as any
+          return (
+            <ConceptIconsSection
+              key={index}
+              title={b.title}
+              items={b.items}
+              backgroundColor={b.backgroundColor}
+              customBackgroundColor={b.customBackgroundColor}
             />
           )
         }
