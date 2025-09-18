@@ -7,6 +7,9 @@ import { ConceptSection } from './ConceptSection'
 import { FaqSection } from './FaqSection'
 import { Button as UniversalButton } from './Button'
 import { DetailedCourseGrid } from './DetailedCourseGrid'
+import { CoachesGrid } from './CoachesGrid'
+import { NewConceptSection } from './NewConceptSection'
+import { TextImageBlock } from './TextImageBlock'
 
 type SectionsProps = {
   sections?: Array<{
@@ -49,6 +52,10 @@ export function Sections({ sections }: SectionsProps) {
           const b = block as any
           return <TextMediaTiles key={index} items={b.items || []} />
         }
+        if ((block as any).blockType === 'textImageBlock') {
+          const b = block as any
+          return <TextImageBlock key={index} text={b.text} subtitle={b.subtitle} image={b.image} />
+        }
         if ((block as any).blockType === 'conceptSection') {
           const b = block as any
           return (
@@ -61,6 +68,19 @@ export function Sections({ sections }: SectionsProps) {
             />
           )
         }
+        if ((block as any).blockType === 'newConceptSection') {
+          const b = block as any
+          return (
+            <NewConceptSection
+              key={index}
+              label={b.label}
+              title={b.title}
+              subtitle={b.subtitle}
+              backgroundImage={b.backgroundImage}
+              description={b.description}
+            />
+          )
+        }
         if ((block as any).blockType === 'faqSection') {
           const b = block as any
           return (
@@ -70,6 +90,21 @@ export function Sections({ sections }: SectionsProps) {
               items={b.items || []}
               largeImage={b.largeImage}
               smallImage={b.smallImage}
+            />
+          )
+        }
+        if ((block as any).blockType === 'coachesGrid') {
+          const b = block as any
+          return (
+            <CoachesGrid
+              key={index}
+              eyebrow={b.eyebrow}
+              title={b.title}
+              subtitle={b.subtitle}
+              backgroundImage={b.backgroundImage}
+              background={b.background}
+              items={b.items}
+              button={b.button}
             />
           )
         }

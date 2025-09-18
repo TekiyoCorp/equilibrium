@@ -349,6 +349,14 @@ export interface Page {
             blockType: 'textMediaTiles';
           }
         | {
+            text: string;
+            subtitle?: string | null;
+            image: number | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textImageBlock';
+          }
+        | {
             title?: string | null;
             subtitle?: string | null;
             backgroundImage?: (number | null) | Media;
@@ -372,6 +380,16 @@ export interface Page {
             blockType: 'conceptSection';
           }
         | {
+            label?: string | null;
+            title: string;
+            subtitle?: string | null;
+            backgroundImage: number | Media;
+            description: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newConceptSection';
+          }
+        | {
             title?: string | null;
             items?:
               | {
@@ -385,6 +403,46 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'faqSection';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            subtitle?: string | null;
+            backgroundImage?: (number | null) | Media;
+            background?: ('light' | 'dark') | null;
+            items?:
+              | {
+                  image: number | Media;
+                  courseName: string;
+                  instructorName: string;
+                  description?: string | null;
+                  ctaLabel?: string | null;
+                  ctaLinkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  target?: ('_self' | '_blank') | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            button?:
+              | {
+                  label: string;
+                  linkType?: ('url' | 'page') | null;
+                  href?: string | null;
+                  page?: (number | null) | Page;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  target?: ('_self' | '_blank') | null;
+                  fullWidth?: boolean | null;
+                  ariaLabel?: string | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'button';
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'coachesGrid';
           }
         | {
             label: string;
@@ -737,6 +795,15 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        textImageBlock?:
+          | T
+          | {
+              text?: T;
+              subtitle?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
         conceptSection?:
           | T
           | {
@@ -764,6 +831,17 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        newConceptSection?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+              backgroundImage?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
         faqSection?:
           | T
           | {
@@ -777,6 +855,50 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               largeImage?: T;
               smallImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        coachesGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              subtitle?: T;
+              backgroundImage?: T;
+              background?: T;
+              items?:
+                | T
+                | {
+                    image?: T;
+                    courseName?: T;
+                    instructorName?: T;
+                    description?: T;
+                    ctaLabel?: T;
+                    ctaLinkType?: T;
+                    href?: T;
+                    page?: T;
+                    target?: T;
+                    ariaLabel?: T;
+                    id?: T;
+                  };
+              button?:
+                | T
+                | {
+                    button?:
+                      | T
+                      | {
+                          label?: T;
+                          linkType?: T;
+                          href?: T;
+                          page?: T;
+                          variant?: T;
+                          target?: T;
+                          fullWidth?: T;
+                          ariaLabel?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               id?: T;
               blockName?: T;
             };

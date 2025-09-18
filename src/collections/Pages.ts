@@ -10,6 +10,9 @@ import { ConceptSection } from '../blocks/ConceptSection'
 import { FaqSection } from '../blocks/FaqSection'
 import { Button } from '../blocks/Button'
 import { DetailedCourseGrid } from '../blocks/DetailedCourseGrid'
+import { CoachesGrid } from '../blocks/CoachesGrid'
+import { NewConceptSection } from '../blocks/NewConceptSection'
+import { TextImageBlock } from '../blocks/TextImageBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -38,8 +41,11 @@ export const Pages: CollectionConfig = {
         DetailedCourseGrid,
         OverlayFeatureSection,
         TextMediaTiles,
+        TextImageBlock,
         ConceptSection,
+        NewConceptSection,
         FaqSection,
+        CoachesGrid,
         Button,
       ],
     },
