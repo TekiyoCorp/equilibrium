@@ -10,6 +10,7 @@ import { DetailedCourseGrid } from './DetailedCourseGrid'
 import { CoachesGrid } from './CoachesGrid'
 import { NewConceptSection } from './NewConceptSection'
 import { TextImageBlock } from './TextImageBlock'
+import { Location } from './Location'
 
 type SectionsProps = {
   sections?: Array<{
@@ -105,6 +106,18 @@ export function Sections({ sections }: SectionsProps) {
               background={b.background}
               items={b.items}
               button={b.button}
+            />
+          )
+        }
+        if ((block as any).blockType === 'location') {
+          const b = block as any
+          return (
+            <Location
+              key={index}
+              locations={b.locations}
+              mapPlaceholder={b.mapPlaceholder}
+              whatsappText={b.whatsappText}
+              whatsappIcon={b.whatsappIcon}
             />
           )
         }

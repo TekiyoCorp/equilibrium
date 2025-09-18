@@ -445,6 +445,28 @@ export interface Page {
             blockType: 'coachesGrid';
           }
         | {
+            locations: {
+              name: string;
+              address: string;
+              coordinates: {
+                lat: number;
+                lng: number;
+              };
+              schedule: {
+                weekdays: string;
+                weekends: string;
+              };
+              isHighlighted?: boolean | null;
+              id?: string | null;
+            }[];
+            mapPlaceholder?: string | null;
+            whatsappText?: string | null;
+            whatsappIcon?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'location';
+          }
+        | {
             label: string;
             linkType?: ('url' | 'page') | null;
             href?: string | null;
@@ -899,6 +921,35 @@ export interface PagesSelect<T extends boolean = true> {
                           blockName?: T;
                         };
                   };
+              id?: T;
+              blockName?: T;
+            };
+        location?:
+          | T
+          | {
+              locations?:
+                | T
+                | {
+                    name?: T;
+                    address?: T;
+                    coordinates?:
+                      | T
+                      | {
+                          lat?: T;
+                          lng?: T;
+                        };
+                    schedule?:
+                      | T
+                      | {
+                          weekdays?: T;
+                          weekends?: T;
+                        };
+                    isHighlighted?: T;
+                    id?: T;
+                  };
+              mapPlaceholder?: T;
+              whatsappText?: T;
+              whatsappIcon?: T;
               id?: T;
               blockName?: T;
             };

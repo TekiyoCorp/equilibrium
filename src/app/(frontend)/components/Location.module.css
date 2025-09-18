@@ -1,0 +1,337 @@
+/* Location Section */
+.root {
+  width: 100%;
+  background: white;
+  padding: 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+}
+
+.container {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 24px;
+  min-height: 500px;
+}
+
+.locationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+  width: 449px;
+}
+
+.locationCard {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 24px;
+  border-radius: 24px;
+  background: white;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.locationCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.locationCard.highlighted {
+  background: #f6f6f6;
+}
+
+.locationHeader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.locationName {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -1.44px;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+}
+
+.locationAddress {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -1.08px;
+  color: #000000;
+  text-align: center;
+}
+
+.locationAddress p {
+  margin: 0;
+}
+
+.locationSchedule {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 400;
+  line-height: normal;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.scheduleLabel {
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0 0 4px 0;
+}
+
+.scheduleText {
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+}
+
+.mapSection {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+  height: 675px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.mapContainer {
+  flex: 1;
+  width: 100%;
+  min-height: 400px;
+  height: 100%;
+  position: relative;
+}
+
+/* MapLibre map container styles */
+.mapContainer :global(.maplibregl-map) {
+  height: 100%;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.mapPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: #e8e8e8;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.mapPlaceholder p {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 1;
+  letter-spacing: -2.76px;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.whatsappButton {
+  background: #079495;
+  border-radius: 24px;
+  padding: 8px 16px;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.whatsappButton:hover {
+  background: #067a7a;
+  transform: translateY(-2px);
+}
+
+.whatsappText {
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -1.08px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.whatsappIcon {
+  width: 18.18px;
+  height: 18.18px;
+  border-radius: 30.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Mobile adjustments */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .locationsList {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .mapSection {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    padding: 60px 0;
+  }
+
+  .container {
+    gap: 24px;
+    padding: 0 18px;
+  }
+
+  .locationsList {
+    gap: 8px;
+  }
+
+  .locationCard {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .locationName {
+    font-size: 20px;
+    letter-spacing: -1.2px;
+  }
+
+  .locationAddress {
+    font-size: 16px;
+    letter-spacing: -0.96px;
+  }
+
+  .scheduleLabel {
+    font-size: 16px;
+  }
+
+  .scheduleText {
+    font-size: 14px;
+  }
+
+  .mapSection {
+    height: 350px;
+  }
+
+  .mapPlaceholder p {
+    font-size: 36px;
+    letter-spacing: -2.16px;
+  }
+
+  .whatsappButton {
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+
+  .whatsappText {
+    font-size: 16px;
+    letter-spacing: -0.96px;
+  }
+
+  .whatsappIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    padding: 40px 0;
+  }
+
+  .container {
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .locationCard {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .locationName {
+    font-size: 18px;
+    letter-spacing: -1.08px;
+  }
+
+  .locationAddress {
+    font-size: 15px;
+    letter-spacing: -0.9px;
+  }
+
+  .scheduleLabel {
+    font-size: 15px;
+  }
+
+  .scheduleText {
+    font-size: 13px;
+  }
+
+  .mapSection {
+    height: 300px;
+  }
+
+  .mapPlaceholder p {
+    font-size: 28px;
+    letter-spacing: -1.68px;
+  }
+
+  .whatsappButton {
+    padding: 5px 10px;
+    border-radius: 16px;
+  }
+
+  .whatsappText {
+    font-size: 15px;
+    letter-spacing: -0.9px;
+  }
+
+  .whatsappIcon {
+    width: 14px;
+    height: 14px;
+  }
+}

@@ -13,6 +13,7 @@ import { DetailedCourseGrid } from '../blocks/DetailedCourseGrid'
 import { CoachesGrid } from '../blocks/CoachesGrid'
 import { NewConceptSection } from '../blocks/NewConceptSection'
 import { TextImageBlock } from '../blocks/TextImageBlock'
+import { Location } from '../blocks/Location'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -46,6 +47,7 @@ export const Pages: CollectionConfig = {
         NewConceptSection,
         FaqSection,
         CoachesGrid,
+        Location,
         Button,
       ],
     },
