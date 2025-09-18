@@ -63,7 +63,15 @@ export function Sections({ sections }: SectionsProps) {
         }
         if ((block as any).blockType === 'faqSection') {
           const b = block as any
-          return <FaqSection key={index} title={b.title} items={b.items || []} />
+          return (
+            <FaqSection
+              key={index}
+              title={b.title}
+              items={b.items || []}
+              largeImage={b.largeImage}
+              smallImage={b.smallImage}
+            />
+          )
         }
         if ((block as any).blockType === 'button') {
           const b = block as any

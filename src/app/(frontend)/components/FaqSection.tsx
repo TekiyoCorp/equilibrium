@@ -1,88 +1,122 @@
 'use client'
-
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
+import styles from './FaqSection.module.css'
+import type { Media } from '@/payload-types'
 import FadeIn from '@/app/animation/fade-in'
 
-type FaqItem = {
-  question?: string | null
-  answer?: string | null
+export interface AnimatedFaqBlockProps {
+  title: string
+  faqs: Array<{
+    question: string
+    answer: string
+  }>
+  largeImage?: Media | number | null
+  smallImage?: Media | number | null
+  className?: string
 }
 
-export function FaqSection({ title, items = [] }: { title?: string | null; items?: FaqItem[] }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps> = ({
+  title,
+  faqs,
+  largeImage,
+  smallImage,
+  className,
+}) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="faq-section" style={{ padding: '64px 24px' }}>
-      <FadeIn from="bottom" duration={0.4}>
-        {title && (
-          <h2
-            style={{
-              margin: 0,
-              fontSize: 46,
-              lineHeight: 1.1,
-              letterSpacing: '-0.06em',
-              textAlign: 'center',
-              fontWeight: 400,
-            }}
-          >
-            {title}
-          </h2>
-        )}
-      </FadeIn>
-
-      <div
-        className="faq-list"
-        style={{ maxWidth: 900, margin: '24px auto 0', display: 'grid', gap: 12 }}
-      >
-        {items.map((it, idx) => {
-          const isOpen = openIndex === idx
-          return (
-            <FadeIn key={`faq-${idx}`} from="bottom" duration={0.3} delay={0.1 + idx * 0.05}>
-              <div
-                className={`faq-item${isOpen ? ' is-open' : ''}`}
-                style={{
-                  borderRadius: 12,
-                  background: '#f2f2f2',
-                  color: '#0b0b0b',
-                  padding: 16,
-                }}
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-panel-${idx}`}
-                  className="faq-question"
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    fontSize: 20,
-                    background: 'transparent',
-                    border: 0,
-                    padding: 0,
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                    fontWeight: 400,
-                  }}
-                >
-                  <span>{it.question}</span>
-                  <span aria-hidden>{isOpen ? '−' : '+'}</span>
-                </button>
-                {isOpen && (
-                  <div
-                    id={`faq-panel-${idx}`}
-                    className="faq-answer"
-                    style={{ marginTop: 10, opacity: 0.9, fontWeight: 400 }}
-                  >
-                    {it.answer}
-                  </div>
-                )}
+    <section className={`${styles.container} ${className || ''}`}>
+      <FadeIn>
+        <div className={styles.inner}>
+          <div className={styles.gridTwoCols}>
+            <div>
+              <h2 className={styles.title}>{title}</h2>
+              <div className={styles.faqList}>
+                {faqs.map((faq, idx) => {
+                  const isOpen = openIndex === idx
+                  return (
+                    <div key={idx} className={styles.faqItem}>
+                      <button
+                        className={`${styles.faqButton} ${isOpen ? styles.faqButtonOpen : ''}`}
+                        onClick={() => setOpenIndex(isOpen ? null : idx)}
+                        aria-expanded={isOpen}
+                        aria-controls={`faq-panel-${idx}`}
+                      >
+                        <span>{faq.question}</span>
+                        <motion.span
+                          animate={{ rotate: isOpen ? 45 : 0 }}
+                          className={styles.plus}
+                          transition={{ duration: 0.2 }}
+                        >
+                          +
+                        </motion.span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            id={`faq-panel-${idx}`}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className={styles.answer}
+                          >
+                            <p className={styles.answerText}>{faq.answer}</p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
               </div>
-            </FadeIn>
-          )
-        })}
-      </div>
+              {typeof largeImage === 'object' && (largeImage as Media)?.url && (
+                <div className={styles.largeImageWrap}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={(largeImage as Media).url as string}
+                    alt={(largeImage as Media).alt || ''}
+                    className={styles.imageCover}
+                  />
+                </div>
+              )}
+            </div>
+
+            {typeof smallImage === 'object' && (smallImage as Media)?.url && (
+              <div className={styles.smallImageWrap}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={(smallImage as Media).url as string}
+                  alt={(smallImage as Media).alt || ''}
+                  className={styles.imageCover}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </FadeIn>
     </section>
+  )
+}
+
+// Adapter component expected by Sections
+export function FaqSection({
+  title,
+  items,
+  largeImage,
+  smallImage,
+}: {
+  title?: string | null
+  items: Array<{ question: string; answer: string }>
+  largeImage?: Media | number | null
+  smallImage?: Media | number | null
+}) {
+  return (
+    <AnimatedFaqBlock
+      title={title || ''}
+      faqs={items}
+      largeImage={largeImage || null}
+      smallImage={smallImage || null}
+    />
   )
 }

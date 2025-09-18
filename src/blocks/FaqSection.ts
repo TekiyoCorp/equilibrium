@@ -36,5 +36,17 @@ export const FaqSection: Block = {
         },
       ],
     },
+    {
+      name: 'largeImage',
+      label: 'Large Image',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'smallImage',
+      label: 'Small Image',
+      type: 'upload',
+      relationTo: 'media',
+    },
   ],
 }

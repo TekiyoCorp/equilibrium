@@ -380,6 +380,8 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
+            largeImage?: (number | null) | Media;
+            smallImage?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'faqSection';
@@ -773,6 +775,8 @@ export interface PagesSelect<T extends boolean = true> {
                     answer?: T;
                     id?: T;
                   };
+              largeImage?: T;
+              smallImage?: T;
               id?: T;
               blockName?: T;
             };
