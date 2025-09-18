@@ -75,6 +75,7 @@ export function Location({
   // Utiliser les données par défaut si aucune location n'est fournie
   const displayLocations = locations.length > 0 ? locations : defaultLocations
   const [isClient, setIsClient] = useState(false)
+  const [selectedLocationIndex, setSelectedLocationIndex] = useState<number>(0)
 
   useEffect(() => {
     setIsClient(true)
@@ -86,11 +87,16 @@ export function Location({
 
   const whatsappIconObj = getMediaObj(whatsappIcon)
 
-  // Calculate map center based on locations or use default
-  const mapCenter: [number, number] =
-    displayLocations.length > 0 && displayLocations[0].coordinates
+  // Calculate map center based on selected location or default
+  const mapCenter: [number, number] = (() => {
+    if (selectedLocationIndex !== null && displayLocations[selectedLocationIndex]?.coordinates) {
+      const selected = displayLocations[selectedLocationIndex]
+      return [selected.coordinates.lat, selected.coordinates.lng]
+    }
+    return displayLocations.length > 0 && displayLocations[0].coordinates
       ? [displayLocations[0].coordinates.lat, displayLocations[0].coordinates.lng]
       : [25.2048, 55.2708] // Dubai coordinates as default
+  })()
 
   // Transform locations for the map component, filter out locations without coordinates
   const mapLocations = displayLocations
@@ -109,7 +115,11 @@ export function Location({
           {displayLocations.map((location, index) => (
             <FadeIn key={index} from="left" duration={0.6} delay={index * 0.1}>
               <div
-                className={`${styles.locationCard} ${location.isHighlighted ? styles.highlighted : ''}`}
+                className={`${styles.locationCard} ${location.isHighlighted ? styles.highlighted : ''} ${
+                  selectedLocationIndex === index ? styles.selected : ''
+                }`}
+                onClick={() => setSelectedLocationIndex(index)}
+                style={{ cursor: 'pointer' }}
               >
                 <div className={styles.locationHeader}>
                   <h3 className={styles.locationName}>{location.name}</h3>

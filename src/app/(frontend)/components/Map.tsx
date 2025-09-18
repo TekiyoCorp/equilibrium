@@ -26,14 +26,25 @@ function MapComponent({
   mapStyle = 'https://demotiles.maplibre.org/style.json',
 }: MapProps) {
   const [selectedLocation, setSelectedLocation] = React.useState<number | undefined>(undefined)
+  const [viewState, setViewState] = React.useState({
+    longitude: center[1],
+    latitude: center[0],
+    zoom: zoom,
+  })
+
+  // Update view state when center changes
+  React.useEffect(() => {
+    setViewState({
+      longitude: center[1],
+      latitude: center[0],
+      zoom: zoom,
+    })
+  }, [center, zoom])
 
   return (
     <Map
-      initialViewState={{
-        longitude: center[1],
-        latitude: center[0],
-        zoom: zoom,
-      }}
+      {...viewState}
+      onMove={(evt) => setViewState(evt.viewState)}
       style={{ width: '100%', height: '400px' }}
       mapStyle={mapStyle}
       attributionControl={false}
