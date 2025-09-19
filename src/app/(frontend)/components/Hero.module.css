@@ -133,7 +133,6 @@
   font-weight: 400;
 }
 
-/* Typography adjustments */
 .sub {
   font-size: clamp(16px, 2.6vw, 20px);
 }
