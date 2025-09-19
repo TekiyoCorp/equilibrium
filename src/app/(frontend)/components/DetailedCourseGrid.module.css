@@ -1,11 +1,12 @@
 .section {
-  padding: 0 101px;
+  padding: 80px 101px;
 }
 
 .title {
   font-size: 36px;
   font-weight: 500;
   background: linear-gradient(90deg, #000, #079495);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0 0 28px 0;
@@ -71,4 +72,17 @@
 .schedule {
   color: #c9c9c9;
   font-size: 16px;
+}
+
+/* Responsive spacing */
+@media (max-width: 900px) {
+  .section {
+    padding: 60px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
 }
