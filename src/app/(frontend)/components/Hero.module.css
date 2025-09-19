@@ -108,11 +108,29 @@
   height: auto;
   display: block;
 }
+.heroRight h1 {
+  font-size: clamp(28px, 6vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+  font-weight: 400;
+}
+/* Keep CTA natural width in right hero */
+.heroRight .ctaWrap {
+  display: inline-flex;
+}
 .heroContact .contacts {
   margin-top: 16px;
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+.heroContact h1 {
+  font-size: clamp(28px, 6vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+  font-weight: 400;
 }
 
 /* Typography adjustments */

@@ -111,7 +111,11 @@ export function Hero({ hero }: HeroProps) {
               {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
             </FadeIn>
             <FadeIn from="left" duration={1.2} delay={0.4}>
-              {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+              {Array.isArray(b.link) && b.link[0] && (
+                <div className={styles.ctaWrap}>
+                  <UniversalButton block={b.link[0]} />
+                </div>
+              )}
             </FadeIn>
           </div>
           {mediaObj?.url && (
