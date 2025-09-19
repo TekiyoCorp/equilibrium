@@ -115,7 +115,7 @@
   margin: 0;
   font-weight: 400;
 }
-/* Keep CTA natural width in right hero */
+
 .heroRight .ctaWrap {
   display: inline-flex;
 }
