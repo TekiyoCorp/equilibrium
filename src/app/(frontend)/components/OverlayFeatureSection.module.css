@@ -2,6 +2,7 @@
 .root {
   position: relative;
   min-height: 100dvh;
+  height: 100vh; /* FORCER la hauteur */
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -10,6 +11,8 @@
   overflow: hidden;
   /* DEBUG: Bordure temporaire pour voir la section */
   border: 2px solid red;
+  /* DEBUG: Background de fallback pour voir si la section existe */
+  background-color: rgba(255, 0, 0, 0.1) !important;
 }
 .overlayWord {
   position: absolute;
@@ -84,20 +87,8 @@
   font-weight: 400;
 }
 .heroOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.3) 80%,
-    rgba(255, 255, 255, 0.6) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
+  /* TEMPORAIREMENT DÉSACTIVÉ POUR TEST */
+  display: none;
 }
 
 /* Mobile adjustments */
