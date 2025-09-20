@@ -76,6 +76,18 @@
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
 }
 
+.logoSvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.logoSvg svg {
+  width: 52px;
+  height: 42px;
+}
+
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .overlay {

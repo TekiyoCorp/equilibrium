@@ -5,6 +5,7 @@ import Link from 'next/link'
 import styles from './Header.module.css'
 import { Button as UniversalButton } from './Button'
 import { motion, AnimatePresence } from 'framer-motion'
+import { TransitionLink } from './TransitionLink'
 
 export type LinkBlock = {
   label: string
@@ -63,7 +64,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                     {item.label || item.href}
                   </a>
                 ) : (
-                  <a
+                  <TransitionLink
                     href={
                       typeof item.page === 'object' && (item.page as any)?.slug
                         ? `/${(item.page as any).slug}`
@@ -72,7 +73,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                     aria-label={item.ariaLabel || item.label}
                   >
                     {item.label}
-                  </a>
+                  </TransitionLink>
                 )}
               </li>
             ))}
@@ -128,7 +129,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                           {item.label || item.href}
                         </a>
                       ) : (
-                        <a
+                        <TransitionLink
                           href={
                             typeof item.page === 'object' && (item.page as any)?.slug
                               ? `/${(item.page as any).slug}`
@@ -138,7 +139,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                           onClick={() => setOpen(false)}
                         >
                           {item.label}
-                        </a>
+                        </TransitionLink>
                       )}
                     </motion.li>
                   ))}

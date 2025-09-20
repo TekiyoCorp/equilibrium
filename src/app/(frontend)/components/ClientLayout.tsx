@@ -3,6 +3,7 @@
 import React from 'react'
 import { PageTransition } from './PageTransition'
 import { useHeaderData } from '../hooks/useHeaderData'
+import { TransitionProvider } from '../context/TransitionContext'
 
 type ClientLayoutProps = {
   children: React.ReactNode
@@ -11,5 +12,9 @@ type ClientLayoutProps = {
 export function ClientLayout({ children }: ClientLayoutProps) {
   const { logo } = useHeaderData()
 
-  return <PageTransition logo={logo}>{children}</PageTransition>
+  return (
+    <TransitionProvider>
+      <PageTransition logo={logo}>{children}</PageTransition>
+    </TransitionProvider>
+  )
 }
