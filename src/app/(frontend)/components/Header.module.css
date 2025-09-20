@@ -118,21 +118,30 @@
     width: 90%;
     min-height: 50px;
     overflow: hidden;
+    position: relative;
+  }
+  
+  /* Top row with logo and menu button */
+  .container > .brand,
+  .container > .menuToggle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
   }
   
   .container > .brand {
-    order: 1;
-    align-self: flex-start;
-    margin-bottom: 0;
-    padding: 13px 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    height: 50px;
   }
   
   .container > .menuToggle {
-    order: 2;
-    align-self: flex-end;
-    position: absolute;
-    top: 13px;
-    right: 18px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: 50px;
   }
   
   .mobileMenuContent {
