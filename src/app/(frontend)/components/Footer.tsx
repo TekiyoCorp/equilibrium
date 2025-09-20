@@ -42,7 +42,7 @@ export async function Footer() {
 
   const columns = data?.columns || []
   const logo = data?.logo
-  const legal = data?.legal
+  const _legal = data?.legal
 
   return (
     <footer className={styles['site-footer']} data-node-id="949:1010">

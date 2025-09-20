@@ -4,7 +4,7 @@ import styles from './Hero.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
 
-type HeroBlock = NonNullable<Page['content']> // placeholder to satisfy types import
+// type HeroBlock = NonNullable<Page['content']> // placeholder to satisfy types import
 
 type HeroProps = {
   hero?: Array<

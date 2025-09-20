@@ -40,7 +40,7 @@ export function ChatSection({
     return typeof media === 'object' ? (media as Media) : undefined
   }
 
-  const whatsappIconObj = getMediaObj(whatsappIcon)
+  const _whatsappIconObj = getMediaObj(whatsappIcon)
 
   return (
     <section className={styles.root}>

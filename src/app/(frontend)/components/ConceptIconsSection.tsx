@@ -27,7 +27,7 @@ const getMediaObject = (icon: number | Media | null): Media | null => {
 }
 
 export function ConceptIconsSection({
-  title = 'Concept',
+  title: _title = 'Concept',
   items = [
     { icon: null, label: 'Concept' },
     { icon: null, label: 'Concept' },

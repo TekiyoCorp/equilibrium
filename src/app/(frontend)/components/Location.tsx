@@ -85,7 +85,7 @@ export function Location({
     return typeof media === 'object' ? (media as Media) : undefined
   }
 
-  const whatsappIconObj = getMediaObj(whatsappIcon)
+  const _whatsappIconObj = getMediaObj(whatsappIcon)
 
   // Calculate map center based on selected location or default
   const mapCenter: [number, number] = (() => {

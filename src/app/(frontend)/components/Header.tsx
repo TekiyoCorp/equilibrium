@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './Header.module.css'
 import { getPayload } from 'payload'
 import payloadConfigPromise from '@/payload.config'
 import HeaderClient, { type LinkBlock } from './HeaderClient'

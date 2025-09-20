@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import styles from './Header.module.css'
 import { Button as UniversalButton } from './Button'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -36,7 +37,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
   return (
     <header className={styles['site-header']} data-node-id="949:1048">
       <div className={styles['container']}>
-        <a className={styles['brand']} href="/">
+        <Link className={styles['brand']} href="/">
           {logo?.image?.url ? (
             <img
               src={logo.image.url}
@@ -46,7 +47,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
           ) : (
             <span className={styles['brand-text']}>EQUILIBRIUM</span>
           )}
-        </a>
+        </Link>
 
         <nav className={styles['nav']} aria-label="Primary">
           <ul className={styles['nav-list']}>
