@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import styles from './FaqSection.module.css'
 import type { Media } from '@/payload-types'
 import FadeIn from '@/app/animation/fade-in'

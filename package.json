@@ -32,7 +32,6 @@
     "framer-motion": "^12.23.16",
     "graphql": "^16.8.1",
     "maplibre-gl": "^5.7.2",
-    "motion": "^12.23.13",
     "next": "15.4.4",
     "payload": "3.55.1",
     "react": "19.1.0",

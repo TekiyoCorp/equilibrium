@@ -6,7 +6,7 @@ import type { Media } from '@/payload-types'
 import styles from './CourseCards.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 type CourseCard = {
   image: number | Media

@@ -3,7 +3,7 @@
 import React from 'react'
 import styles from './Header.module.css'
 import { Button as UniversalButton } from './Button'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export type LinkBlock = {
   label: string

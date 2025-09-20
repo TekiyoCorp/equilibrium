@@ -1,5 +1,5 @@
 import React from 'react'
-import * as motion from 'motion/react-client'
+import { motion } from 'framer-motion'
 
 type Direction = 'top' | 'bottom' | 'left' | 'right'
 
