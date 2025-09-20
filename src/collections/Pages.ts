@@ -28,7 +28,7 @@ export const Pages: CollectionConfig = {
   },
   hooks: {
     afterChange: [
-      async ({ doc, operation, req }) => {
+      async ({ doc, operation, req: _req }) => {
         // Éviter la revalidation en développement
         if (process.env.NODE_ENV === 'development') {
           return doc
