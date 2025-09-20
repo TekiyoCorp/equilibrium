@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm build:clean",
+  "buildCommand": "payload migrate && pnpm build",
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
