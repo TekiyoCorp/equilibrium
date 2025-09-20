@@ -47,7 +47,7 @@ export function OverlayFeatureSection({
   React.useEffect(() => {
     if (bgObj?.url) {
       // Convertir URL relative en absolue pour la production
-      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || ''
+      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || 'https://equilibrium-weld.vercel.app'
       const fullUrl = bgObj.url.startsWith('http') ? bgObj.url : `${baseUrl}${bgObj.url}`
       
       const img = new Image()
@@ -89,7 +89,7 @@ export function OverlayFeatureSection({
     }
 
     // Convertir URL relative en absolue pour la production
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || ''
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || 'https://equilibrium-weld.vercel.app'
     const fullUrl = bgObj.url.startsWith('http') ? bgObj.url : `${baseUrl}${bgObj.url}`
     
     return fullUrl
