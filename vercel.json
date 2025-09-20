@@ -1,0 +1,14 @@
+{
+  "buildCommand": "pnpm build:clean",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "functions": {
+    "src/app/**/*.{js,ts,tsx}": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "NODE_OPTIONS": "--no-deprecation --max-old-space-size=8000"
+  }
+}
