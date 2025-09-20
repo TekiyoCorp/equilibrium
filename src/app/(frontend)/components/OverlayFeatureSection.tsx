@@ -91,14 +91,13 @@ export function OverlayFeatureSection({
   const backgroundStyle = imageUrl
     ? {
         backgroundImage: `url("${imageUrl}")`,
-        backgroundColor: '#079495', // Couleur brand en fallback
+        backgroundColor: 'transparent', // Pas de couleur en fallback
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }
     : {
-        backgroundColor: '#079495', // Background brand par défaut
-        backgroundImage: 'linear-gradient(135deg, #079495 0%, #068384 100%)', // Gradient élégant
+        backgroundColor: 'transparent', // Pas de background par défaut
       }
 
   console.log('🎨 OverlayFeatureSection - Final imageUrl:', imageUrl)
