@@ -9,10 +9,6 @@
   background-attachment: scroll !important;
   color: #0b0b0b;
   overflow: hidden;
-  /* DEBUG: Bordure temporaire pour voir la section */
-  border: 2px solid red;
-  /* DEBUG: Background de fallback pour voir si la section existe */
-  background-color: rgba(255, 0, 0, 0.1) !important;
 }
 .overlayWord {
   position: absolute;
