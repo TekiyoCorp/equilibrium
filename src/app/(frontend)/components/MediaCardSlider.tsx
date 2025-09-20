@@ -17,6 +17,9 @@ type MediaCardSliderProps = {
 }
 
 export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
+  console.log('MediaCardSlider - title:', title)
+  console.log('MediaCardSlider - items:', items)
+  
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     containScroll: 'trimSnaps',

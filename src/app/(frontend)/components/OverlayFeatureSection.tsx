@@ -34,7 +34,11 @@ export function OverlayFeatureSection({
   items,
 }: OverlayFeatureSectionProps) {
   const bg = backgroundImage as Media | number | undefined
-  const bgObj = typeof bg === 'object' ? (bg as Media) : undefined
+  const bgObj = typeof bg === 'object' && bg !== null ? (bg as Media) : undefined
+  
+  console.log('OverlayFeatureSection - backgroundImage:', backgroundImage)
+  console.log('OverlayFeatureSection - bgObj:', bgObj)
+  console.log('OverlayFeatureSection - bgObj.url:', bgObj?.url)
 
   return (
     <section

@@ -28,7 +28,8 @@ export function Sections({ sections }: SectionsProps) {
     <div className="sections-wrapper">
       {sections.map((block, index) => {
         if (block.blockType === 'mediaCardSlider') {
-          return <MediaCardSlider key={index} items={block.items} />
+          const b = block as any
+          return <MediaCardSlider key={index} items={b.items} title={b.title} />
         }
         if ((block as any).blockType === 'courseCards') {
           const b = block as any
