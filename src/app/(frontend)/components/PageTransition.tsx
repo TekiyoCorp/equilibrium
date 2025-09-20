@@ -15,26 +15,37 @@ type PageTransitionProps = {
 
 export function PageTransition({ children, logo }: PageTransitionProps) {
   const pathname = usePathname()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [currentChildren, setCurrentChildren] = useState(children)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
 
   useEffect(() => {
     // Skip transition on initial page load
     if (isInitialLoad) {
       setIsInitialLoad(false)
+      setCurrentChildren(children)
       return
     }
 
-    // Start transition
-    setIsLoading(true)
+    // Start transition sequence
+    setIsTransitioning(true)
 
-    // Simulate page loading time and allow animations to settle
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1200) // 1.2s total transition time
+    // Phase 1: Overlay appears (600ms)
+    const phase1Timer = setTimeout(() => {
+      // Phase 2: Change page content behind overlay
+      setCurrentChildren(children)
+    }, 600)
 
-    return () => clearTimeout(timer)
-  }, [pathname, isInitialLoad])
+    // Phase 3: Remove overlay after content is ready (1200ms total)
+    const phase2Timer = setTimeout(() => {
+      setIsTransitioning(false)
+    }, 1200)
+
+    return () => {
+      clearTimeout(phase1Timer)
+      clearTimeout(phase2Timer)
+    }
+  }, [pathname, isInitialLoad, children])
 
   return (
     <>
@@ -49,7 +60,7 @@ export function PageTransition({ children, logo }: PageTransitionProps) {
       </a>
 
       <AnimatePresence mode="wait">
-        {isLoading && (
+        {isTransitioning && (
           <motion.div
             key="page-transition-overlay"
             className={styles.overlay}
@@ -94,16 +105,9 @@ export function PageTransition({ children, logo }: PageTransitionProps) {
         )}
       </AnimatePresence>
 
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: isLoading ? 0.6 : 0 }}
-      >
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-      </motion.div>
+      <main id="main-content" tabIndex={-1}>
+        {currentChildren}
+      </main>
     </>
   )
 }

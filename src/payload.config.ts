@@ -13,7 +13,6 @@ import { Pages } from './collections/Pages'
 import { FooterGlobal } from './blocks/Footer'
 import { HeaderGlobal } from './blocks/Header'
 
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -38,7 +37,7 @@ export default buildConfig({
 
             const revalidateSecret = process.env.REVALIDATE_SECRET
             const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL
-            
+
             if (!revalidateSecret || !siteUrl) {
               console.warn('Header revalidation skipped: missing environment variables')
               return doc
@@ -47,20 +46,20 @@ export default buildConfig({
             try {
               const baseUrl = siteUrl.startsWith('http') ? siteUrl : `https://${siteUrl}`
               const revalidateUrl = `${baseUrl}/api/revalidate`
-              
+
               console.log(`Triggering header revalidation`)
-              
+
               const response = await fetch(revalidateUrl, {
                 method: 'POST',
                 headers: {
-                  'Authorization': `Bearer ${revalidateSecret}`,
+                  Authorization: `Bearer ${revalidateSecret}`,
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                   tag: 'header',
                   operation: 'update',
-                  timestamp: new Date().toISOString()
-                })
+                  timestamp: new Date().toISOString(),
+                }),
               })
 
               if (response.ok) {
@@ -74,9 +73,9 @@ export default buildConfig({
             }
 
             return doc
-          }
-        ]
-      }
+          },
+        ],
+      },
     },
     {
       ...FooterGlobal,
@@ -90,7 +89,7 @@ export default buildConfig({
 
             const revalidateSecret = process.env.REVALIDATE_SECRET
             const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL
-            
+
             if (!revalidateSecret || !siteUrl) {
               console.warn('Footer revalidation skipped: missing environment variables')
               return doc
@@ -99,20 +98,20 @@ export default buildConfig({
             try {
               const baseUrl = siteUrl.startsWith('http') ? siteUrl : `https://${siteUrl}`
               const revalidateUrl = `${baseUrl}/api/revalidate`
-              
+
               console.log(`Triggering footer revalidation`)
-              
+
               const response = await fetch(revalidateUrl, {
                 method: 'POST',
                 headers: {
-                  'Authorization': `Bearer ${revalidateSecret}`,
+                  Authorization: `Bearer ${revalidateSecret}`,
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                   tag: 'footer',
                   operation: 'update',
-                  timestamp: new Date().toISOString()
-                })
+                  timestamp: new Date().toISOString(),
+                }),
               })
 
               if (response.ok) {
@@ -126,10 +125,10 @@ export default buildConfig({
             }
 
             return doc
-          }
-        ]
-      }
-    }
+          },
+        ],
+      },
+    },
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

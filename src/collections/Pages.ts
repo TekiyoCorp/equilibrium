@@ -36,7 +36,7 @@ export const Pages: CollectionConfig = {
 
         const revalidateSecret = process.env.REVALIDATE_SECRET
         const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL
-        
+
         if (!revalidateSecret || !siteUrl) {
           console.warn('Revalidation skipped: missing environment variables')
           return doc
@@ -45,13 +45,13 @@ export const Pages: CollectionConfig = {
         try {
           const baseUrl = siteUrl.startsWith('http') ? siteUrl : `https://${siteUrl}`
           const revalidateUrl = `${baseUrl}/api/revalidate`
-          
+
           console.log(`Triggering page revalidation for ${doc.slug} (${operation})`)
-          
+
           const response = await fetch(revalidateUrl, {
             method: 'POST',
             headers: {
-              'Authorization': `Bearer ${revalidateSecret}`,
+              Authorization: `Bearer ${revalidateSecret}`,
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -59,8 +59,8 @@ export const Pages: CollectionConfig = {
               slug: doc.slug,
               operation,
               path: doc.slug === 'home' ? '/' : `/${doc.slug}`,
-              timestamp: new Date().toISOString()
-            })
+              timestamp: new Date().toISOString(),
+            }),
           })
 
           if (response.ok) {
@@ -74,8 +74,8 @@ export const Pages: CollectionConfig = {
         }
 
         return doc
-      }
-    ]
+      },
+    ],
   },
   fields: [
     {
