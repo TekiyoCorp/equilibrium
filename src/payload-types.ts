@@ -252,6 +252,7 @@ export interface Page {
   sections?:
     | (
         | {
+            title?: string | null;
             items: {
               image: number | Media;
               text?: string | null;
@@ -267,6 +268,10 @@ export interface Page {
               image: number | Media;
               eyebrow?: string | null;
               heading?: string | null;
+              /**
+               * Text displayed when the card is expanded
+               */
+              expandedText?: string | null;
               id?: string | null;
             }[];
             button?:
@@ -734,6 +739,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaCardSlider?:
           | T
           | {
+              title?: T;
               items?:
                 | T
                 | {
@@ -754,6 +760,7 @@ export interface PagesSelect<T extends boolean = true> {
                     image?: T;
                     eyebrow?: T;
                     heading?: T;
+                    expandedText?: T;
                     id?: T;
                   };
               button?:

@@ -10,11 +10,15 @@ type ClientLayoutProps = {
 }
 
 export function ClientLayout({ children }: ClientLayoutProps) {
-  const { logo } = useHeaderData()
-
   return (
     <TransitionProvider>
-      <PageTransition logo={logo}>{children}</PageTransition>
+      <PageTransitionWrapper>{children}</PageTransitionWrapper>
     </TransitionProvider>
   )
+}
+
+function PageTransitionWrapper({ children }: { children: React.ReactNode }) {
+  const { logo } = useHeaderData()
+
+  return <PageTransition logo={logo}>{children}</PageTransition>
 }

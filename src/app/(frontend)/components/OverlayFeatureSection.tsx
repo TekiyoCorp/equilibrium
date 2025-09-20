@@ -35,16 +35,23 @@ export function OverlayFeatureSection({
 }: OverlayFeatureSectionProps) {
   const bg = backgroundImage as Media | number | undefined
   const bgObj = typeof bg === 'object' && bg !== null ? (bg as Media) : undefined
-  
+
   console.log('OverlayFeatureSection - backgroundImage:', backgroundImage)
   console.log('OverlayFeatureSection - bgObj:', bgObj)
   console.log('OverlayFeatureSection - bgObj.url:', bgObj?.url)
 
+  // Fallback pour image manquante
+  const backgroundStyle = bgObj?.url
+    ? {
+        backgroundImage: `url(${bgObj.url})`,
+        backgroundColor: '#f5f5f5', // Fallback si image ne charge pas
+      }
+    : {
+        backgroundColor: '#f5f5f5', // Background par défaut
+      }
+
   return (
-    <section
-      className={styles.root}
-      style={bgObj?.url ? { backgroundImage: `url(${bgObj.url})` } : undefined}
-    >
+    <section className={styles.root} style={backgroundStyle}>
       {overlayWord && (
         <div className={styles.overlayWord} aria-hidden>
           {overlayWord}
