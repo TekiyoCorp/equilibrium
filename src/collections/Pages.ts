@@ -30,7 +30,7 @@ export const Pages: CollectionConfig = {
     afterChange: [
       async ({ doc, operation, req: _req }) => {
         // Éviter la revalidation en développement
-        if (process.env.NODE_ENV === 'development') {
+        if (process.env.NODE_ENV === 'development' && process.env.REVALIDATE_ENABLE !== 'true') {
           return doc
         }
 
@@ -59,6 +59,7 @@ export const Pages: CollectionConfig = {
               slug: doc.slug,
               operation,
               path: doc.slug === 'home' ? '/' : `/${doc.slug}`,
+              tags: ['pages', `page:${doc.slug}`],
               timestamp: new Date().toISOString(),
             }),
           })

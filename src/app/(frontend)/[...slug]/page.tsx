@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { unstable_cache } from 'next/cache'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Hero } from '../components/Hero'
@@ -20,19 +21,22 @@ export default async function Page({ params }: Params) {
   const pathSegments = resolvedParams?.slug || []
   const slug = pathSegments.join('/') || ''
 
-  const result = await payload.find({
-    collection: 'pages',
-    draft: true,
-    depth: 1,
-    limit: 1,
-    where: {
-      slug: {
-        equals: slug,
-      },
+  const getPageBySlug = unstable_cache(
+    async () => {
+      const res = await payload.find({
+        collection: 'pages',
+        draft: true,
+        depth: 1,
+        limit: 1,
+        where: { slug: { equals: slug } },
+      })
+      return res?.docs?.[0]
     },
-  })
+    ['page', slug || ''],
+    { tags: ['pages', `page:${slug || ''}`] },
+  )
 
-  const doc = result?.docs?.[0]
+  const doc = await getPageBySlug()
   if (!doc) return notFound()
 
   return (

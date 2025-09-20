@@ -6,18 +6,21 @@ export async function POST(request: NextRequest) {
     // Vérification du header Authorization
     const authHeader = request.headers.get('authorization')
     const expectedAuth = `Bearer ${process.env.REVALIDATE_SECRET}`
-    
+
     if (!authHeader || authHeader !== expectedAuth) {
       console.error('Unauthorized revalidation attempt:', authHeader)
-      return NextResponse.json(
-        { error: 'Unauthorized' }, 
-        { status: 401 }
-      )
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     // Récupération des données de revalidation
     const body = await request.json()
-    const { path, tag, collection, slug } = body
+    const { path, tag, tags, collection, slug } = body as {
+      path?: string
+      tag?: string
+      tags?: string[]
+      collection?: string
+      slug?: string
+    }
 
     console.log('Revalidation request:', { path, tag, collection, slug })
 
@@ -25,10 +28,10 @@ export async function POST(request: NextRequest) {
     if (path) {
       await revalidatePath(path)
       console.log(`Revalidated path: ${path}`)
-      return NextResponse.json({ 
-        revalidated: true, 
+      return NextResponse.json({
+        revalidated: true,
         path,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       })
     }
 
@@ -36,10 +39,23 @@ export async function POST(request: NextRequest) {
     if (tag) {
       await revalidateTag(tag)
       console.log(`Revalidated tag: ${tag}`)
-      return NextResponse.json({ 
-        revalidated: true, 
+      return NextResponse.json({
+        revalidated: true,
         tag,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+      })
+    }
+
+    // Revalidation par liste de tags
+    if (Array.isArray(tags) && tags.length > 0) {
+      for (const t of tags) {
+        await revalidateTag(t)
+        console.log(`Revalidated tag: ${t}`)
+      }
+      return NextResponse.json({
+        revalidated: true,
+        tags,
+        timestamp: new Date().toISOString(),
       })
     }
 
@@ -52,20 +68,21 @@ export async function POST(request: NextRequest) {
           // Revalider la page spécifique
           pathsToRevalidate = [
             slug === 'home' ? '/' : `/${slug}`,
-            '/' // Revalider aussi la home si c'est une page importante
+            '/', // Revalider aussi la home si c'est une page importante
           ]
+          // Revalider les tags liés aux pages
+          await revalidateTag('pages')
+          if (slug) {
+            await revalidateTag(`page:${slug}`)
+          }
           break
-          
+
         case 'media':
           // Revalider toutes les pages car les médias peuvent être partout
-          pathsToRevalidate = [
-            '/',
-            '/contact',
-            '/about'
-          ]
+          pathsToRevalidate = ['/', '/contact', '/about']
           await revalidateTag('media')
           break
-          
+
         default:
           // Revalidation générale
           pathsToRevalidate = ['/']
@@ -78,55 +95,54 @@ export async function POST(request: NextRequest) {
         console.log(`Revalidated path: ${pathToRevalidate}`)
       }
 
-      return NextResponse.json({ 
-        revalidated: true, 
+      return NextResponse.json({
+        revalidated: true,
         paths: pathsToRevalidate,
         collection,
         slug,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       })
     }
 
     // Si aucun paramètre valide, revalider la home
     await revalidatePath('/')
     console.log('Default revalidation: /')
-    
-    return NextResponse.json({ 
-      revalidated: true, 
-      path: '/',
-      timestamp: new Date().toISOString()
-    })
 
+    return NextResponse.json({
+      revalidated: true,
+      path: '/',
+      timestamp: new Date().toISOString(),
+    })
   } catch (error) {
     console.error('Revalidation error:', error)
     return NextResponse.json(
-      { 
-        error: 'Internal server error', 
-        message: error instanceof Error ? error.message : 'Unknown error'
-      }, 
-      { status: 500 }
+      {
+        error: 'Internal server error',
+        message: error instanceof Error ? error.message : 'Unknown error',
+      },
+      { status: 500 },
     )
   }
 }
 
 // Support GET pour tester l'endpoint
 export async function GET() {
-  return NextResponse.json({ 
+  return NextResponse.json({
     message: 'Revalidation endpoint is working',
     timestamp: new Date().toISOString(),
     usage: {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer YOUR_REVALIDATE_SECRET'
+        Authorization: 'Bearer YOUR_REVALIDATE_SECRET',
       },
       body: {
         path: '/path-to-revalidate',
         // OR
-        tag: 'tag-to-revalidate', 
+        tag: 'tag-to-revalidate',
         // OR
         collection: 'pages',
-        slug: 'page-slug'
-      }
-    }
+        slug: 'page-slug',
+      },
+    },
   })
 }

@@ -1,4 +1,5 @@
 import { headers as getHeaders } from 'next/headers.js'
+import { unstable_cache } from 'next/cache'
 import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
@@ -16,21 +17,25 @@ export default async function HomePage() {
   const { user } = await payload.auth({ headers })
 
   // Essayer de récupérer la page "home"
-  let homePage = null
-  try {
-    const result = await payload.find({
-      collection: 'pages',
-      where: {
-        slug: {
-          equals: 'home',
-        },
-      },
-      limit: 1,
-    })
-    homePage = result.docs[0] || null
-  } catch (error) {
-    console.error('Erreur lors de la récupération de la page home:', error)
-  }
+  const getHomePage = unstable_cache(
+    async () => {
+      try {
+        const result = await payload.find({
+          collection: 'pages',
+          where: { slug: { equals: 'home' } },
+          limit: 1,
+        })
+        return result.docs[0] || null
+      } catch (error) {
+        console.error('Erreur lors de la récupération de la page home:', error)
+        return null
+      }
+    },
+    ['home-page'],
+    { tags: ['pages', 'page:home'] },
+  )
+
+  const homePage = await getHomePage()
 
   // Si la page "home" existe, l'afficher
   if (homePage) {
