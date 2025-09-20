@@ -198,12 +198,22 @@ svg {
 
 /* Footer moved to scoped CSS module: components/Footer.module.css */
 
+/* Sections wrapper with consistent background */
+.sections-wrapper {
+  background: #ffffff;
+}
+
+.sections-wrapper > * {
+  background: #ffffff !important;
+}
+
 /* Mobile sections gap */
 @media (max-width: 900px) {
   .sections-wrapper {
     display: flex;
     flex-direction: column;
     gap: 96px;
+    background: #ffffff;
   }
 }
 
