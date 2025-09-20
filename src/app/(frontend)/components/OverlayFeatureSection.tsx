@@ -90,13 +90,20 @@ export function OverlayFeatureSection({
   const imageUrl = getImageUrl()
   const backgroundStyle = imageUrl
     ? {
-        backgroundImage: `url(${imageUrl})`,
+        backgroundImage: `url("${imageUrl}")`,
         backgroundColor: '#079495', // Couleur brand en fallback
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }
     : {
         backgroundColor: '#079495', // Background brand par défaut
         backgroundImage: 'linear-gradient(135deg, #079495 0%, #068384 100%)', // Gradient élégant
       }
+
+  console.log('🎨 OverlayFeatureSection - Final imageUrl:', imageUrl)
+  console.log('🎨 OverlayFeatureSection - Final backgroundStyle:', backgroundStyle)
+  console.log('🎨 OverlayFeatureSection - imageError:', imageError)
 
   return (
     <section className={styles.root} style={backgroundStyle}>

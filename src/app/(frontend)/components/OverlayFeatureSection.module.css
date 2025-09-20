@@ -2,11 +2,14 @@
 .root {
   position: relative;
   min-height: 100dvh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
   color: #0b0b0b;
   overflow: hidden;
+  /* DEBUG: Bordure temporaire pour voir la section */
+  border: 2px solid red;
 }
 .overlayWord {
   position: absolute;
