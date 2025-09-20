@@ -203,9 +203,7 @@ svg {
   background: #ffffff;
 }
 
-.sections-wrapper > * {
-  background: #ffffff !important;
-}
+/* Removed forced white background on children to allow image sections */
 
 /* Mobile sections gap */
 @media (max-width: 900px) {
@@ -226,8 +224,10 @@ svg {
   html {
     scroll-behavior: auto;
   }
-  
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -235,7 +235,12 @@ svg {
 }
 
 /* Improve focus visibility for all interactive elements */
-a, button, input, textarea, select, [tabindex]:not([tabindex="-1"]) {
+a,
+button,
+input,
+textarea,
+select,
+[tabindex]:not([tabindex='-1']) {
   outline-offset: 2px;
 }
 
@@ -244,7 +249,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
-[tabindex]:not([tabindex="-1"]):focus-visible {
+[tabindex]:not([tabindex='-1']):focus-visible {
   outline: none;
 }
 
@@ -265,11 +270,11 @@ a:active {
     background: white !important;
     color: black !important;
   }
-  
+
   a {
     text-decoration: underline !important;
   }
-  
+
   button {
     border: 2px solid currentColor !important;
   }
@@ -281,19 +286,20 @@ a:active {
     background-color: #111827 !important;
     color: #f9fafb !important;
   }
-  
+
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible,
-  [tabindex]:not([tabindex="-1"]):focus-visible {
+  [tabindex]:not([tabindex='-1']):focus-visible {
     outline: none !important;
   }
 }
 
 /* Screen reader only content */
-.sr-only, .visually-hidden {
+.sr-only,
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -319,7 +325,9 @@ button:disabled {
 }
 
 /* Form improvements */
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -339,7 +347,12 @@ img {
 }
 
 /* Ensure proper heading hierarchy */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 400;
   line-height: 1.2;
 }

@@ -7,6 +7,14 @@
   color: #0b0b0b;
   overflow: hidden;
 }
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  z-index: 0;
+}
 .overlayWord {
   position: absolute;
   top: 312px;
@@ -79,6 +87,7 @@
   max-width: 263px;
   font-weight: 400;
 }
+/* Retain subtle bottom gradient to ground content */
 .heroOverlay {
   position: absolute;
   top: 0;
@@ -89,7 +98,7 @@
     180deg,
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 0) 40%,
-    #fff 85%
+    rgba(255, 255, 255, 0.9) 100%
   );
   pointer-events: none;
   z-index: 1;
