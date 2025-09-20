@@ -46,17 +46,21 @@ export function OverlayFeatureSection({
   // Test de l'image en arrière-plan avec fallback
   React.useEffect(() => {
     if (bgObj?.url) {
+      // Convertir URL relative en absolue pour la production
+      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || ''
+      const fullUrl = bgObj.url.startsWith('http') ? bgObj.url : `${baseUrl}${bgObj.url}`
+      
       const img = new Image()
       img.onload = () => {
         setImageLoaded(true)
         setImageError(false)
-        console.log('✅ OverlayFeatureSection image loaded successfully:', bgObj.url)
+        console.log('✅ OverlayFeatureSection image loaded successfully:', fullUrl)
       }
       img.onerror = () => {
-        console.error('❌ OverlayFeatureSection image failed to load:', bgObj.url)
+        console.error('❌ OverlayFeatureSection image failed to load:', fullUrl)
 
         // Essayer avec le proxy en fallback
-        const proxyUrl = `/api/media-proxy?url=${encodeURIComponent(bgObj.url || '')}`
+        const proxyUrl = `/api/media-proxy?url=${encodeURIComponent(fullUrl || '')}`
         const proxyImg = new Image()
 
         proxyImg.onload = () => {
@@ -71,7 +75,7 @@ export function OverlayFeatureSection({
         }
         proxyImg.src = proxyUrl
       }
-      img.src = bgObj.url
+      img.src = fullUrl
     }
   }, [bgObj?.url])
 
@@ -84,7 +88,11 @@ export function OverlayFeatureSection({
       return `/api/media-proxy?url=${encodeURIComponent(bgObj.url || '')}`
     }
 
-    return bgObj.url
+    // Convertir URL relative en absolue pour la production
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || ''
+    const fullUrl = bgObj.url.startsWith('http') ? bgObj.url : `${baseUrl}${bgObj.url}`
+    
+    return fullUrl
   }
 
   const imageUrl = getImageUrl()
