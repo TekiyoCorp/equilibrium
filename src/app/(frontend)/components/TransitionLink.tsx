@@ -14,13 +14,17 @@ type TransitionLinkProps = {
   [key: string]: any
 }
 
-export function TransitionLink({ 
-  href, 
-  children, 
-  onClick, 
-  ...props 
-}: TransitionLinkProps) {
-  const { startTransition } = useTransition()
+export function TransitionLink({ href, children, onClick, ...props }: TransitionLinkProps) {
+  // Utilisation sécurisée du hook avec try/catch
+  let startTransition: (() => void) | null = null
+  
+  try {
+    const transition = useTransition()
+    startTransition = transition.startTransition
+  } catch (error) {
+    // Si le provider n'est pas disponible, on continue sans transition
+    console.warn('TransitionProvider not available, using regular navigation')
+  }
 
   const handleClick = (e: React.MouseEvent) => {
     // Si c'est un lien externe, ne pas déclencher la transition
@@ -29,8 +33,10 @@ export function TransitionLink({
       return
     }
 
-    // Si c'est un lien interne, déclencher la transition
-    startTransition()
+    // Si c'est un lien interne et que le provider est disponible, déclencher la transition
+    if (startTransition) {
+      startTransition()
+    }
     onClick?.()
   }
 
