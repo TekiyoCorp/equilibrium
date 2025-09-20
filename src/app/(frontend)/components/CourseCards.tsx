@@ -12,6 +12,7 @@ type CourseCard = {
   image: number | Media
   eyebrow?: string | null
   heading?: string | null
+  expandedText?: string | null
 }
 
 export function CourseCards({
@@ -111,8 +112,8 @@ export function CourseCards({
                         className={styles.expandedContent}
                       >
                         <p className={styles.expandedText}>
-                          Découvrez nos formations expertes conçues pour développer vos compétences
-                          et accélérer votre carrière professionnelle.
+                          {item.expandedText ||
+                            'Découvrez nos formations expertes conçues pour développer vos compétences et accélérer votre carrière professionnelle.'}
                         </p>
                       </motion.div>
                     )}

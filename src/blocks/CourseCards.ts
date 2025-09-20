@@ -37,6 +37,14 @@ export const CourseCards: Block = {
           label: 'Heading',
           type: 'textarea',
         },
+        {
+          name: 'expandedText',
+          label: 'Expanded Text',
+          type: 'textarea',
+          admin: {
+            description: 'Text displayed when the card is expanded',
+          },
+        },
       ],
     },
     {
