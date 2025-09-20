@@ -120,51 +120,55 @@
     overflow: hidden;
     position: relative;
   }
-  
-  /* Top bar with logo and menu button */
+
+  /* Mobile header layout with logo and menu button */
+  .brand {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  /* Top bar with just the menu button */
   .topBar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     height: 50px;
     padding: 0;
     order: 1;
+    z-index: 1;
   }
-  
-  .topBar > .brand {
-    display: flex;
-    align-items: center;
-    height: auto;
-  }
-  
+
   .topBar > .menuToggle {
     display: flex;
     align-items: center;
     height: auto;
     width: fit-content;
   }
-  
+
   .mobileMenuContent {
     order: 3;
     width: 100%;
     padding: 24px 0 36px 0;
     margin-top: 24px;
   }
-  
+
   .mobileMenuContent .nav {
     display: block;
     width: 100%;
     padding: 0;
   }
-  
+
   .mobileMenuContent .nav-list {
     flex-direction: column;
     gap: 35px;
     padding: 0 24px;
     margin: 0;
   }
-  
+
   .mobileMenuContent .nav-item a {
     display: block;
     padding: 0;
@@ -175,27 +179,27 @@
     font-size: 18px;
     transition: opacity 0.2s ease;
   }
-  
+
   .mobileMenuContent .nav-item a:hover {
     opacity: 0.7;
   }
-  
+
   .mobileMenuContent .ctaWrap {
     display: flex;
     padding: 0 24px;
     justify-content: center;
     margin-top: 24px;
   }
-  
+
   /* Hide desktop navigation on mobile */
   .nav {
     display: none;
   }
-  
+
   .ctaWrap {
     display: none;
   }
-  
+
   .menuToggle {
     display: inline-flex;
     flex-direction: row;
@@ -211,11 +215,11 @@
     height: auto;
     font-size: 12px;
   }
-  
+
   .menuBar {
     display: none;
   }
-  
+
   .menuLabel {
     font-weight: 400;
     font-size: 12px;
@@ -237,17 +241,30 @@
     padding: 10px 18px;
     overflow: hidden;
   }
-  
+
+  .brand {
+    display: flex;
+    order: 0;
+    align-self: auto;
+    margin-bottom: 0;
+    padding: 0;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+  }
+
   .topBar {
     display: none;
   }
-  
+
   .nav {
     flex: 0 0 auto;
     width: auto;
     padding: 0;
+    display: flex;
   }
-  
+
   .nav-list {
     display: flex;
     flex-direction: row;
@@ -255,7 +272,7 @@
     padding: 0;
     margin: 0;
   }
-  
+
   .nav-item a {
     display: inline;
     padding: 8px 4px;
@@ -263,27 +280,21 @@
     font-size: 14px;
     border-radius: 6px;
   }
-  
+
   .nav-item a:hover {
     opacity: 1;
   }
-  
-  .brand {
-    order: 0;
-    align-self: auto;
-    margin-bottom: 0;
-    padding: 0;
-  }
-  
+
   .menuToggle {
     display: none;
   }
-  
+
   .mobileMenuContent {
     display: none;
   }
-  
+
   .ctaWrap {
+    display: flex;
     padding: 0;
     justify-content: flex-end;
     margin-top: 0;

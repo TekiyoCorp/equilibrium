@@ -39,20 +39,21 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
   return (
     <header className={styles['site-header']} data-node-id="949:1048">
       <div className={styles['container']}>
-        {/* Top bar with logo and menu button */}
-        <div className={styles['topBar']}>
-          <Link className={styles['brand']} href="/">
-            {logo?.image?.url ? (
-              <img
-                src={logo.image.url}
-                alt={logo.image.alt || logo?.alt || 'Logo'}
-                className={styles['brand-image']}
-              />
-            ) : (
-              <span className={styles['brand-text']}>EQUILIBRIUM</span>
-            )}
-          </Link>
+        {/* Logo - visible on both mobile and desktop */}
+        <Link className={styles['brand']} href="/">
+          {logo?.image?.url ? (
+            <img
+              src={logo.image.url}
+              alt={logo.image.alt || logo?.alt || 'Logo'}
+              className={styles['brand-image']}
+            />
+          ) : (
+            <span className={styles['brand-text']}>EQUILIBRIUM</span>
+          )}
+        </Link>
 
+        {/* Top bar with mobile menu button - only visible on mobile */}
+        <div className={styles['topBar']}>
           <MobileMenuButton isOpen={open} onClick={toggle} label="Menu" />
         </div>
 
