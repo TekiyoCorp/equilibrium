@@ -6,6 +6,7 @@ import styles from './Header.module.css'
 import { Button as UniversalButton } from './Button'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TransitionLink } from './TransitionLink'
+import { MobileMenuButton } from './MobileMenuButton'
 
 export type LinkBlock = {
   label: string
@@ -38,17 +39,22 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
   return (
     <header className={styles['site-header']} data-node-id="949:1048">
       <div className={styles['container']}>
-        <Link className={styles['brand']} href="/">
-          {logo?.image?.url ? (
-            <img
-              src={logo.image.url}
-              alt={logo.image.alt || logo?.alt || 'Logo'}
-              className={styles['brand-image']}
-            />
-          ) : (
-            <span className={styles['brand-text']}>EQUILIBRIUM</span>
-          )}
-        </Link>
+        {/* Top bar with logo and menu button */}
+        <div className={styles['topBar']}>
+          <Link className={styles['brand']} href="/">
+            {logo?.image?.url ? (
+              <img
+                src={logo.image.url}
+                alt={logo.image.alt || logo?.alt || 'Logo'}
+                className={styles['brand-image']}
+              />
+            ) : (
+              <span className={styles['brand-text']}>EQUILIBRIUM</span>
+            )}
+          </Link>
+
+          <MobileMenuButton isOpen={open} onClick={toggle} label="Menu" />
+        </div>
 
         <nav className={styles['nav']} aria-label="Primary">
           <ul className={styles['nav-list']}>
@@ -79,18 +85,6 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
             ))}
           </ul>
         </nav>
-
-        <button
-          aria-expanded={open}
-          aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-          className={styles['menuToggle']}
-          onClick={toggle}
-        >
-          <span className={styles['menuBar']} />
-          <span className={styles['menuBar']} />
-          <span className={styles['menuBar']} />
-          <span className={styles['menuLabel']}>Menu</span>
-        </button>
 
         {ctaBlock && (
           <div className={styles['ctaWrap']}>
