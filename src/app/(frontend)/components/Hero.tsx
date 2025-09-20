@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import type { Media, Page } from '@/payload-types'
+import type { Media } from '@/payload-types'
 import styles from './Hero.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
