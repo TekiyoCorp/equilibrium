@@ -32,17 +32,17 @@ export function ConceptSection({ title, subtitle, backgroundImage, button }: Con
       <div className={styles['concept-section__container']}>
         <div className={styles['concept-section__content']}>
           <div className={styles['concept-section__text']}>
-            <FadeIn from="left" duration={1.2}>
+            <FadeIn from="bottom" duration={0.6}>
               {/* Use "Concept" as default label */}
               <div className={styles['concept-section__label']}>Concept</div>
             </FadeIn>
-            <FadeIn from="left" duration={1.2} delay={0.2}>
+            <FadeIn from="bottom" duration={0.6} delay={0.2}>
               {/* Use title as the main heading if provided, otherwise use subtitle, or fallback */}
               <h2 className={styles['concept-section__heading']}>
                 {title || subtitle || 'Lorem ipsum is a dummy.'}
               </h2>
             </FadeIn>
-            <FadeIn from="left" duration={1.2} delay={0.4}>
+            <FadeIn from="bottom" duration={0.6} delay={0.4}>
               {Array.isArray(button) && button[0] && (
                 <UniversalButton
                   label={button[0].label}
@@ -59,7 +59,7 @@ export function ConceptSection({ title, subtitle, backgroundImage, button }: Con
           </div>
 
           <div className={styles['concept-section__image']}>
-            <FadeIn from="right" duration={1.2} delay={0.8}>
+            <FadeIn from="bottom" duration={0.6} delay={0.8}>
               {backgroundImageObj?.url && (
                 <Image
                   alt={backgroundImageObj.alt || ''}

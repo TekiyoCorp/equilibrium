@@ -42,6 +42,7 @@
   flex-direction: column;
   gap: 24px;
   width: 421px;
+  min-width: 380px;
   height: 684px;
 }
 
@@ -55,6 +56,7 @@
   align-items: center;
   justify-content: space-between;
   height: 330px;
+  min-width: 380px;
   padding: 32px 0;
   isolation: isolate;
   position: relative;
@@ -128,6 +130,68 @@
 .imageSmall {
   width: 100%;
   height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .root {
+    padding: 0 24px;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    height: auto;
+  }
+
+  .leftCard {
+    width: 100%;
+    max-width: 421px;
+    height: 400px;
+  }
+
+  .rightColumn {
+    width: 100%;
+    max-width: 421px;
+    height: auto;
+    min-width: 380px;
+  }
+
+  .rightCard {
+    width: 100%;
+    min-width: 380px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    padding: 0 16px;
+  }
+
+  .leftCard,
+  .rightColumn,
+  .rightCard {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .leftCard {
+    height: 350px;
+  }
+
+  .rightCard {
+    height: 250px;
+  }
+
+  .text {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 0 16px;
+  }
 }
 
 .image img {

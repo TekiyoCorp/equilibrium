@@ -47,7 +47,7 @@ export function CourseCards({
   }
   return (
     <section className={styles.courseCards}>
-      <FadeIn from="bottom" duration={0.4}>
+      <FadeIn from="bottom" duration={0.2}>
         {title && <h2 className={styles.courseCardsTitle}>{title}</h2>}
       </FadeIn>
 

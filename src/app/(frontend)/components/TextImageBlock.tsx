@@ -19,7 +19,7 @@ export function TextImageBlock({ text, subtitle, image }: TextImageBlockProps) {
   return (
     <section className={styles.root}>
       <div className={styles.container}>
-        <FadeIn from="bottom" duration={0.6}>
+        <FadeIn from="bottom" duration={0.3}>
           <div className={styles.textSection}>
             {text && (
               <div className={styles.text}>
@@ -46,7 +46,7 @@ export function TextImageBlock({ text, subtitle, image }: TextImageBlockProps) {
         </FadeIn>
 
         {mediaObj?.url && (
-          <FadeIn from="bottom" duration={0.6} delay={0.2}>
+          <FadeIn from="bottom" duration={0.3} delay={0.2}>
             <div className={styles.imageContainer}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={mediaObj.alt || ''} src={mediaObj.url} className={styles.image} />

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import styles from './Button.module.css'
 import type { Page } from '@/payload-types'
@@ -60,7 +62,20 @@ export function Button(props: UniversalButtonProps) {
     }
 
     return (
-      <a className={className} href={finalHref} target={target} aria-label={ariaLabel || label}>
+      <a
+        className={className}
+        href={finalHref}
+        target={target}
+        aria-label={ariaLabel || label}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            window.location.href = finalHref
+          }
+        }}
+      >
         {label}
       </a>
     )
@@ -88,7 +103,20 @@ export function Button(props: UniversalButtonProps) {
   }
 
   return (
-    <a className={className} href={finalHref} target={target} aria-label={ariaLabel || label}>
+    <a
+      className={className}
+      href={finalHref}
+      target={target}
+      aria-label={ariaLabel || label}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          window.location.href = finalHref
+        }
+      }}
+    >
       {label}
     </a>
   )

@@ -11,7 +11,7 @@
   position: absolute;
   top: 312px;
   left: 50%;
-  transform: translate(calc(-50% + -75px), -50%);
+  transform: translate(-50%, -50%);
   font-size: 245px;
   font-weight: 400;
   letter-spacing: -0.02em;

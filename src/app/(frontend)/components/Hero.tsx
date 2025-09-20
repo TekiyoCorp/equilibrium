@@ -74,13 +74,13 @@ export function Hero({ hero }: HeroProps) {
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
 
         <div className={styles.heroContent}>
-          <FadeIn from="bottom" duration={1.2}>
+          <FadeIn from="bottom" duration={0.6}>
             {b.heading && <h1>{b.heading}</h1>}
           </FadeIn>
-          <FadeIn from="bottom" duration={1.2} delay={0.2}>
+          <FadeIn from="bottom" duration={0.6} delay={0.2}>
             {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
           </FadeIn>
-          <FadeIn from="bottom" duration={1.2} delay={0.4}>
+          <FadeIn from="bottom" duration={0.6} delay={0.4}>
             {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
           </FadeIn>
         </div>
@@ -104,13 +104,13 @@ export function Hero({ hero }: HeroProps) {
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
         <div className={styles.heroContent}>
           <div className="copy">
-            <FadeIn from="left" duration={1.2}>
+            <FadeIn from="bottom" duration={0.6}>
               {b.heading && <h1>{b.heading}</h1>}
             </FadeIn>
-            <FadeIn from="left" duration={1.2} delay={0.2}>
+            <FadeIn from="bottom" duration={0.6} delay={0.2}>
               {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
             </FadeIn>
-            <FadeIn from="left" duration={1.2} delay={0.4}>
+            <FadeIn from="bottom" duration={0.6} delay={0.4}>
               {Array.isArray(b.link) && b.link[0] && (
                 <div className={styles.ctaWrap}>
                   <UniversalButton block={b.link[0]} />
@@ -119,7 +119,7 @@ export function Hero({ hero }: HeroProps) {
             </FadeIn>
           </div>
           {mediaObj?.url && (
-            <FadeIn from="right" duration={1.2} delay={0.3}>
+            <FadeIn from="bottom" duration={0.6} delay={0.3}>
               <div className={styles.media}>
                 <Image
                   alt={mediaObj.alt}
@@ -151,25 +151,107 @@ export function Hero({ hero }: HeroProps) {
       >
         {backgroundImageObj?.url && <div className={styles.heroOverlay} />}
         <div className={styles.heroContent}>
-          <FadeIn from="bottom" duration={1.2}>
-            {b.heading && <h1>{b.heading}</h1>}
-          </FadeIn>
-          <FadeIn from="bottom" duration={1.2} delay={0.2}>
-            {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
-          </FadeIn>
-          <FadeIn from="bottom" duration={1.2} delay={0.4}>
-            <div className={styles.contacts}>
-              {b.email && (
-                <a href={`mailto:${b.email}`} className="contact">
-                  {b.email}
-                </a>
-              )}
-              {b.phone && <span className="contact">{b.phone}</span>}
+          <div className={styles.contactGrid}>
+            <div className={styles.contactInfo}>
+              <FadeIn from="bottom" duration={0.6}>
+                {b.heading && <h1>{b.heading}</h1>}
+              </FadeIn>
+              <FadeIn from="bottom" duration={0.6} delay={0.2}>
+                {b.subheading && <p className={styles.sub}>{b.subheading}</p>}
+              </FadeIn>
+              <FadeIn from="bottom" duration={0.6} delay={0.4}>
+                <div className={styles.contacts}>
+                  {b.email && (
+                    <a href={`mailto:${b.email}`} className="contact">
+                      {b.email}
+                    </a>
+                  )}
+                  {b.phone && <span className="contact">{b.phone}</span>}
+                </div>
+              </FadeIn>
+              <FadeIn from="bottom" duration={0.6} delay={0.6}>
+                {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
+              </FadeIn>
             </div>
-          </FadeIn>
-          <FadeIn from="bottom" duration={1.2} delay={0.6}>
-            {Array.isArray(b.link) && b.link[0] && <UniversalButton block={b.link[0]} />}
-          </FadeIn>
+
+            <FadeIn from="bottom" duration={0.6} delay={0.3}>
+              <div
+                className={styles.contactForm}
+                role="region"
+                aria-labelledby="contact-form-title"
+              >
+                <h2 id="contact-form-title" className={styles.formTitle}>
+                  Contact us
+                </h2>
+                <form className={styles.form} aria-labelledby="contact-form-title">
+                  <div className={styles.formGroup}>
+                    <label htmlFor="contact-name" className={styles.visuallyHidden}>
+                      Full Name (required)
+                    </label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      placeholder="Name"
+                      className={styles.formInput}
+                      aria-label="Full Name"
+                      aria-required="true"
+                      autoComplete="name"
+                      required
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="contact-email" className={styles.visuallyHidden}>
+                      Email Address (required)
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      placeholder="Mail"
+                      className={styles.formInput}
+                      aria-label="Email Address"
+                      aria-required="true"
+                      autoComplete="email"
+                      required
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="contact-phone" className={styles.visuallyHidden}>
+                      Phone Number (optional)
+                    </label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      placeholder="Phone"
+                      className={styles.formInput}
+                      aria-label="Phone Number"
+                      autoComplete="tel"
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="contact-subject" className={styles.visuallyHidden}>
+                      Subject or Message (required)
+                    </label>
+                    <textarea
+                      id="contact-subject"
+                      placeholder="Subject"
+                      className={`${styles.formInput} ${styles.formTextarea}`}
+                      rows={4}
+                      aria-label="Subject or Message"
+                      aria-required="true"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className={styles.formButton}
+                    aria-describedby="contact-form-title"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
     )

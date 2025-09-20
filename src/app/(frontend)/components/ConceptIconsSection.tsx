@@ -46,12 +46,12 @@ export function ConceptIconsSection({
   return (
     <section className={styles['concept-icons-section']} style={backgroundStyle}>
       <div className={styles['concept-icons-section__container']}>
-        <FadeIn from="top" duration={1.2}>
+        <FadeIn from="top" duration={0.6}>
           <div className={styles['concept-icons-section__content']}>
             {items.map((item, index) => {
               const mediaObject = getMediaObject(item.icon)
               return (
-                <FadeIn key={index} from="bottom" duration={1.2} delay={index * 0.2}>
+                <FadeIn key={index} from="bottom" duration={0.6} delay={index * 0.2}>
                   <div className={styles['concept-icons-section__item']}>
                     <div className={styles['concept-icons-section__icon']}>
                       {mediaObject?.url ? (

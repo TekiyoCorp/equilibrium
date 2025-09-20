@@ -26,72 +26,162 @@ function MapComponent({
   mapStyle = 'https://demotiles.maplibre.org/style.json',
 }: MapProps) {
   const [selectedLocation, setSelectedLocation] = React.useState<number | undefined>(undefined)
+  const [isMounted, setIsMounted] = React.useState(false)
+  const [mapError, setMapError] = React.useState<string | null>(null)
   const [viewState, setViewState] = React.useState({
     longitude: center[1],
     latitude: center[0],
     zoom: zoom,
   })
 
+  // Ensure component is mounted before rendering map
+  React.useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   // Update view state when center changes
   React.useEffect(() => {
-    setViewState({
-      longitude: center[1],
-      latitude: center[0],
-      zoom: zoom,
-    })
-  }, [center, zoom])
+    if (isMounted) {
+      setViewState({
+        longitude: center[1],
+        latitude: center[0],
+        zoom: zoom,
+      })
+    }
+  }, [center, zoom, isMounted])
 
-  return (
-    <Map
-      {...viewState}
-      onMove={(evt) => setViewState(evt.viewState)}
-      style={{ width: '100%', height: '400px' }}
-      mapStyle={mapStyle}
-      attributionControl={false}
-    >
-      {locations.map((location, index) => (
-        <Marker
-          key={index}
-          longitude={location.coordinates[1]}
-          latitude={location.coordinates[0]}
-          onClick={() => setSelectedLocation(index)}
-        >
-          <div
-            style={{
-              background: '#079495',
-              width: '20px',
-              height: '20px',
-              borderRadius: '50%',
-              border: '2px solid white',
-              cursor: 'pointer',
-            }}
-          />
-        </Marker>
-      ))}
+  // Error boundary for map loading
+  const handleMapError = React.useCallback((error: any) => {
+    console.error('Map loading error:', error)
+    setMapError('Erreur de chargement de la carte')
+  }, [])
 
-      {selectedLocation !== undefined && (
-        <Popup
-          longitude={locations[selectedLocation].coordinates[1]}
-          latitude={locations[selectedLocation].coordinates[0]}
-          onClose={() => setSelectedLocation(undefined)}
-          closeButton={true}
-          closeOnClick={false}
+  if (!isMounted) {
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '400px',
+          background: '#f5f5f5',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#666',
+        }}
+      >
+        Chargement de la carte...
+      </div>
+    )
+  }
+
+  if (mapError) {
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '400px',
+          background: '#f5f5f5',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#666',
+          flexDirection: 'column',
+        }}
+      >
+        <p>{mapError}</p>
+        <button
+          onClick={() => {
+            setMapError(null)
+            setIsMounted(false)
+            setTimeout(() => setIsMounted(true), 100)
+          }}
+          style={{
+            padding: '8px 16px',
+            background: '#079495',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
         >
-          <div>
-            <h3>{locations[selectedLocation].name}</h3>
-            <p>{locations[selectedLocation].address}</p>
+          Réessayer
+        </button>
+      </div>
+    )
+  }
+
+  try {
+    return (
+      <Map
+        {...viewState}
+        onMove={(evt) => setViewState(evt.viewState)}
+        onError={handleMapError}
+        style={{ width: '100%', height: '400px' }}
+        mapStyle={mapStyle}
+        attributionControl={false}
+        reuseMaps={true}
+      >
+        {locations.map((location, index) => (
+          <Marker
+            key={`marker-${index}`}
+            longitude={location.coordinates[1]}
+            latitude={location.coordinates[0]}
+            onClick={() => setSelectedLocation(index)}
+          >
+            <div
+              style={{
+                background: '#079495',
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                border: '2px solid white',
+                cursor: 'pointer',
+              }}
+            />
+          </Marker>
+        ))}
+
+        {selectedLocation !== undefined && locations[selectedLocation] && (
+          <Popup
+            longitude={locations[selectedLocation].coordinates[1]}
+            latitude={locations[selectedLocation].coordinates[0]}
+            onClose={() => setSelectedLocation(undefined)}
+            closeButton={true}
+            closeOnClick={false}
+          >
             <div>
-              <strong>Horaire :</strong>
-              <br />
-              {locations[selectedLocation].schedule.weekdays}
-              <br />
-              {locations[selectedLocation].schedule.weekends}
+              <h3>{locations[selectedLocation].name}</h3>
+              <p>{locations[selectedLocation].address}</p>
+              <div>
+                <strong>Horaire :</strong>
+                <br />
+                {locations[selectedLocation].schedule.weekdays}
+                <br />
+                {locations[selectedLocation].schedule.weekends}
+              </div>
             </div>
-          </div>
-        </Popup>
-      )}
-    </Map>
-  )
+          </Popup>
+        )}
+      </Map>
+    )
+  } catch (error) {
+    console.error('Map render error:', error)
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '400px',
+          background: '#f5f5f5',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#666',
+        }}
+      >
+        Erreur de rendu de la carte
+      </div>
+    )
+  }
 }
 
 export { MapComponent as Map }
