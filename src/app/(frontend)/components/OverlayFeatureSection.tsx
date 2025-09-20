@@ -33,6 +33,9 @@ export function OverlayFeatureSection({
   button,
   items,
 }: OverlayFeatureSectionProps) {
+  const [imageError, setImageError] = React.useState(false)
+  const [imageLoaded, setImageLoaded] = React.useState(false)
+
   const bg = backgroundImage as Media | number | undefined
   const bgObj = typeof bg === 'object' && bg !== null ? (bg as Media) : undefined
 
@@ -40,14 +43,59 @@ export function OverlayFeatureSection({
   console.log('OverlayFeatureSection - bgObj:', bgObj)
   console.log('OverlayFeatureSection - bgObj.url:', bgObj?.url)
 
-  // Fallback pour image manquante
-  const backgroundStyle = bgObj?.url
+  // Test de l'image en arrière-plan avec fallback
+  React.useEffect(() => {
+    if (bgObj?.url) {
+      const img = new Image()
+      img.onload = () => {
+        setImageLoaded(true)
+        setImageError(false)
+        console.log('✅ OverlayFeatureSection image loaded successfully:', bgObj.url)
+      }
+      img.onerror = () => {
+        console.error('❌ OverlayFeatureSection image failed to load:', bgObj.url)
+
+        // Essayer avec le proxy en fallback
+        const proxyUrl = `/api/media-proxy?url=${encodeURIComponent(bgObj.url)}`
+        const proxyImg = new Image()
+
+        proxyImg.onload = () => {
+          setImageLoaded(true)
+          setImageError(false)
+          console.log('✅ OverlayFeatureSection image loaded via proxy:', proxyUrl)
+        }
+        proxyImg.onerror = () => {
+          setImageError(true)
+          setImageLoaded(false)
+          console.error('❌ OverlayFeatureSection proxy also failed:', proxyUrl)
+        }
+        proxyImg.src = proxyUrl
+      }
+      img.src = bgObj.url
+    }
+  }, [bgObj?.url])
+
+  // Fallback amélioré pour image manquante
+  const getImageUrl = () => {
+    if (!bgObj?.url || imageError) return null
+
+    // Si l'image originale a échoué, essayer le proxy
+    if (imageError) {
+      return `/api/media-proxy?url=${encodeURIComponent(bgObj.url)}`
+    }
+
+    return bgObj.url
+  }
+
+  const imageUrl = getImageUrl()
+  const backgroundStyle = imageUrl
     ? {
-        backgroundImage: `url(${bgObj.url})`,
-        backgroundColor: '#f5f5f5', // Fallback si image ne charge pas
+        backgroundImage: `url(${imageUrl})`,
+        backgroundColor: '#079495', // Couleur brand en fallback
       }
     : {
-        backgroundColor: '#f5f5f5', // Background par défaut
+        backgroundColor: '#079495', // Background brand par défaut
+        backgroundImage: 'linear-gradient(135deg, #079495 0%, #068384 100%)', // Gradient élégant
       }
 
   return (

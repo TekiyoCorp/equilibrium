@@ -150,6 +150,7 @@ export default buildConfig({
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
       clientUploads: true, // Enable client uploads to bypass Vercel's 4.5MB limit
+      cacheControlMaxAge: 31536000, // Cache 1 year
     }),
   ],
 })
