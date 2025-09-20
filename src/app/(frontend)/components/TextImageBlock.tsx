@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import type { Media } from '@/payload-types'
 import styles from './TextImageBlock.module.css'

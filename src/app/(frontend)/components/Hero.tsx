@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import type { Media, Page } from '@/payload-types'
 import styles from './Hero.module.css'

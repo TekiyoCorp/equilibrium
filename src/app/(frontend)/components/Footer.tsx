@@ -57,7 +57,7 @@ export async function Footer() {
                   return (
                     <li key={i}>
                       <a
-                        href={isTekiyoLink ? "https://tekiyo.fr" : item.link.href}
+                        href={isTekiyoLink ? 'https://tekiyo.fr' : item.link.href}
                         target={item.link.newTab || isTekiyoLink ? '_blank' : undefined}
                         rel={item.link.newTab || isTekiyoLink ? 'noreferrer' : undefined}
                         className={isTekiyoLink ? styles['tekiyo-link'] : undefined}
@@ -65,8 +65,8 @@ export async function Footer() {
                         {item.link.label || item.link.href}
                         {isTekiyoLink && (
                           <div className={styles['tekiyo-preview']}>
-                            <iframe 
-                              src="https://tekiyo.fr" 
+                            <iframe
+                              src="https://tekiyo.fr"
                               title="Tekiyo Preview"
                               sandbox="allow-same-origin allow-scripts"
                             />
@@ -94,8 +94,8 @@ export async function Footer() {
               >
                 Propulsé par Tekiyo
                 <div className={styles['tekiyo-preview']}>
-                  <iframe 
-                    src="https://tekiyo.fr" 
+                  <iframe
+                    src="https://tekiyo.fr"
                     title="Tekiyo Preview"
                     sandbox="allow-same-origin allow-scripts"
                   />
