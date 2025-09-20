@@ -34,7 +34,7 @@ export function OverlayFeatureSection({
   items,
 }: OverlayFeatureSectionProps) {
   const [imageError, setImageError] = React.useState(false)
-  const [imageLoaded, setImageLoaded] = React.useState(false)
+  const [_imageLoaded, setImageLoaded] = React.useState(false)
 
   const bg = backgroundImage as Media | number | undefined
   const bgObj = typeof bg === 'object' && bg !== null ? (bg as Media) : undefined
@@ -56,7 +56,7 @@ export function OverlayFeatureSection({
         console.error('❌ OverlayFeatureSection image failed to load:', bgObj.url)
 
         // Essayer avec le proxy en fallback
-        const proxyUrl = `/api/media-proxy?url=${encodeURIComponent(bgObj.url)}`
+        const proxyUrl = `/api/media-proxy?url=${encodeURIComponent(bgObj.url || '')}`
         const proxyImg = new Image()
 
         proxyImg.onload = () => {
@@ -81,7 +81,7 @@ export function OverlayFeatureSection({
 
     // Si l'image originale a échoué, essayer le proxy
     if (imageError) {
-      return `/api/media-proxy?url=${encodeURIComponent(bgObj.url)}`
+      return `/api/media-proxy?url=${encodeURIComponent(bgObj.url || '')}`
     }
 
     return bgObj.url
