@@ -16,7 +16,7 @@ type MediaCardSliderProps = {
   title?: string
 }
 
-export function MediaCardSlider({ items, title = 'Lorem ipsum' }: MediaCardSliderProps) {
+export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     containScroll: 'trimSnaps',
@@ -50,7 +50,7 @@ export function MediaCardSlider({ items, title = 'Lorem ipsum' }: MediaCardSlide
   return (
     <section className={styles.sectionFullBleed}>
       <div className={styles.container}>
-        <h2 className={styles.title}>{title}</h2>
+        {title && <h2 className={styles.title}>{title}</h2>}
         <div className={styles.sliderWrapper}>
           <div className={styles.embla} ref={emblaRef}>
             <div className={styles.emblaContainer}>

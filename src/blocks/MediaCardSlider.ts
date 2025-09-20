@@ -8,6 +8,12 @@ export const MediaCardSlider: Block = {
   },
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      label: 'Section Title',
+      required: false,
+    },
+    {
       name: 'items',
       label: 'Cards',
       type: 'array',
