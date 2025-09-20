@@ -50,20 +50,23 @@ export function ChatSection({
         </FadeIn>
 
         <div className={styles.chatContainer}>
-          {messages.map((message, index) => (
-            <FadeIn key={index} from="bottom" duration={0.3} delay={index * 0.2}>
-              <div className={`${styles.messageContainer} ${styles[message.sender]}`}>
-                <div className={styles.senderName}>{message.senderName}</div>
-                <div className={`${styles.messageBubble} ${styles[`${message.sender}Bubble`]}`}>
-                  <div className={styles.bubbleTail}></div>
-                  <div className={styles.messageContent}>
-                    <p>{message.text}</p>
-                  </div>
-                  <div className={styles.bubbleTailEnd}></div>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
+          <ol className={styles.list}>
+            {messages.map((message, index) => {
+              const sent = message.sender === 'user'
+              const isLast = index === messages.length - 1
+              const noTail = !isLast && messages[index + 1]?.sender === message.sender
+              return (
+                <li
+                  key={index}
+                  className={`${styles.shared} ${sent ? styles.sent : styles.received} ${noTail ? styles.noTail : ''}`}
+                >
+                  <FadeIn from="bottom" duration={0.3} delay={index * 0.2}>
+                    {message.text}
+                  </FadeIn>
+                </li>
+              )
+            })}
+          </ol>
         </div>
 
         <FadeIn from="bottom" duration={0.3} delay={0.8}>
