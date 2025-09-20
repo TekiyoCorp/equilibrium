@@ -2,19 +2,15 @@
 .root {
   position: relative;
   min-height: 100dvh;
-  height: 100vh; /* FORCER la hauteur */
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: scroll !important;
+  background-size: cover;
+  background-position: center;
   color: #0b0b0b;
-  overflow: hidden;
 }
 .overlayWord {
   position: absolute;
   top: 312px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-50% + -75px), -50%);
   font-size: 245px;
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -30,20 +26,12 @@
   right: 63px;
   bottom: 0;
   transform: translateY(-120px);
-  z-index: 2;
-}
-.headerRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
 }
 .heading {
-  margin: 0;
+  margin: 0 0 12px 0;
   font-size: 46px;
   line-height: 1.1;
   letter-spacing: -0.06em;
-  font-weight: 400;
 }
 .cta {
   display: inline-flex;
@@ -54,9 +42,10 @@
   padding: 12px 28px;
   border-radius: 51px;
   text-decoration: none;
-  flex-shrink: 0;
+  float: right;
 }
 .separator {
+  clear: both;
   height: 1px;
   background: #c9c9c9;
   margin: 22px 0;
@@ -74,32 +63,23 @@
 .featureTitle {
   font-size: 24px;
   letter-spacing: -0.06em;
-  font-weight: 400;
 }
 .featureDesc {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.6);
   max-width: 263px;
-  font-weight: 400;
 }
 .heroOverlay {
-  /* TEMPORAIREMENT DÉSACTIVÉ POUR TEST */
-  display: none;
-}
-
-/* Mobile adjustments */
-@media (max-width: 900px) {
-  .overlayWord {
-    top: 180px;
-    transform: translate(-50%, -50%);
-    font-size: clamp(64px, 22vw, 120px);
-  }
-  .overlayContent {
-    left: 18px;
-    right: 18px;
-    transform: translateY(-60px);
-  }
-  .heading {
-    font-size: 32px;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35.4%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
 }

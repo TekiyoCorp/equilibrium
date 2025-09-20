@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import type { Media } from '@/payload-types'
 import styles from './OverlayFeatureSection.module.css'
@@ -34,17 +32,13 @@ export function OverlayFeatureSection({
   items,
 }: OverlayFeatureSectionProps) {
   const bg = backgroundImage as Media | number | undefined
-  const bgObj = typeof bg === 'object' && bg !== null ? (bg as Media) : undefined
-
-  const imageUrl = bgObj?.url || null
-  const backgroundStyle = imageUrl
-    ? {
-        backgroundImage: `url("${imageUrl}")`,
-      }
-    : undefined
+  const bgObj = typeof bg === 'object' ? (bg as Media) : undefined
 
   return (
-    <section className={styles.root} style={backgroundStyle}>
+    <section
+      className={styles.root}
+      style={bgObj?.url ? { backgroundImage: `url(${bgObj.url})` } : undefined}
+    >
       {overlayWord && (
         <div className={styles.overlayWord} aria-hidden>
           {overlayWord}
@@ -52,10 +46,10 @@ export function OverlayFeatureSection({
       )}
       <div className={styles.overlayContent}>
         <div className={styles.headerRow}>
-          <FadeIn from="bottom" duration={0.2}>
+          <FadeIn from="bottom" duration={1.2}>
             {heading && <h2 className={styles.heading}>{heading}</h2>}
           </FadeIn>
-          <FadeIn from="bottom" duration={0.2} delay={0.1}>
+          <FadeIn from="bottom" duration={1.2} delay={0.2}>
             {Array.isArray(button) && button[0] && (
               <UniversalButton
                 label={button[0].label}
@@ -71,13 +65,13 @@ export function OverlayFeatureSection({
           </FadeIn>
         </div>
 
-        <FadeIn from="bottom" duration={0.3} delay={0.15}>
+        <FadeIn from="left" duration={1} delay={0.3}>
           <div className={styles.separator} />
         </FadeIn>
 
         <div className={styles.features}>
           {(items || []).slice(0, 3).map((it, idx) => (
-            <FadeIn key={`ofh-${idx}`} from="bottom" duration={0.3} delay={0.2 + idx * 0.1}>
+            <FadeIn key={`ofh-${idx}`} from="bottom" duration={1} delay={0.5 + idx * 0.2}>
               <div>
                 {it.title && <div className={styles.featureTitle}>{it.title}</div>}
                 {it.description && <div className={styles.featureDesc}>{it.description}</div>}
