@@ -157,8 +157,9 @@
     align-items: flex-start;
   }
   .container {
-    gap: 18px;
-    align-items: stretch;
+    gap: 24px !important;
+    align-items: center !important;
+    text-align: center !important;
   }
   .title {
     font-size: 28px;

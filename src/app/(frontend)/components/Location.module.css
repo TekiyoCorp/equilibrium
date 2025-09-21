@@ -225,9 +225,11 @@
   }
 
   .container {
-    gap: 24px;
+    gap: 24px !important;
     padding: 0 18px;
     min-height: auto;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .locationsList {

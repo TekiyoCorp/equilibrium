@@ -178,13 +178,29 @@
 }
 
 @media (max-width: 900px) {
+  .section {
+    text-align: center !important;
+  }
+  
+  .title {
+    text-align: center !important;
+    margin: 8px auto 12px !important;
+  }
+  
+  .subtitle {
+    text-align: center !important;
+    margin: 0 auto 24px !important;
+  }
+  
   .grid {
     grid-template-columns: 1fr 1fr;
+    gap: 24px !important;
   }
 }
 
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 24px !important;
   }
 }

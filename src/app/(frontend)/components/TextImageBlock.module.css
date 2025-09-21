@@ -124,8 +124,10 @@
   }
 
   .container {
-    gap: 24px;
+    gap: 24px !important;
     padding: 0 16px;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .text {
