@@ -39,8 +39,24 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
   return (
     <header className={styles['site-header']} data-node-id="949:1048">
       <div className={styles['container']}>
-        {/* Logo - visible on both mobile and desktop */}
-        <Link className={styles['brand']} href="/">
+        {/* Top bar with logo and mobile menu button - only visible on mobile */}
+        <div className={styles['topBar']}>
+          <Link className={styles['brand']} href="/">
+            {logo?.image?.url ? (
+              <img
+                src={logo.image.url}
+                alt={logo.image.alt || logo?.alt || 'Logo'}
+                className={styles['brand-image']}
+              />
+            ) : (
+              <span className={styles['brand-text']}>EQUILIBRIUM</span>
+            )}
+          </Link>
+          <MobileMenuButton isOpen={open} onClick={toggle} label="Menu" />
+        </div>
+
+        {/* Desktop logo - hidden on mobile */}
+        <Link className={styles['brand-desktop']} href="/">
           {logo?.image?.url ? (
             <img
               src={logo.image.url}
@@ -51,11 +67,6 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
             <span className={styles['brand-text']}>EQUILIBRIUM</span>
           )}
         </Link>
-
-        {/* Top bar with mobile menu button - only visible on mobile */}
-        <div className={styles['topBar']}>
-          <MobileMenuButton isOpen={open} onClick={toggle} label="Menu" />
-        </div>
 
         <nav className={styles['nav']} aria-label="Primary">
           <ul className={styles['nav-list']}>
