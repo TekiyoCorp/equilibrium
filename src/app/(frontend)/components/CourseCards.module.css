@@ -39,6 +39,7 @@
 .courseCard {
   position: relative;
   height: 485px;
+  min-width: 370px;
   border-radius: 28px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.2);
