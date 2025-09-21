@@ -141,9 +141,33 @@
     width: 100% !important;
   }
   
-  /* Force gap visibility with padding if needed */
+  /* Force gap between FadeIn wrappers */
   .heroContent > *:not(:last-child) {
-    padding-bottom: 24px !important;
+    margin-bottom: 24px !important;
+  }
+  
+  /* Force gap for FadeIn components specifically */
+  .heroContent > div:not(:last-child) {
+    margin-bottom: 24px !important;
+  }
+  
+  /* RightHero: Gap for .copy wrapper children */
+  .copy > *:not(:last-child) {
+    margin-bottom: 24px !important;
+  }
+  
+  /* ContactHero: Gap for .contactInfo wrapper children */
+  .contactInfo > *:not(:last-child) {
+    margin-bottom: 24px !important;
+  }
+  
+  /* Ensure all direct children have gap */
+  .heroContent > * {
+    margin-bottom: 0 !important;
+  }
+  
+  .heroContent > *:not(:last-child) {
+    margin-bottom: 24px !important;
   }
 }
 
@@ -220,11 +244,11 @@
   .heroCenter {
     text-align: center;
     align-items: center;
-    gap: 12px;
+    gap: 24px;
   }
   .heroCenter .heroContent {
     align-items: center;
-    gap: 0;
+    gap: 24px;
   }
   .heroCenter .heroContent > * {
     margin-left: auto;

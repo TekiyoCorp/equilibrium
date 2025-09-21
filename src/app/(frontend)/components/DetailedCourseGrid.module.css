@@ -14,8 +14,15 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr !important; /* Mobile: 1 colonne */
   gap: 10px;
+}
+
+/* Tablet: 2 colonnes */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }
 
 .card {

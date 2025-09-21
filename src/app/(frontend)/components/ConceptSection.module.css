@@ -143,6 +143,7 @@
     order: 1;
     align-items: center;
     text-align: center;
+    gap: 24px !important;
   }
 
   .concept-section__image {

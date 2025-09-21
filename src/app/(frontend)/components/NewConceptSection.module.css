@@ -141,7 +141,15 @@
   }
 
   .new-concept-section__content {
-    gap: 16px;
+    gap: 24px !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  
+  .new-concept-section__text {
+    gap: 24px !important;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .new-concept-section__title,

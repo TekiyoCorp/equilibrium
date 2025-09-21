@@ -17,7 +17,7 @@
 }
 .courseCardsGrid {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: 1fr !important; /* Force 1 colonne par défaut */
   gap: 18px;
   width: 100%;
   max-width: 1200px;
@@ -26,14 +26,14 @@
 /* Tablet: 2 columns from 768px */
 @media (min-width: 768px) {
   .courseCardsGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
 /* Desktop: 3 columns from 900px */
 @media (min-width: 900px) {
   .courseCardsGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
 .courseCard {
