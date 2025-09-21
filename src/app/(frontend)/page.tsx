@@ -22,6 +22,7 @@ export default async function HomePage() {
       try {
         const result = await payload.find({
           collection: 'pages',
+          draft: process.env.NODE_ENV === 'development', // Draft seulement en dev
           where: { slug: { equals: 'home' } },
           limit: 1,
         })
@@ -31,8 +32,11 @@ export default async function HomePage() {
         return null
       }
     },
-    ['home-page'],
-    { tags: ['pages', 'page:home'] },
+    ['home-page', process.env.NODE_ENV || 'production'],
+    {
+      tags: ['pages', 'page:home'],
+      revalidate: 3600, // Cache 1 heure
+    },
   )
 
   const homePage = await getHomePage()

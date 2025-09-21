@@ -49,6 +49,20 @@ export function PageTransition({ children }: PageTransitionProps) {
     }
   }, [pathname, isInitialLoad, children])
 
+  // Gérer l'overlay déclenché par le contexte (AVANT la navigation)
+  useEffect(() => {
+    if (isTransitioning) {
+      // L'overlay est déjà affiché par isTransitioning
+      // On attend que la navigation se termine pour changer le contenu
+      const timer = setTimeout(() => {
+        setCurrentChildren(children)
+        setLocalTransition(false)
+      }, 800) // 800ms après le début de la transition
+
+      return () => clearTimeout(timer)
+    }
+  }, [isTransitioning, children])
+
   // Show transition if triggered by context OR by pathname change
   const showTransition = isTransitioning || localTransition
 

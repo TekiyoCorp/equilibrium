@@ -5,7 +5,7 @@ import config from '@/payload.config'
 import { Hero } from '../components/Hero'
 import { Sections } from '../components/Sections'
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic' // Supprimé pour permettre le cache statique
 
 type Params = {
   params: Promise<{
@@ -25,15 +25,18 @@ export default async function Page({ params }: Params) {
     async () => {
       const res = await payload.find({
         collection: 'pages',
-        draft: true,
+        draft: process.env.NODE_ENV === 'development', // Draft seulement en dev
         depth: 1,
         limit: 1,
         where: { slug: { equals: slug } },
       })
       return res?.docs?.[0]
     },
-    ['page', slug || ''],
-    { tags: ['pages', `page:${slug || ''}`] },
+    ['page', slug || '', process.env.NODE_ENV || 'production'],
+    {
+      tags: ['pages', `page:${slug || ''}`],
+      revalidate: 3600, // Cache 1 heure
+    },
   )
 
   const doc = await getPageBySlug()

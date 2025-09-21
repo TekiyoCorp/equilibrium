@@ -1,6 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState } from 'react'
+import { flushSync } from 'react-dom'
 
 type TransitionContextType = {
   startTransition: () => void
@@ -13,9 +14,13 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
   const [isTransitioning, setIsTransitioning] = useState(false)
 
   const startTransition = () => {
-    setIsTransitioning(true)
-    // Auto-stop après 1.2s au cas où
-    setTimeout(() => setIsTransitioning(false), 1200)
+    // Force le re-render immédiat avec flushSync pour affichage instantané
+    flushSync(() => {
+      setIsTransitioning(true)
+    })
+
+    // Auto-stop après 1s au cas où
+    setTimeout(() => setIsTransitioning(false), 1000)
   }
 
   return (

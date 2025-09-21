@@ -40,6 +40,7 @@ export function OverlayFeatureSection({
     <section
       className={styles.root}
       style={bgObj?.url ? { backgroundImage: `url(${bgObj.url})` } : undefined}
+      aria-labelledby="overlay-feature-heading"
     >
       {overlayWord && (
         <div className={styles.overlayWord} aria-hidden>
@@ -49,7 +50,11 @@ export function OverlayFeatureSection({
       <div className={styles.overlayContent}>
         <div className={styles.headerRow}>
           <FadeIn from="bottom" duration={0.4}>
-            {heading && <h2 className={styles.heading}>{heading}</h2>}
+            {heading && (
+              <h2 id="overlay-feature-heading" className={styles.heading}>
+                {heading}
+              </h2>
+            )}
           </FadeIn>
           <FadeIn from="bottom" duration={0.4} delay={0.1}>
             {Array.isArray(button) && button[0] && (

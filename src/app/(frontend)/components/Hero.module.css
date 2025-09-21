@@ -152,22 +152,30 @@
   }
   
   /* RightHero: Gap for .copy wrapper children */
-  .copy > *:not(:last-child) {
-    margin-bottom: 24px !important;
+  .copy {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: center !important;
+    text-align: center !important;
   }
   
   /* ContactHero: Gap for .contactInfo wrapper children */
-  .contactInfo > *:not(:last-child) {
-    margin-bottom: 24px !important;
+  .contactInfo {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    align-items: center !important;
+    text-align: center !important;
   }
   
-  /* Ensure all direct children have gap */
-  .heroContent > * {
-    margin-bottom: 0 !important;
-  }
-  
-  .heroContent > *:not(:last-child) {
-    margin-bottom: 24px !important;
+  /* CenterHero: Force gap for direct FadeIn children */
+  .heroCenter .heroContent {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    align-items: center !important;
+    text-align: center !important;
   }
 }
 
