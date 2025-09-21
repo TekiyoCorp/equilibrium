@@ -18,7 +18,7 @@ type TransitionLinkProps = {
 
 export function TransitionLink({ href, children, onClick, ...props }: TransitionLinkProps) {
   const router = useRouter()
-  const { prefetchPage, cancelPrefetch, isPrefetched } = useSmartPrefetch()
+  const { prefetchPage, cancelPrefetch } = useSmartPrefetch()
 
   // Utilisation sécurisée du hook avec try/catch
   let startTransition: (() => void) | null = null

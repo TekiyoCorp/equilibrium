@@ -51,7 +51,7 @@ const MapComponent = memo(function MapComponent({
   }, [center, zoom, isMounted])
 
   // Error boundary for map loading
-  const handleMapError = React.useCallback((error: Error) => {
+  const handleMapError = React.useCallback((_e: any) => {
     // Map loading error handled silently
     setMapError('Erreur de chargement de la carte')
   }, [])
@@ -165,7 +165,7 @@ const MapComponent = memo(function MapComponent({
         )}
       </Map>
     )
-  } catch (error) {
+  } catch (_error) {
     // Map render error handled silently
     return (
       <div

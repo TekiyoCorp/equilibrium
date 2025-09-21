@@ -1,7 +1,7 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
-let payloadInstance: any = null
+let payloadInstance: unknown = null
 
 export async function getPayloadInstance() {
   if (!payloadInstance) {
