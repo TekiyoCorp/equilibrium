@@ -11,7 +11,7 @@ export type MediaCardSliderBlock = BaseBlock & {
   blockType: 'mediaCardSlider'
   title?: string | null
   items: Array<{
-    image: Media | number | null
+    image: Media | number
     text?: string | null
   }>
 }
