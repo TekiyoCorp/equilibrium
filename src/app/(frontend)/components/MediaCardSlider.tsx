@@ -34,7 +34,7 @@ export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
     if (emblaApi) emblaApi.scrollNext()
   }, [emblaApi])
 
-  const onSelect = React.useCallback((emblaApi: { selectedScrollSnap: () => number }) => {
+  const onSelect = React.useCallback((emblaApi: { selectedScrollSnap: () => number; canScrollPrev: () => boolean; canScrollNext: () => boolean }) => {
     setPrevBtnDisabled(!emblaApi.canScrollPrev())
     setNextBtnDisabled(!emblaApi.canScrollNext())
   }, [])
