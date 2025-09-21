@@ -1,6 +1,6 @@
 'use client'
 
-import React, { memo } from 'react'
+import React from 'react'
 import { Map, Marker, Popup } from 'react-map-gl/maplibre'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
@@ -19,7 +19,7 @@ type MapProps = {
   mapStyle?: string
 }
 
-const MapComponent = memo(function MapComponent({
+function MapComponent({
   center = [25.2048, 55.2708], // Dubai coordinates as default
   zoom = 13,
   locations = [],
@@ -51,8 +51,8 @@ const MapComponent = memo(function MapComponent({
   }, [center, zoom, isMounted])
 
   // Error boundary for map loading
-  const handleMapError = React.useCallback((_e: any) => {
-    // Map loading error handled silently
+  const handleMapError = React.useCallback((error: any) => {
+    console.error('Map loading error:', error)
     setMapError('Erreur de chargement de la carte')
   }, [])
 
@@ -127,7 +127,6 @@ const MapComponent = memo(function MapComponent({
             longitude={location.coordinates[1]}
             latitude={location.coordinates[0]}
             onClick={() => setSelectedLocation(index)}
-            aria-label={`Marqueur pour ${location.name}`}
           >
             <div
               style={{
@@ -165,8 +164,8 @@ const MapComponent = memo(function MapComponent({
         )}
       </Map>
     )
-  } catch (_error) {
-    // Map render error handled silently
+  } catch (error) {
+    console.error('Map render error:', error)
     return (
       <div
         style={{
@@ -183,7 +182,7 @@ const MapComponent = memo(function MapComponent({
       </div>
     )
   }
-})
+}
 
 export { MapComponent as Map }
 export default MapComponent

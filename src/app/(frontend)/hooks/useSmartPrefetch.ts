@@ -15,7 +15,7 @@ export function useSmartPrefetch() {
 
   const prefetchPage = useCallback(
     async (href: string, options: PrefetchOptions = {}) => {
-      const { timeout = 2000 } = options
+      const { priority = 'low', timeout = 2000 } = options
 
       // Éviter les doublons
       if (prefetchedUrls.current.has(href)) {
@@ -37,9 +37,9 @@ export function useSmartPrefetch() {
           // Marquer comme pré-chargé
           prefetchedUrls.current.add(href)
 
-          // Page pré-chargée avec succès
-        } catch (_error) {
-          // Échec du prefetch (géré silencieusement)
+          console.log(`✅ Page pré-chargée: ${href}`)
+        } catch (error) {
+          console.warn(`❌ Échec du prefetch pour ${href}:`, error)
         } finally {
           prefetchTimeouts.current.delete(href)
         }

@@ -86,7 +86,7 @@ export function CoachesGrid({
                                 item.ctaLinkType === 'page' &&
                                 item.page &&
                                 typeof item.page === 'object'
-                                  ? `/${item.page?.slug ?? ''}`
+                                  ? `/${(item.page as any)?.slug ?? ''}`
                                   : item.href || '#'
                               }
                               target={item.target || '_self'}

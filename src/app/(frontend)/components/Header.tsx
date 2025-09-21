@@ -20,9 +20,11 @@ export async function Header() {
     data = null
   }
 
-  const navItems = (data?.nav || []).filter((b): b is LinkBlock => b && b.blockType === 'link')
+  const navItems = (data?.nav || []).filter(
+    (b): b is LinkBlock => b && (b as any).blockType === 'link',
+  )
   const ctaBlock =
-    Array.isArray(data?.cta) && data?.cta[0] && data?.cta[0].blockType === 'link'
+    Array.isArray(data?.cta) && data?.cta[0] && (data?.cta[0] as any).blockType === 'link'
       ? (data?.cta[0] as LinkBlock)
       : undefined
   const logo = data?.logo

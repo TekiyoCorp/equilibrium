@@ -17,6 +17,9 @@ type MediaCardSliderProps = {
 }
 
 export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
+  console.log('MediaCardSlider - title:', title)
+  console.log('MediaCardSlider - items:', items)
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     containScroll: 'trimSnaps',
@@ -34,7 +37,7 @@ export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
     if (emblaApi) emblaApi.scrollNext()
   }, [emblaApi])
 
-  const onSelect = React.useCallback((emblaApi: { selectedScrollSnap: () => number; canScrollPrev: () => boolean; canScrollNext: () => boolean }) => {
+  const onSelect = React.useCallback((emblaApi: any) => {
     setPrevBtnDisabled(!emblaApi.canScrollPrev())
     setNextBtnDisabled(!emblaApi.canScrollNext())
   }, [])

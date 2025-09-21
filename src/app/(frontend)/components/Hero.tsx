@@ -41,20 +41,25 @@ type HeroProps = {
 }
 
 export function Hero({ hero }: HeroProps) {
+  console.log('Hero component received:', hero)
+
   if (!hero || hero.length === 0) {
+    console.log('Hero: No hero data or empty array')
     return null
   }
 
   const block = hero[0]
+  console.log('Hero block:', block)
 
   if (!block) {
+    console.log('Hero: Block is null/undefined')
     return null
   }
 
-  const backgroundImage = block.backgroundImage as Media | number | undefined
+  const backgroundImage = (block as any).backgroundImage as Media | number | undefined
   const backgroundImageObj =
     typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
-  const isDarkBackground = block.background === 'dark' || !!backgroundImageObj?.url
+  const isDarkBackground = (block as any).background === 'dark' || !!backgroundImageObj?.url
   const bgClass = isDarkBackground ? styles.bgDark : styles.bgLight
 
   if (block.blockType === 'centerHero') {

@@ -84,7 +84,9 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                 ) : (
                   <TransitionLink
                     href={
-                      typeof item.page === 'object' && item.page?.slug ? `/${item.page.slug}` : '#'
+                      typeof item.page === 'object' && (item.page as any)?.slug
+                        ? `/${(item.page as any).slug}`
+                        : '#'
                     }
                     aria-label={item.ariaLabel || item.label}
                   >
@@ -135,8 +137,8 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                       ) : (
                         <TransitionLink
                           href={
-                            typeof item.page === 'object' && item.page?.slug
-                              ? `/${item.page.slug}`
+                            typeof item.page === 'object' && (item.page as any)?.slug
+                              ? `/${(item.page as any).slug}`
                               : '#'
                           }
                           aria-label={item.ariaLabel || item.label}

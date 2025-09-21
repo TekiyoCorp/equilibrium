@@ -18,7 +18,7 @@ type TransitionLinkProps = {
 
 export function TransitionLink({ href, children, onClick, ...props }: TransitionLinkProps) {
   const router = useRouter()
-  const { prefetchPage, cancelPrefetch } = useSmartPrefetch()
+  const { prefetchPage, cancelPrefetch, isPrefetched } = useSmartPrefetch()
 
   // Utilisation sécurisée du hook avec try/catch
   let startTransition: (() => void) | null = null
@@ -28,7 +28,7 @@ export function TransitionLink({ href, children, onClick, ...props }: Transition
     startTransition = transition.startTransition
   } catch (_error) {
     // Si le provider n'est pas disponible, on continue sans transition
-    // TransitionProvider not available, using regular navigation
+    console.warn('TransitionProvider not available, using regular navigation')
   }
 
   // Prefetch au hover (seulement pour les liens internes)
