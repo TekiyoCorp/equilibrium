@@ -23,8 +23,8 @@
   max-width: 1200px;
 }
 
-/* Tablet: 2 columns from 600px */
-@media (min-width: 600px) {
+/* Tablet: 2 columns from 768px */
+@media (min-width: 768px) {
   .courseCardsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -45,7 +45,7 @@
 }
 
 /* Adjust card height for tablet */
-@media (min-width: 600px) and (max-width: 899px) {
+@media (min-width: 768px) and (max-width: 899px) {
   .courseCard {
     height: 420px;
   }
@@ -64,7 +64,7 @@
 }
 
 /* Adjust padding for tablet */
-@media (min-width: 600px) and (max-width: 899px) {
+@media (min-width: 768px) and (max-width: 899px) {
   .courseCardOverlay {
     padding: 28px 20px 20px 32px;
   }
