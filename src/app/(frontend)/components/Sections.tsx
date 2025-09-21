@@ -43,7 +43,7 @@ export const Sections = memo(function Sections({ sections }: SectionsProps) {
       {sections.map((block, index) => {
         if (block.blockType === 'mediaCardSlider') {
           const b = block as MediaCardSliderBlock
-          return <MediaCardSlider key={index} items={b.items} title={b.title} />
+          return <MediaCardSlider key={index} items={b.items} title={b.title || undefined} />
         }
         if (block.blockType === 'courseCards') {
           const b = block as CourseCardsBlock
