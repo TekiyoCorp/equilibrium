@@ -385,11 +385,8 @@ export interface Page {
             blockType: 'conceptSection';
           }
         | {
-            label?: string | null;
             title: string;
-            subtitle?: string | null;
             backgroundImage: number | Media;
-            description: string;
             id?: string | null;
             blockName?: string | null;
             blockType: 'newConceptSection';
@@ -893,11 +890,8 @@ export interface PagesSelect<T extends boolean = true> {
         newConceptSection?:
           | T
           | {
-              label?: T;
               title?: T;
-              subtitle?: T;
               backgroundImage?: T;
-              description?: T;
               id?: T;
               blockName?: T;
             };
