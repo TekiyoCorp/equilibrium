@@ -84,8 +84,7 @@ export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
                         {item.text && (
                           <div className={styles.cardTextWrap}>
                             <p className={styles.cardText}>
-                              <span className={styles.cardTextBold}>Lorem Ipsum.</span>
-                              <span className={styles.cardTextLight}> {item.text}</span>
+                              <span className={styles.cardTextBold}>{item.text}</span>
                             </p>
                           </div>
                         )}
