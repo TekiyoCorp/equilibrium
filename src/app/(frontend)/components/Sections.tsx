@@ -77,11 +77,8 @@ export function Sections({ sections }: SectionsProps) {
           return (
             <NewConceptSection
               key={index}
-              label={b.label}
               title={b.title}
-              subtitle={b.subtitle}
               backgroundImage={b.backgroundImage}
-              description={b.description}
             />
           )
         }
