@@ -30,19 +30,25 @@
   }
 }
 
-/* Desktop: 3 columns from 900px */
+/* Desktop: 4 columns from 900px */
 @media (min-width: 900px) {
   .courseCardsGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 }
 .courseCard {
   position: relative;
   height: 485px;
-  min-width: 370px;
+  min-width: 280px;
   border-radius: 28px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.courseCard:hover {
+  transform: translateY(-2px);
 }
 
 /* Adjust card height for tablet */
@@ -173,4 +179,19 @@
   border-radius: 51px;
   text-decoration: none;
   line-height: 1.2;
+}
+
+.courseCardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.courseCardLink:focus {
+  outline: none;
+}
+
+.courseCardLink:focus-visible {
+  outline: 2px solid #0b0b0b;
+  outline-offset: 4px;
 }

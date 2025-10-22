@@ -272,6 +272,24 @@ export interface Page {
                * Text displayed when the card is expanded
                */
               expandedText?: string | null;
+              /**
+               * Optional link for the card. Leave empty to keep the card static.
+               */
+              link?:
+                | {
+                    label: string;
+                    linkType?: ('url' | 'page') | null;
+                    href?: string | null;
+                    page?: (number | null) | Page;
+                    variant?: ('primary' | 'secondary' | 'ghost') | null;
+                    target?: ('_self' | '_blank') | null;
+                    fullWidth?: boolean | null;
+                    ariaLabel?: string | null;
+                    id?: string | null;
+                    blockName?: string | null;
+                    blockType: 'link';
+                  }[]
+                | null;
               id?: string | null;
             }[];
             button?:
@@ -758,6 +776,24 @@ export interface PagesSelect<T extends boolean = true> {
                     eyebrow?: T;
                     heading?: T;
                     expandedText?: T;
+                    link?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                label?: T;
+                                linkType?: T;
+                                href?: T;
+                                page?: T;
+                                variant?: T;
+                                target?: T;
+                                fullWidth?: T;
+                                ariaLabel?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
                     id?: T;
                   };
               button?:
