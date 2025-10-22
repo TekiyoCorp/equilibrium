@@ -128,7 +128,7 @@ export function Location({
                   <p>{location.address}</p>
                 </div>
                 <div className={styles.locationSchedule}>
-                  <p className={styles.scheduleLabel}>Horaire :</p>
+                  <p className={styles.scheduleLabel}>Opening times :</p>
                   <p className={styles.scheduleText}>{location.schedule.weekdays}</p>
                   <p className={styles.scheduleText}>{location.schedule.weekends}</p>
                 </div>
