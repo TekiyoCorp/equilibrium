@@ -128,22 +128,6 @@ export const CourseCards: Block = {
     singular: 'Course Cards',
     plural: 'Course Cards',
   },
-  hooks: {
-    afterRead: [({ data }) => {
-      if (!data) return data
-      if (Array.isArray(data.items)) {
-        data.items = normalizeItems(data.items)
-      }
-      return data
-    }],
-    beforeValidate: [({ data }) => {
-      if (!data) return data
-      if (Array.isArray(data.items)) {
-        data.items = normalizeItems(data.items)
-      }
-      return data
-    }],
-  },
   fields: [
     {
       name: 'title',
