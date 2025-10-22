@@ -23,7 +23,7 @@ function MapComponent({
   center = [25.2048, 55.2708], // Dubai coordinates as default
   zoom = 13,
   locations = [],
-  mapStyle = 'https://demotiles.maplibre.org/style.json',
+  mapStyle = 'https://raw.githubusercontent.com/go2garret/maps/main/src/assets/json/arcgis_hybrid.json'
 }: MapProps) {
   const [selectedLocation, setSelectedLocation] = React.useState<number | undefined>(undefined)
   const [isMounted, setIsMounted] = React.useState(false)
