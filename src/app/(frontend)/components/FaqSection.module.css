@@ -21,6 +21,12 @@
   }
 }
 
+.gridFullWidth {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
 .title {
   font-size: 1.5rem;
   font-weight: 700;

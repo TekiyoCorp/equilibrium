@@ -24,12 +24,19 @@ export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps> = ({
   className,
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  
+  // Check if any images are present
+  const hasImages = (typeof largeImage === 'object' && (largeImage as Media)?.url) || 
+                   (typeof smallImage === 'object' && (smallImage as Media)?.url)
+  
+  // Use different grid class based on image presence
+  const gridClass = hasImages ? styles.gridTwoCols : styles.gridFullWidth
 
   return (
     <section className={`${styles.container} ${className || ''}`}>
       <FadeIn>
         <div className={styles.inner}>
-          <div className={styles.gridTwoCols}>
+          <div className={gridClass}>
             <div>
               <h2 className={styles.title}>{title}</h2>
               <div className={styles.faqList}>
