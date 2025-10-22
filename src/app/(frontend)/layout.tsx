@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import 'react-photo-view/dist/react-photo-view.css'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { ClientLayout } from './components/ClientLayout'

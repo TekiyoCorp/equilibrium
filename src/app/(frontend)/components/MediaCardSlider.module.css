@@ -29,10 +29,7 @@
   font-size: 36px;
   line-height: normal;
   letter-spacing: -3px;
-  background: linear-gradient(to right, #000000, #00b7ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
   margin: 0;
   white-space: nowrap;
 }
