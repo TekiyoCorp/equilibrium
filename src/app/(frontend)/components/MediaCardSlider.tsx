@@ -15,9 +15,10 @@ type MediaCardItem = {
 type MediaCardSliderProps = {
   items: MediaCardItem[]
   title?: string
+  sectionId?: string
 }
 
-export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
+export function MediaCardSlider({ items, title, sectionId }: MediaCardSliderProps) {
   console.log('MediaCardSlider - title:', title)
   console.log('MediaCardSlider - items:', items)
 
@@ -52,7 +53,7 @@ export function MediaCardSlider({ items, title }: MediaCardSliderProps) {
   }, [emblaApi, onSelect])
 
   return (
-    <section className={styles.sectionFullBleed}>
+    <section className={styles.sectionFullBleed} id={sectionId}>
       <div className={styles.container}>
         {title && <h2 className={styles.title}>{title}</h2>}
         <PhotoProvider>

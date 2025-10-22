@@ -17,6 +17,9 @@ type HeroProps = {
         ctaHref?: string | null
         backgroundImage?: number | Media | null
         background?: 'light' | 'dark' | null
+        sectionId?: string | null
+        anchor?: string | null
+        id?: string | null
       })
     | ({ blockType: 'rightHero' } & {
         heading?: string | null
@@ -26,6 +29,9 @@ type HeroProps = {
         ctaHref?: string | null
         backgroundImage?: number | Media | null
         background?: 'light' | 'dark' | null
+        sectionId?: string | null
+        anchor?: string | null
+        id?: string | null
       })
     | ({ blockType: 'contactHero' } & {
         heading?: string | null
@@ -36,6 +42,9 @@ type HeroProps = {
         ctaHref?: string | null
         backgroundImage?: number | Media | null
         background?: 'light' | 'dark' | null
+        sectionId?: string | null
+        anchor?: string | null
+        id?: string | null
       })
   >
 }
@@ -56,6 +65,19 @@ export function Hero({ hero }: HeroProps) {
     return null
   }
 
+  const candidates = [block?.sectionId, block?.anchor, block?.blockName, block?.heading, block?.id]
+  const heroSectionId = candidates.find((value) => typeof value === 'string' && value.trim())
+  const finalSectionId =
+    typeof heroSectionId === 'string'
+      ? heroSectionId
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9\s-_]/g, '')
+          .replace(/[\s_]+/g, '-')
+          .replace(/^-+/, '')
+          .replace(/-+$/, '') || 'hero'
+      : 'hero'
+
   const backgroundImage = (block as any).backgroundImage as Media | number | undefined
   const backgroundImageObj =
     typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
@@ -67,6 +89,7 @@ export function Hero({ hero }: HeroProps) {
     return (
       <section
         className={`${styles.hero} ${styles.heroCenter} ${bgClass}`}
+        id={finalSectionId}
         style={
           backgroundImageObj?.url
             ? { backgroundImage: `url(${backgroundImageObj.url})` }
@@ -97,6 +120,7 @@ export function Hero({ hero }: HeroProps) {
     return (
       <section
         className={`${styles.hero} ${styles.heroRight} ${bgClass}`}
+        id={finalSectionId}
         style={
           backgroundImageObj?.url
             ? { backgroundImage: `url(${backgroundImageObj.url})` }
@@ -145,6 +169,7 @@ export function Hero({ hero }: HeroProps) {
     return (
       <section
         className={`${styles.hero} ${styles.heroContact} ${bgClass}`}
+        id={finalSectionId}
         style={
           backgroundImageObj?.url
             ? { backgroundImage: `url(${backgroundImageObj.url})` }

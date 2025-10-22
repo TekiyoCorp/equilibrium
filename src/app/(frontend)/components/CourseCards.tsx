@@ -195,6 +195,7 @@ export function CourseCards({
   title,
   items,
   button,
+  sectionId,
 }: {
   title?: string | null
   items: CourseCard[]
@@ -208,6 +209,7 @@ export function CourseCards({
     fullWidth?: boolean
     ariaLabel?: string
   }>
+  sectionId?: string
 }) {
   const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set())
 
@@ -228,7 +230,7 @@ export function CourseCards({
   }
 
   return (
-    <section className={styles.courseCards}>
+    <section className={styles.courseCards} id={sectionId}>
       <FadeIn from="bottom" duration={0.2}>
         {title && <h2 className={styles.courseCardsTitle}>{title}</h2>}
       </FadeIn>

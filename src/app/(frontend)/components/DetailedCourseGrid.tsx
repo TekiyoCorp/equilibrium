@@ -13,7 +13,15 @@ type GridItem = {
   weekendSchedule?: string | null
 }
 
-export function DetailedCourseGrid({ title, items }: { title?: string | null; items: GridItem[] }) {
+export function DetailedCourseGrid({
+  title,
+  items,
+  sectionId,
+}: {
+  title?: string | null
+  items: GridItem[]
+  sectionId?: string
+}) {
   const renderDots = (count: number) => {
     const total = 5
     return new Array(total)
@@ -32,7 +40,7 @@ export function DetailedCourseGrid({ title, items }: { title?: string | null; it
   }
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id={sectionId}>
       {title && <h2 className={styles.title}>{title}</h2>}
       <div className={styles.grid}>
         {items?.map((item, idx) => {

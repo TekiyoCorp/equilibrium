@@ -24,6 +24,7 @@ type CoachesGridProps = {
   background?: 'light' | 'dark' | null
   items?: Item[]
   button?: any
+  sectionId?: string
 }
 
 export function CoachesGrid({
@@ -34,6 +35,7 @@ export function CoachesGrid({
   background,
   items = [],
   button,
+  sectionId,
 }: CoachesGridProps) {
   const bgClass = background === 'dark' ? styles.bgDark : styles.bgLight
   const bgImageObj = typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
@@ -41,6 +43,7 @@ export function CoachesGrid({
   return (
     <section
       className={`${styles.section} ${bgClass}`}
+      id={sectionId}
       style={
         bgImageObj?.url
           ? {

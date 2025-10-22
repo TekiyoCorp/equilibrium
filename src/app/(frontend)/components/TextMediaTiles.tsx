@@ -13,9 +13,10 @@ type TextMediaTilesProps = {
     imagePlacement?: 'top' | 'bottom' | null
     imageAlign?: 'left' | 'center' | 'right' | null
   }>
+  sectionId?: string
 }
 
-export function TextMediaTiles({ items }: TextMediaTilesProps) {
+export function TextMediaTiles({ items, sectionId }: TextMediaTilesProps) {
   const firstItem = items[0]
   const secondItem = items[1]
   const thirdItem = items[2]
@@ -30,7 +31,7 @@ export function TextMediaTiles({ items }: TextMediaTilesProps) {
   const thirdMedia = getMediaObj(thirdItem)
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id={sectionId}>
       <div className={styles.container}>
         {/* Grande carte à gauche */}
         {firstItem && (

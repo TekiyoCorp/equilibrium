@@ -21,14 +21,21 @@ type ConceptSectionProps = {
     fullWidth?: boolean
     ariaLabel?: string
   }>
+  sectionId?: string
 }
 
-export function ConceptSection({ title, subtitle, backgroundImage, button }: ConceptSectionProps) {
+export function ConceptSection({
+  title,
+  subtitle,
+  backgroundImage,
+  button,
+  sectionId,
+}: ConceptSectionProps) {
   const backgroundImageObj =
     typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
 
   return (
-    <section className={styles['concept-section']}>
+    <section className={styles['concept-section']} id={sectionId}>
       <div className={styles['concept-section__container']}>
         <div className={styles['concept-section__content']}>
           <div className={styles['concept-section__text']}>

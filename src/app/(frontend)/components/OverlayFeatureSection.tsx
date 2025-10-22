@@ -24,6 +24,7 @@ type OverlayFeatureSectionProps = {
     title?: string | null
     description?: string | null
   }>
+  sectionId?: string
 }
 
 export function OverlayFeatureSection({
@@ -32,6 +33,7 @@ export function OverlayFeatureSection({
   heading,
   button,
   items,
+  sectionId,
 }: OverlayFeatureSectionProps) {
   const bg = backgroundImage as Media | number | undefined
   const bgObj = typeof bg === 'object' ? (bg as Media) : undefined
@@ -39,6 +41,7 @@ export function OverlayFeatureSection({
   return (
     <section
       className={styles.root}
+      id={sectionId}
       style={bgObj?.url ? { backgroundImage: `url(${bgObj.url})` } : undefined}
     >
       {overlayWord && (

@@ -9,9 +9,10 @@ type TextImageBlockProps = {
   text?: string | null
   subtitle?: string | null
   image?: Media | number | null
+  sectionId?: string
 }
 
-export function TextImageBlock({ text, subtitle, image }: TextImageBlockProps) {
+export function TextImageBlock({ text, subtitle, image, sectionId }: TextImageBlockProps) {
   const getMediaObj = (media: Media | number | null | undefined) => {
     return typeof media === 'object' ? (media as Media) : undefined
   }
@@ -19,7 +20,7 @@ export function TextImageBlock({ text, subtitle, image }: TextImageBlockProps) {
   const mediaObj = getMediaObj(image)
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id={sectionId}>
       <div className={styles.container}>
         <FadeIn from="bottom" duration={0.3}>
           <div className={styles.textSection}>

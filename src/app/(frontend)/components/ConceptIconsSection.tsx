@@ -16,6 +16,7 @@ type ConceptIconsSectionProps = {
   items?: ConceptItem[]
   backgroundColor?: string | null
   customBackgroundColor?: string | null
+  sectionId?: string
 }
 
 // Helper function to get media object
@@ -35,6 +36,7 @@ export function ConceptIconsSection({
   ],
   backgroundColor = '#ffffff',
   customBackgroundColor,
+  sectionId,
 }: ConceptIconsSectionProps) {
   const backgroundStyle = {
     backgroundColor:
@@ -44,7 +46,11 @@ export function ConceptIconsSection({
   }
 
   return (
-    <section className={styles['concept-icons-section']} style={backgroundStyle}>
+    <section
+      className={styles['concept-icons-section']}
+      id={sectionId}
+      style={backgroundStyle}
+    >
       <div className={styles['concept-icons-section__container']}>
         <FadeIn from="top" duration={0.6}>
           <div className={styles['concept-icons-section__content']}>

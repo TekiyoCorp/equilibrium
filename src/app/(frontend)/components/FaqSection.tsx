@@ -16,12 +16,13 @@ export interface AnimatedFaqBlockProps {
   className?: string
 }
 
-export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps> = ({
+export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps & { sectionId?: string }> = ({
   title,
   faqs,
   largeImage,
   smallImage,
   className,
+  sectionId,
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   
@@ -33,7 +34,7 @@ export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps> = ({
   const gridClass = hasImages ? styles.gridTwoCols : styles.gridFullWidth
 
   return (
-    <section className={`${styles.container} ${className || ''}`}>
+    <section className={`${styles.container} ${className || ''}`} id={sectionId}>
       <FadeIn>
         <div className={styles.inner}>
           <div className={gridClass}>
@@ -112,11 +113,13 @@ export function FaqSection({
   items,
   largeImage,
   smallImage,
+  sectionId,
 }: {
   title?: string | null
   items: Array<{ question: string; answer: string }>
   largeImage?: Media | number | null
   smallImage?: Media | number | null
+  sectionId?: string
 }) {
   return (
     <AnimatedFaqBlock
@@ -124,6 +127,7 @@ export function FaqSection({
       faqs={items}
       largeImage={largeImage || null}
       smallImage={smallImage || null}
+      sectionId={sectionId}
     />
   )
 }

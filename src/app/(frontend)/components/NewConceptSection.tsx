@@ -9,17 +9,19 @@ import FadeIn from '@/app/animation/fade-in'
 type NewConceptSectionProps = {
   title?: string | null
   backgroundImage?: number | Media | null
+  sectionId?: string
 }
 
 export function NewConceptSection({
   title,
   backgroundImage,
+  sectionId,
 }: NewConceptSectionProps) {
   const backgroundImageObj =
     typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
 
   return (
-    <section className={styles['new-concept-section']}>
+    <section className={styles['new-concept-section']} id={sectionId}>
       <div className={styles['new-concept-section__container']}>
         <div className={styles['new-concept-section__content']}>
           <div className={styles['new-concept-section__text']}>

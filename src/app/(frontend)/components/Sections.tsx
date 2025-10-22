@@ -21,25 +21,65 @@ type SectionsProps = {
   }>
 }
 
+const sanitizeForId = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-_]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '')
+
+const deriveSectionId = (block: any, index: number) => {
+  const candidates = [block?.sectionId, block?.anchor, block?.blockName, block?.title, block?.heading]
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim()) {
+      const sanitized = sanitizeForId(candidate)
+      if (sanitized) {
+        return sanitized
+      }
+    }
+  }
+
+  if (typeof block?.id === 'string' && block.id.trim()) {
+    const sanitizedId = sanitizeForId(block.id)
+    return sanitizedId ? sanitizedId : `section-${block.id.trim()}`
+  }
+
+  return `section-${index + 1}`
+}
+
 export function Sections({ sections }: SectionsProps) {
   if (!sections || sections.length === 0) return null
 
   return (
     <div className="sections-wrapper">
       {sections.map((block, index) => {
+        const sectionId = deriveSectionId(block, index)
+        const key = (block as any)?.id ?? index
+
         if (block.blockType === 'mediaCardSlider') {
           const b = block as any
-          return <MediaCardSlider key={index} items={b.items} title={b.title} />
+          return <MediaCardSlider key={key} sectionId={sectionId} items={b.items} title={b.title} />
         }
         if ((block as any).blockType === 'courseCards') {
           const b = block as any
-          return <CourseCards key={index} title={b.title} items={b.items} button={b.button} />
+          return (
+            <CourseCards
+              key={key}
+              sectionId={sectionId}
+              title={b.title}
+              items={b.items}
+              button={b.button}
+            />
+          )
         }
         if ((block as any).blockType === 'overlayFeatureSection') {
           const b = block as any
           return (
             <OverlayFeatureSection
-              key={index}
+              key={key}
+              sectionId={sectionId}
               overlayWord={b.overlayWord}
               backgroundImage={b.backgroundImage}
               heading={b.heading}
@@ -50,21 +90,37 @@ export function Sections({ sections }: SectionsProps) {
         }
         if ((block as any).blockType === 'detailedCourseGrid') {
           const b = block as any
-          return <DetailedCourseGrid key={index} title={b.title} items={b.items || []} />
+          return (
+            <DetailedCourseGrid
+              key={key}
+              sectionId={sectionId}
+              title={b.title}
+              items={b.items || []}
+            />
+          )
         }
         if ((block as any).blockType === 'textMediaTiles') {
           const b = block as any
-          return <TextMediaTiles key={index} items={b.items || []} />
+          return <TextMediaTiles key={key} sectionId={sectionId} items={b.items || []} />
         }
         if ((block as any).blockType === 'textImageBlock') {
           const b = block as any
-          return <TextImageBlock key={index} text={b.text} subtitle={b.subtitle} image={b.image} />
+          return (
+            <TextImageBlock
+              key={key}
+              sectionId={sectionId}
+              text={b.text}
+              subtitle={b.subtitle}
+              image={b.image}
+            />
+          )
         }
         if ((block as any).blockType === 'conceptSection') {
           const b = block as any
           return (
             <ConceptSection
-              key={index}
+              key={key}
+              sectionId={sectionId}
               title={b.title}
               subtitle={b.subtitle}
               backgroundImage={b.backgroundImage}
@@ -76,7 +132,8 @@ export function Sections({ sections }: SectionsProps) {
           const b = block as any
           return (
             <NewConceptSection
-              key={index}
+              key={key}
+              sectionId={sectionId}
               title={b.title}
               backgroundImage={b.backgroundImage}
             />
@@ -86,7 +143,8 @@ export function Sections({ sections }: SectionsProps) {
           const b = block as any
           return (
             <FaqSection
-              key={index}
+              key={key}
+              sectionId={sectionId}
               title={b.title}
               items={b.items || []}
               largeImage={b.largeImage}
@@ -98,7 +156,8 @@ export function Sections({ sections }: SectionsProps) {
           const b = block as any
           return (
             <CoachesGrid
-              key={index}
+              key={key}
+              sectionId={sectionId}
               eyebrow={b.eyebrow}
               title={b.title}
               subtitle={b.subtitle}
@@ -113,7 +172,8 @@ export function Sections({ sections }: SectionsProps) {
           const b = block as any
           return (
             <Location
-              key={index}
+              key={key}
+              sectionId={sectionId}
               locations={b.locations}
               mapPlaceholder={b.mapPlaceholder}
               whatsappText={b.whatsappText}
@@ -125,7 +185,8 @@ export function Sections({ sections }: SectionsProps) {
           const b = block as any
           return (
             <ChatSection
-              key={index}
+              key={key}
+              sectionId={sectionId}
               title={b.title}
               messages={b.messages}
               whatsappText={b.whatsappText}
@@ -138,7 +199,8 @@ export function Sections({ sections }: SectionsProps) {
           const b = block as any
           return (
             <ConceptIconsSection
-              key={index}
+              key={key}
+              sectionId={sectionId}
               title={b.title}
               items={b.items}
               backgroundColor={b.backgroundColor}
@@ -149,7 +211,11 @@ export function Sections({ sections }: SectionsProps) {
         if ((block as any).blockType === 'button') {
           const b = block as any
           return (
-            <div key={index} style={{ display: 'flex', justifyContent: 'center', padding: '1rem' }}>
+            <div
+              key={key}
+              id={sectionId}
+              style={{ display: 'flex', justifyContent: 'center', padding: '1rem' }}
+            >
               <UniversalButton
                 label={b.label}
                 href={b.href || '#'}

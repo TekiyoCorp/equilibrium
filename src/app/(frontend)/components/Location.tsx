@@ -34,6 +34,7 @@ type LocationProps = {
   mapPlaceholder?: string | null
   whatsappText?: string | null
   whatsappIcon?: Media | number | null
+  sectionId?: string
 }
 
 export function Location({
@@ -41,6 +42,7 @@ export function Location({
   mapPlaceholder = '<Map>',
   whatsappText = 'Whatsapp Business',
   whatsappIcon,
+  sectionId,
 }: LocationProps) {
   // Données de test par défaut si aucune location n'est fournie
   const defaultLocations: LocationData[] = [
@@ -109,7 +111,7 @@ export function Location({
     }))
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id={sectionId}>
       <div className={styles.container}>
         <div className={styles.locationsList}>
           {displayLocations.map((location, index) => (

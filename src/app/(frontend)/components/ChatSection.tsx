@@ -16,6 +16,7 @@ type ChatSectionProps = {
   whatsappText?: string | null
   whatsappIcon?: Media | number | null
   whatsappUrl?: string | null
+  sectionId?: string
 }
 
 export function ChatSection({
@@ -35,6 +36,7 @@ export function ChatSection({
   whatsappText = 'Whatsapp Business',
   whatsappIcon,
   whatsappUrl = '#',
+  sectionId,
 }: ChatSectionProps) {
   const getMediaObj = (media: Media | number | null | undefined) => {
     return typeof media === 'object' ? (media as Media) : undefined
@@ -43,7 +45,7 @@ export function ChatSection({
   const _whatsappIconObj = getMediaObj(whatsappIcon)
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id={sectionId}>
       <div className={styles.container}>
         <FadeIn from="top" duration={0.3}>
           <h2 className={styles.title}>{title}</h2>
