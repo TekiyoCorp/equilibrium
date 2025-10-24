@@ -20,6 +20,7 @@ type HeroProps = {
         background?: 'light' | 'dark' | null
         sectionId?: string | null
         anchor?: string | null
+        blockName?: string | null
         id?: string | null
       })
     | ({ blockType: 'rightHero' } & {
@@ -32,6 +33,7 @@ type HeroProps = {
         background?: 'light' | 'dark' | null
         sectionId?: string | null
         anchor?: string | null
+        blockName?: string | null
         id?: string | null
       })
     | ({ blockType: 'contactHero' } & {
@@ -45,6 +47,7 @@ type HeroProps = {
         background?: 'light' | 'dark' | null
         sectionId?: string | null
         anchor?: string | null
+        blockName?: string | null
         id?: string | null
       })
   >
