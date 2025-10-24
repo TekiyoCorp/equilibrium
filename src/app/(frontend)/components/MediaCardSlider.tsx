@@ -5,6 +5,7 @@ import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './MediaCardSlider.module.css'
 
 type MediaCardItem = {
@@ -71,10 +72,10 @@ export function MediaCardSlider({ items, title, sectionId }: MediaCardSliderProp
                       <div className={styles.mediaCard}>
                         {mediaObj?.url && (
                           <div className={styles.imageWrap}>
-                            <PhotoView src={mediaObj.url}>
+                            <PhotoView src={transformMediaUrl(mediaObj.url) as string}>
                               <Image
                                 alt={mediaObj.alt || ''}
-                                src={mediaObj.url}
+                                src={transformMediaUrl(mediaObj.url) as string}
                                 width={287}
                                 height={348}
                                 className={styles.cardImage}

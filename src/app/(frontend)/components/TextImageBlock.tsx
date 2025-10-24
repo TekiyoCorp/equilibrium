@@ -2,6 +2,7 @@
 
 import React from 'react'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './TextImageBlock.module.css'
 import FadeIn from '@/app/animation/fade-in'
 
@@ -52,7 +53,7 @@ export function TextImageBlock({ text, subtitle, image, sectionId }: TextImageBl
           <FadeIn from="bottom" duration={0.3} delay={0.2}>
             <div className={styles.imageContainer}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt={mediaObj.alt || ''} src={mediaObj.url} className={styles.image} />
+              <img alt={mediaObj.alt || ''} src={transformMediaUrl(mediaObj.url) as string} className={styles.image} />
             </div>
           </FadeIn>
         )}

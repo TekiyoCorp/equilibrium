@@ -1,7 +1,10 @@
 import React from 'react'
+import Link from 'next/link'
 import styles from './Footer.module.css'
+import { Button as UniversalButton } from './Button'
 import { getPayload } from 'payload'
 import payloadConfigPromise from '@/payload.config'
+import { transformMediaUrl } from '@/lib/media-utils'
 
 type FooterItem = {
   type: 'text' | 'link'
@@ -109,7 +112,7 @@ export async function Footer() {
         <div className={styles['logo-wordmark']}>
           {logo?.image?.url ? (
             <img
-              src={logo.image.url}
+              src={transformMediaUrl(logo.image.url) || logo.image.url || ''}
               alt={logo.image.alt || 'Logo'}
               className={styles['footer-logo-image']}
             />

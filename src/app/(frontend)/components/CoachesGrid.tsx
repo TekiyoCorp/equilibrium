@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './CoachesGrid.module.css'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import { Button as UniversalButton } from './Button'
 
 type Item = {
@@ -39,15 +40,16 @@ export function CoachesGrid({
 }: CoachesGridProps) {
   const bgClass = background === 'dark' ? styles.bgDark : styles.bgLight
   const bgImageObj = typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
+  const backgroundUrl = transformMediaUrl(bgImageObj?.url)
 
   return (
     <section
       className={`${styles.section} ${bgClass}`}
       id={sectionId}
       style={
-        bgImageObj?.url
+        backgroundUrl
           ? {
-              backgroundImage: `url(${bgImageObj.url})`,
+              backgroundImage: `url(${backgroundUrl})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }
@@ -69,7 +71,7 @@ export function CoachesGrid({
                     <div className={styles.cardImage}>
                       {imageObj?.url && (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={imageObj.url} alt={imageObj?.alt || item.courseName || ''} />
+                        <img src={transformMediaUrl(imageObj.url) as string} alt={imageObj?.alt || item.courseName || ''} />
                       )}
                       <div className={styles.cardOverlay} />
                       <div className={styles.cardContent}>

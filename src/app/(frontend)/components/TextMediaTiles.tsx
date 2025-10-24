@@ -2,6 +2,7 @@
 
 import React from 'react'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './TextMediaTiles.module.css'
 import FadeIn from '@/app/animation/fade-in'
 
@@ -40,7 +41,7 @@ export function TextMediaTiles({ items, sectionId }: TextMediaTilesProps) {
               {firstMedia?.url && (
                 <div className={`${styles.image} ${styles.imageLarge}`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt={firstMedia.alt || ''} src={firstMedia.url} />
+                  <img alt={firstMedia.alt || ''} src={transformMediaUrl(firstMedia.url) as string} />
                 </div>
               )}
               <div className={styles.gradientOverlay} />
@@ -69,7 +70,7 @@ export function TextMediaTiles({ items, sectionId }: TextMediaTilesProps) {
                 {secondMedia?.url && (
                   <div className={`${styles.image} ${styles.imageSmall}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img alt={secondMedia.alt || ''} src={secondMedia.url} />
+                    <img alt={secondMedia.alt || ''} src={transformMediaUrl(secondMedia.url) as string} />
                   </div>
                 )}
               </div>
@@ -89,7 +90,7 @@ export function TextMediaTiles({ items, sectionId }: TextMediaTilesProps) {
                 {thirdMedia?.url && (
                   <div className={`${styles.image} ${styles.imageSmall}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img alt={thirdMedia.alt || ''} src={thirdMedia.url} />
+                    <img alt={thirdMedia.alt || ''} src={transformMediaUrl(thirdMedia.url) as string} />
                   </div>
                 )}
               </div>

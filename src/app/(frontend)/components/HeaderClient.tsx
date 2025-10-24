@@ -7,6 +7,7 @@ import { Button as UniversalButton } from './Button'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TransitionLink } from './TransitionLink'
 import { MobileMenuButton } from './MobileMenuButton'
+import { transformMediaUrl } from '@/lib/media-utils'
 
 export type LinkBlock = {
   label: string
@@ -44,7 +45,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
           <Link className={styles['brand']} href="/">
             {logo?.image?.url ? (
               <img
-                src={logo.image.url}
+                src={transformMediaUrl(logo.image.url) || logo.image.url || ''}
                 alt={logo.image.alt || logo?.alt || 'Logo'}
                 className={styles['brand-image']}
               />
@@ -59,7 +60,7 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
         <Link className={styles['brand-desktop']} href="/">
           {logo?.image?.url ? (
             <img
-              src={logo.image.url}
+              src={transformMediaUrl(logo.image.url) || logo.image.url || ''}
               alt={logo.image.alt || logo?.alt || 'Logo'}
               className={styles['brand-image']}
             />

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './ConceptSection.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
@@ -70,7 +71,7 @@ export function ConceptSection({
               {backgroundImageObj?.url && (
                 <Image
                   alt={backgroundImageObj.alt || ''}
-                  src={backgroundImageObj.url}
+                  src={transformMediaUrl(backgroundImageObj.url) || backgroundImageObj.url || ''}
                   fill
                   className={styles['concept-section__img']}
                   style={{ objectFit: 'cover' }}

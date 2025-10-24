@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './FaqSection.module.css'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import FadeIn from '@/app/animation/fade-in'
 
 export interface AnimatedFaqBlockProps {
@@ -82,7 +83,7 @@ export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps & { sectionId?: st
                 <div className={styles.largeImageWrap}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={(largeImage as Media).url as string}
+                    src={transformMediaUrl((largeImage as Media).url) as string}
                     alt={(largeImage as Media).alt || ''}
                     className={styles.imageCover}
                   />
@@ -94,7 +95,7 @@ export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps & { sectionId?: st
               <div className={styles.smallImageWrap}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={(smallImage as Media).url as string}
+                  src={transformMediaUrl((smallImage as Media).url) as string}
                   alt={(smallImage as Media).alt || ''}
                   className={styles.imageCover}
                 />

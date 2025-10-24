@@ -2,6 +2,7 @@
 
 import React from 'react'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './OverlayFeatureSection.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
@@ -42,7 +43,7 @@ export function OverlayFeatureSection({
     <section
       className={styles.root}
       id={sectionId}
-      style={bgObj?.url ? { backgroundImage: `url(${bgObj.url})` } : undefined}
+      style={bgObj?.url ? { backgroundImage: `url(${transformMediaUrl(bgObj.url) || bgObj.url || ''})` } : undefined}
     >
       {overlayWord && (
         <div className={styles.overlayWord} aria-hidden>

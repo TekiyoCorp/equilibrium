@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './NewConceptSection.module.css'
 import FadeIn from '@/app/animation/fade-in'
 
@@ -39,7 +40,7 @@ export function NewConceptSection({
               {backgroundImageObj?.url && (
                 <Image
                   alt={backgroundImageObj.alt || ''}
-                  src={backgroundImageObj.url}
+                  src={transformMediaUrl(backgroundImageObj.url) || backgroundImageObj.url || ''}
                   fill
                   className={styles['new-concept-section__img']}
                   style={{ objectFit: 'cover' }}

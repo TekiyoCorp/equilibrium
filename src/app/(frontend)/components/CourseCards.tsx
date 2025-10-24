@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from 'react'
 import { TiPlus } from 'react-icons/ti'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './CourseCards.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
@@ -239,13 +240,14 @@ export function CourseCards({
         {normalizedItems.map((item, idx) => {
           const media = item.image
           const mediaObj = typeof media === 'object' ? (media as Media) : undefined
+          const backgroundUrl = transformMediaUrl(mediaObj?.url)
           const cardContent = (
             <article
               className={styles.courseCard}
               style={
-                mediaObj?.url
+                backgroundUrl
                   ? {
-                      background: `linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(${mediaObj.url}) lightgray 50% / cover no-repeat`,
+                      background: `linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(${backgroundUrl}) lightgray 50% / cover no-repeat`,
                     }
                   : undefined
               }

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from './ConceptIconsSection.module.css'
 import FadeIn from '@/app/animation/fade-in'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 
 type ConceptItem = {
   icon: number | Media | null
@@ -62,7 +63,7 @@ export function ConceptIconsSection({
                     <div className={styles['concept-icons-section__icon']}>
                       {mediaObject?.url ? (
                         <Image
-                          src={mediaObject.url}
+                          src={transformMediaUrl(mediaObject.url) || mediaObject.url || ''}
                           alt={mediaObject.alt || item.label}
                           width={80}
                           height={80}

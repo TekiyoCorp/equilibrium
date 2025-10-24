@@ -42,6 +42,20 @@ const nextConfig = {
   images: {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 31536000, // 1 an
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.vercel-storage.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'equilibrium-weld.vercel.app',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 
   webpack: (webpackConfig) => {

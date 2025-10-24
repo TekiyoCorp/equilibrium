@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './DetailedCourseGrid.module.css'
 
 type GridItem = {
@@ -44,7 +45,8 @@ export function DetailedCourseGrid({
         {items?.map((item, idx) => {
           const media = item.image
           const mediaObj = typeof media === 'object' ? (media as Media) : undefined
-          const bg = mediaObj?.url ? { backgroundImage: `url(${mediaObj.url})` } : undefined
+          const transformedUrl = transformMediaUrl(mediaObj?.url)
+          const bg = transformedUrl ? { backgroundImage: `url(${transformedUrl})` } : undefined
 
           return (
             <article

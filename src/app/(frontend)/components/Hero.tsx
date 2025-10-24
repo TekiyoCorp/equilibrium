@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import type { Media } from '@/payload-types'
+import { transformMediaUrl } from '@/lib/media-utils'
 import styles from './Hero.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
@@ -81,7 +82,8 @@ export function Hero({ hero }: HeroProps) {
   const backgroundImage = (block as any).backgroundImage as Media | number | undefined
   const backgroundImageObj =
     typeof backgroundImage === 'object' ? (backgroundImage as Media) : undefined
-  const isDarkBackground = (block as any).background === 'dark' || !!backgroundImageObj?.url
+  const transformedBackgroundUrl = transformMediaUrl(backgroundImageObj?.url)
+  const isDarkBackground = (block as any).background === 'dark' || !!transformedBackgroundUrl
   const bgClass = isDarkBackground ? styles.bgDark : styles.bgLight
 
   if (block.blockType === 'centerHero') {
@@ -91,8 +93,8 @@ export function Hero({ hero }: HeroProps) {
         className={`${styles.hero} ${styles.heroCenter} ${bgClass}`}
         id={finalSectionId}
         style={
-          backgroundImageObj?.url
-            ? { backgroundImage: `url(${backgroundImageObj.url})` }
+          transformedBackgroundUrl
+            ? { backgroundImage: `url(${transformedBackgroundUrl})` }
             : undefined
         }
       >
@@ -122,8 +124,8 @@ export function Hero({ hero }: HeroProps) {
         className={`${styles.hero} ${styles.heroRight} ${bgClass}`}
         id={finalSectionId}
         style={
-          backgroundImageObj?.url
-            ? { backgroundImage: `url(${backgroundImageObj.url})` }
+          transformedBackgroundUrl
+            ? { backgroundImage: `url(${transformedBackgroundUrl})` }
             : undefined
         }
       >
@@ -149,7 +151,7 @@ export function Hero({ hero }: HeroProps) {
               <div className={styles.media}>
                 <Image
                   alt={mediaObj.alt}
-                  src={mediaObj.url}
+                  src={transformMediaUrl(mediaObj.url) || mediaObj.url || ''}
                   width={640}
                   height={400}
                   sizes="(min-width: 900px) 40vw, 100vw"
@@ -171,8 +173,8 @@ export function Hero({ hero }: HeroProps) {
         className={`${styles.hero} ${styles.heroContact} ${bgClass}`}
         id={finalSectionId}
         style={
-          backgroundImageObj?.url
-            ? { backgroundImage: `url(${backgroundImageObj.url})` }
+          transformedBackgroundUrl
+            ? { backgroundImage: `url(${transformedBackgroundUrl})` }
             : undefined
         }
       >
