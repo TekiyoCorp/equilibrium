@@ -17,9 +17,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  serverURL: process.env.NODE_ENV === 'development' 
-    ? 'http://localhost:3000'
-    : process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || 'https://equilibrium-weld.vercel.app',
+  serverURL: process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || 'http://localhost:3000',
   admin: {
     user: Users.slug,
     importMap: {
