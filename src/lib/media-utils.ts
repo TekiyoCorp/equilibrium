@@ -11,11 +11,15 @@ const PRODUCTION_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT
 export function transformMediaUrl(url: string | undefined | null): string | undefined {
   if (!url) return undefined
 
-  const baseUrl = PRODUCTION_BASE_URL && PRODUCTION_BASE_URL.startsWith('http')
-    ? PRODUCTION_BASE_URL
-    : PRODUCTION_BASE_URL
-      ? `https://${PRODUCTION_BASE_URL}`
-      : 'https://equilibrium-weld.vercel.app'
+  // In development, use localhost
+  const isDevelopment = process.env.NODE_ENV === 'development'
+  const baseUrl = isDevelopment 
+    ? 'http://localhost:3000'
+    : PRODUCTION_BASE_URL && PRODUCTION_BASE_URL.startsWith('http')
+      ? PRODUCTION_BASE_URL
+      : PRODUCTION_BASE_URL
+        ? `https://${PRODUCTION_BASE_URL}`
+        : 'https://equilibrium-weld.vercel.app'
 
   // If it's already a full URL with the correct domain, return as is
   if (url.startsWith('https://equilibrium-weld.vercel.app')) {
@@ -53,9 +57,13 @@ export function transformMediaUrl(url: string | undefined | null): string | unde
  * Gets the production base URL for media
  */
 export function getMediaBaseUrl(): string {
-  return PRODUCTION_BASE_URL && PRODUCTION_BASE_URL.startsWith('http')
-    ? PRODUCTION_BASE_URL
-    : PRODUCTION_BASE_URL
-      ? `https://${PRODUCTION_BASE_URL}`
-      : 'https://equilibrium-weld.vercel.app'
+  // In development, use localhost
+  const isDevelopment = process.env.NODE_ENV === 'development'
+  return isDevelopment 
+    ? 'http://localhost:3000'
+    : PRODUCTION_BASE_URL && PRODUCTION_BASE_URL.startsWith('http')
+      ? PRODUCTION_BASE_URL
+      : PRODUCTION_BASE_URL
+        ? `https://${PRODUCTION_BASE_URL}`
+        : 'https://equilibrium-weld.vercel.app'
 }
