@@ -8,9 +8,7 @@ type GridItem = {
   timeLabel?: string | null
   timeValue?: string | null
   difficulty?: number | null
-  scheduleLabel?: string | null
   weekdaySchedule?: string | null
-  weekendSchedule?: string | null
 }
 
 export function DetailedCourseGrid({
@@ -64,19 +62,13 @@ export function DetailedCourseGrid({
                     </span>
                   </div>
                   <div className={styles.row}>
-                    <span>Difficulty : </span>
+                    <span>Intensity : </span>
                     {renderDots(Number(item.difficulty ?? 3))}
                   </div>
                   <div className={styles.row}>
-                    <div>
-                      <div>{(item.scheduleLabel || 'Horaire') + ' : '}</div>
-                      <div className={styles.schedule}>
-                        {item.weekdaySchedule || 'Monday - Friday 5:30 - 22h30'}
-                      </div>
-                      <div className={styles.schedule}>
-                        {item.weekendSchedule || 'Saturday - Sunday 8:00 - 20h00'}
-                      </div>
-                    </div>
+                    <span className={styles.schedule}>
+                      {item.weekdaySchedule || 'Monday - Friday 5:30 - 22h30'}
+                    </span>
                   </div>
                 </div>
               </div>

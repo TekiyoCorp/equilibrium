@@ -319,9 +319,7 @@ export interface Page {
               timeLabel?: string | null;
               timeValue?: string | null;
               difficulty?: number | null;
-              scheduleLabel?: string | null;
               weekdaySchedule?: string | null;
-              weekendSchedule?: string | null;
               id?: string | null;
             }[];
             id?: string | null;
@@ -829,9 +827,7 @@ export interface PagesSelect<T extends boolean = true> {
                     timeLabel?: T;
                     timeValue?: T;
                     difficulty?: T;
-                    scheduleLabel?: T;
                     weekdaySchedule?: T;
-                    weekendSchedule?: T;
                     id?: T;
                   };
               id?: T;
