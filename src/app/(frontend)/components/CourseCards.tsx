@@ -8,6 +8,7 @@ import styles from './CourseCards.module.css'
 import { Button as UniversalButton } from './Button'
 import FadeIn from '@/app/animation/fade-in'
 import { motion, AnimatePresence } from 'framer-motion'
+import { resolvePageHref } from '@/lib/resolvePageHref'
 
 type PayloadLinkBlock = {
   blockType: 'link'
@@ -49,7 +50,8 @@ const sanitizeSlug = (slug?: string | null) => {
   if (!slug) return undefined
   const trimmed = String(slug).trim()
   if (!trimmed) return undefined
-  return trimmed.startsWith('/') ? trimmed : `/${trimmed}`
+  const resolved = resolvePageHref(trimmed)
+  return resolved === '#' ? undefined : resolved
 }
 
 const ensureLabel = (label?: string | null, heading?: string | null, eyebrow?: string | null) =>

@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { TransitionLink } from './TransitionLink'
 import { MobileMenuButton } from './MobileMenuButton'
 import { transformMediaUrl } from '@/lib/media-utils'
+import { resolvePageHref } from '@/lib/resolvePageHref'
 
 export type LinkBlock = {
   label: string
@@ -86,7 +87,9 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                   <TransitionLink
                     href={
                       typeof item.page === 'object' && (item.page as any)?.slug
-                        ? `/${(item.page as any).slug}`
+                        ? resolvePageHref((item.page as any).slug)
+                        : item.href
+                        ? resolvePageHref(item.href)
                         : '#'
                     }
                     aria-label={item.ariaLabel || item.label}
@@ -139,7 +142,9 @@ export default function HeaderClient({ logo, navItems, ctaBlock }: HeaderClientP
                         <TransitionLink
                           href={
                             typeof item.page === 'object' && (item.page as any)?.slug
-                              ? `/${(item.page as any).slug}`
+                              ? resolvePageHref((item.page as any).slug)
+                              : item.href
+                              ? resolvePageHref(item.href)
                               : '#'
                           }
                           aria-label={item.ariaLabel || item.label}

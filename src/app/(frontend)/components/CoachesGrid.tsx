@@ -3,6 +3,7 @@ import styles from './CoachesGrid.module.css'
 import type { Media } from '@/payload-types'
 import { transformMediaUrl } from '@/lib/media-utils'
 import { Button as UniversalButton } from './Button'
+import { resolvePageHref } from '@/lib/resolvePageHref'
 
 type Item = {
   image?: Media | number | null
@@ -91,7 +92,9 @@ export function CoachesGrid({
                                 item.ctaLinkType === 'page' &&
                                 item.page &&
                                 typeof item.page === 'object'
-                                  ? `/${(item.page as any)?.slug ?? ''}`
+                                  ? resolvePageHref((item.page as any)?.slug ?? undefined)
+                                  : item.href
+                                  ? resolvePageHref(item.href)
                                   : item.href || '#'
                               }
                               target={item.target || '_self'}

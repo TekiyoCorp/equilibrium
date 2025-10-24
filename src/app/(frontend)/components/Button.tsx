@@ -3,6 +3,7 @@
 import React from 'react'
 import styles from './Button.module.css'
 import type { Page } from '@/payload-types'
+import { resolvePageHref } from '@/lib/resolvePageHref'
 
 type PayloadLinkBlock = {
   label: string
@@ -58,7 +59,7 @@ export function Button(props: UniversalButtonProps) {
     let finalHref = href || '#'
     if (linkType === 'page') {
       const pageObj = typeof page === 'object' ? (page as Page) : undefined
-      finalHref = pageObj?.slug ? `/${pageObj.slug}` : '#'
+      finalHref = pageObj?.slug ? resolvePageHref(pageObj.slug) : '#'
     }
 
     return (
@@ -99,7 +100,7 @@ export function Button(props: UniversalButtonProps) {
   let finalHref = href
   if (linkType === 'page') {
     const pageObj = typeof page === 'object' ? (page as Page) : undefined
-    finalHref = pageObj?.slug ? `/${pageObj.slug}` : '#'
+    finalHref = pageObj?.slug ? resolvePageHref(pageObj.slug) : '#'
   }
 
   return (
