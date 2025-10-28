@@ -264,6 +264,7 @@
   }
 }
 .heroCenter h1 {
+  font-family: 'Amsterdam Four', sans-serif;
   font-size: clamp(28px, 6vw, 56px);
   line-height: 1.1;
   letter-spacing: -0.03em;
