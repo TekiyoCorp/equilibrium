@@ -262,6 +262,83 @@
   background-color: #111827;
   color: #fff;
 }
+
+/* Contact hero layout */
+.heroContact {
+  text-align: left;
+}
+
+/* Center the contact hero vertically within the section */
+.hero.heroContact {
+  justify-content: center;
+}
+
+.contactHeroContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(24px, 5vw, 40px);
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: clamp(32px, 6vw, 72px);
+  padding-bottom: clamp(32px, 6vw, 72px);
+}
+
+/* Force vertical centering inside hero for contact variant */
+.heroContact .heroContent {
+  justify-content: center !important;
+  padding-bottom: 0;
+  height: 100%;
+}
+
+.contactRow {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+}
+
+.contactLeftCol,
+.contactRightCol {
+  width: 100%;
+  display: flex;
+}
+
+.glassPanel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: 32px;
+  background: rgba(17, 24, 39, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 24px 50px rgba(10, 16, 28, 0.35);
+}
+
+.glassPanel h1,
+.glassPanel p {
+  margin: 0;
+}
+
+.bgLight .glassPanel {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  box-shadow: 0 24px 40px rgba(17, 24, 39, 0.14);
+  color: #111827;
+}
+
+.bgLight .glassPanel h1,
+.bgLight .glassPanel p {
+  color: #111827;
+}
 @media (min-width: 901px) {
   .heroCenter {
     text-align: center;
@@ -277,53 +354,33 @@
     margin-right: auto;
   }
   
-  /* Contact Hero: Center all content */
-  .heroContact {
-    text-align: center;
+  /* Contact Hero: Two-column layout */
+  .contactHeroContent {
+    align-items: stretch;
+    gap: 40px;
   }
-  
-  .heroContact .heroContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 24px;
+
+  .contactRow {
+    flex-direction: row;
+    align-items: stretch;
   }
-  
-  .heroContact .heroContent > * {
-    margin-left: auto;
-    margin-right: auto;
+
+  .contactLeftCol {
+    flex: 1 1 55%;
   }
-  
-  .heroContact h1 {
-    text-align: center;
+
+  .contactRightCol {
+    flex: 1 1 45%;
   }
-  
-  .heroContact .sub {
-    text-align: center;
-  }
-  
-  .heroContact .downloadLinks {
-    align-items: center;
+
+  .downloadLinks {
+    align-items: flex-start;
+    margin-top: 0;
   }
 }
-.heroCenter h1 {
-  font-family: 'Amsterdam Four', sans-serif;
-  font-size: clamp(28px, 6vw, 56px);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin: 0;
-  font-weight: 400;
-  text-wrap: balance;
-  -webkit-text-wrap: balance;
-}
-.bgDark .sub {
-  color: #d4cdbf;
-  opacity: 1;
-}
-@media (min-width: 901px) {
+
+@media (min-width: 900px) {
   .heroRight .heroContent {
-    display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
     align-content: center;
@@ -396,6 +453,18 @@
   align-items: center;
   margin-top: 32px;
   max-width: 100%;
+}
+
+/* Center only the right panel content */
+.contactRightCol .glassPanel {
+  align-items: center;
+  text-align: center;
+}
+
+/* Center the left panel content horizontally */
+.contactLeftCol .glassPanel {
+  align-items: center;
+  text-align: center;
 }
 
 /* WhatsApp Link */
@@ -479,9 +548,24 @@
 
 /* Mobile Responsive for Download Links */
 @media (max-width: 900px) {
+  .glassPanel {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .contactRow {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contactLeftCol,
+  .contactRightCol {
+    width: 100%;
+    flex: 0 0 auto;
+  }
   .downloadLinks {
     width: 100%;
     margin-top: 24px;
+    align-items: center;
   }
   
   .whatsappLink,
@@ -604,3 +688,4 @@
     font-size: 16px;
   }
 }
+
