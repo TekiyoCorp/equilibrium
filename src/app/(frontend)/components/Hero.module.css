@@ -169,6 +169,20 @@
     text-align: center !important;
   }
   
+  /* ContactHero: Ensure download links are centered */
+  .heroContact .heroContent {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 24px !important;
+  }
+  
+  .heroContact .downloadLinks {
+    align-items: center !important;
+    width: 100% !important;
+  }
+  
   /* CenterHero: Force gap for direct FadeIn children */
   .heroCenter .heroContent {
     display: flex !important;
@@ -262,6 +276,36 @@
     margin-left: auto;
     margin-right: auto;
   }
+  
+  /* Contact Hero: Center all content */
+  .heroContact {
+    text-align: center;
+  }
+  
+  .heroContact .heroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  
+  .heroContact .heroContent > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .heroContact h1 {
+    text-align: center;
+  }
+  
+  .heroContact .sub {
+    text-align: center;
+  }
+  
+  .heroContact .downloadLinks {
+    align-items: center;
+  }
 }
 .heroCenter h1 {
   font-family: 'Amsterdam Four', sans-serif;
@@ -344,29 +388,108 @@
   }
 }
 
-/* Contact Hero Grid Layout */
-.contactGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
-  align-items: end;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-@media (min-width: 901px) {
-  .contactGrid {
-    grid-template-columns: 1fr 487px;
-    gap: 64px;
-    align-items: end;
-  }
-}
-
-.contactInfo {
+/* Download Links Section */
+.downloadLinks {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: center;
+  margin-top: 32px;
+  max-width: 100%;
+}
+
+/* WhatsApp Link */
+.whatsappLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 60px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  min-width: 200px;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.whatsappLink:hover {
+  background-color: #20C35A;
+}
+
+.whatsappLink svg,
+.whatsappLink img {
+  width: 24px;
+  height: 24px;
+}
+
+/* App Store Link */
+.appStoreLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: white;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 60px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  min-width: 200px;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.appStoreLink:hover {
+  background-color: #f5f5f5;
+}
+
+.appStoreLink svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Google Play Link */
+.googlePlayLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: white;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 60px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  min-width: 200px;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.googlePlayLink:hover {
+  background-color: #f5f5f5;
+}
+
+.googlePlayLink svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile Responsive for Download Links */
+@media (max-width: 900px) {
+  .downloadLinks {
+    width: 100%;
+    margin-top: 24px;
+  }
+  
+  .whatsappLink,
+  .appStoreLink,
+  .googlePlayLink {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
 /* Contact Form Styles */

@@ -224,23 +224,9 @@ export interface Page {
         | {
             heading: string;
             subheading?: string | null;
-            email?: string | null;
-            phone?: string | null;
-            link?:
-              | {
-                  label: string;
-                  linkType?: ('url' | 'page') | null;
-                  href?: string | null;
-                  page?: (number | null) | Page;
-                  variant?: ('primary' | 'secondary' | 'ghost') | null;
-                  target?: ('_self' | '_blank') | null;
-                  fullWidth?: boolean | null;
-                  ariaLabel?: string | null;
-                  id?: string | null;
-                  blockName?: string | null;
-                  blockType: 'link';
-                }[]
-              | null;
+            whatsappLink: string;
+            appStoreLink: string;
+            googlePlayLink: string;
             backgroundImage?: (number | null) | Media;
             background?: ('light' | 'dark') | null;
             id?: string | null;
@@ -746,26 +732,9 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               heading?: T;
               subheading?: T;
-              email?: T;
-              phone?: T;
-              link?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          label?: T;
-                          linkType?: T;
-                          href?: T;
-                          page?: T;
-                          variant?: T;
-                          target?: T;
-                          fullWidth?: T;
-                          ariaLabel?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
+              whatsappLink?: T;
+              appStoreLink?: T;
+              googlePlayLink?: T;
               backgroundImage?: T;
               background?: T;
               id?: T;

@@ -18,19 +18,22 @@ export const ContactHero: Block = {
       type: 'textarea',
     },
     {
-      name: 'email',
-      type: 'email',
-    },
-    {
-      name: 'phone',
+      name: 'whatsappLink',
+      label: 'WhatsApp Link',
       type: 'text',
+      required: true,
     },
     {
-      name: 'link',
-      label: 'Link',
-      type: 'blocks',
-      maxRows: 1,
-      blocks: [Link],
+      name: 'appStoreLink',
+      label: 'App Store Link',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'googlePlayLink',
+      label: 'Google Play Link',
+      type: 'text',
+      required: true,
     },
     {
       name: 'backgroundImage',
