@@ -43,13 +43,13 @@
 
 /* Mobile Hero Styles - Apply to all hero types */
 @media (max-width: 900px) {
-  .hero {
+  .heroCenter {
     text-align: center !important;
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
   
-  .heroContent {
+  .heroCenter .heroContent {
     display: flex !important;
     flex-direction: column !important;
     text-align: center !important;
@@ -62,11 +62,11 @@
   }
   
   /* Target all direct children including FadeIn components */
-  .heroContent > *,
-  .heroContent > div,
-  .heroContent > div > *,
-  .heroContent h1,
-  .heroContent p {
+  .heroCenter .heroContent > *,
+  .heroCenter .heroContent > div,
+  .heroCenter .heroContent > div > *,
+  .heroCenter .heroContent h1,
+  .heroCenter .heroContent p {
     margin: 0 !important;
     margin-bottom: 0 !important;
     margin-top: 0 !important;
@@ -74,8 +74,8 @@
     width: 100% !important;
   }
   
-  .heroContent a,
-  .heroContent button {
+  .heroCenter .heroContent a,
+  .heroCenter .heroContent button {
     margin: 0 !important;
     margin-bottom: 0 !important;
     margin-top: 0 !important;
@@ -84,23 +84,19 @@
     align-self: center !important;
   }
   
-  .heroContent .sub,
-  .heroContent p {
+  .heroCenter .heroContent .sub,
+  .heroCenter .heroContent p {
     width: 80% !important;
     max-width: 80% !important;
     margin: 0 auto !important;
   }
   
   /* Specific hero type overrides */
-  .heroCenter,
-  .heroRight,
-  .heroContact {
+  .heroCenter {
     text-align: center !important;
   }
   
-  .heroCenter .heroContent,
-  .heroRight .heroContent,
-  .heroContact .heroContent {
+  .heroCenter .heroContent {
     display: flex !important;
     flex-direction: column !important;
     gap: 24px !important;
@@ -110,20 +106,14 @@
     grid-template-columns: none !important;
   }
   
-  .heroCenter .heroContent > *,
-  .heroRight .heroContent > *,
-  .heroContact .heroContent > * {
+  .heroCenter .heroContent > * {
     margin: 0 !important;
     width: 100% !important;
     text-align: center !important;
   }
   
   .heroCenter .heroContent a,
-  .heroCenter .heroContent button,
-  .heroRight .heroContent a,
-  .heroRight .heroContent button,
-  .heroContact .heroContent a,
-  .heroContact .heroContent button {
+  .heroCenter .heroContent button {
     width: auto !important;
     align-self: center !important;
   }
@@ -140,51 +130,51 @@
   .contactInfo {
     display: flex !important;
     flex-direction: column !important;
-    text-align: center !important;
-    align-items: center !important;
+    text-align: left !important;
+    align-items: flex-start !important;
     gap: 24px !important;
     width: 100% !important;
   }
   
-  /* Force gap between FadeIn wrappers */
-  .heroContent > *:not(:last-child) {
+  /* Force gap between FadeIn wrappers (CenterHero only) */
+  .heroCenter .heroContent > *:not(:last-child) {
     margin-bottom: 24px !important;
   }
   
-  /* Force gap for FadeIn components specifically */
-  .heroContent > div:not(:last-child) {
+  /* Force gap for FadeIn components specifically (CenterHero only) */
+  .heroCenter .heroContent > div:not(:last-child) {
     margin-bottom: 24px !important;
   }
   
-  /* RightHero: Gap for .copy wrapper children */
-  .copy {
+  /* RightHero: left-align copy wrapper children */
+  .heroRight .copy {
     display: flex !important;
     flex-direction: column !important;
     gap: 12px !important;
-    align-items: center !important;
-    text-align: center !important;
+    align-items: flex-start !important;
+    text-align: left !important;
   }
   
-  /* ContactHero: Gap for .contactInfo wrapper children */
+  /* ContactHero: Gap for .contactInfo wrapper children (left-aligned) */
   .contactInfo {
     display: flex !important;
     flex-direction: column !important;
     gap: 24px !important;
-    align-items: center !important;
-    text-align: center !important;
+    align-items: flex-start !important;
+    text-align: left !important;
   }
   
-  /* ContactHero: Ensure download links are centered */
+  /* ContactHero: Ensure content is left-aligned */
   .heroContact .heroContent {
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
+    align-items: flex-start !important;
+    text-align: left !important;
     gap: 24px !important;
   }
   
   .heroContact .downloadLinks {
-    align-items: center !important;
+    align-items: flex-start !important;
     width: 100% !important;
   }
   
@@ -386,16 +376,11 @@
 
 @media (min-width: 900px) {
   .heroRight .heroContent {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    align-content: center;
-  }
-}
-
-@media (min-width: 900px) {
-  .heroRight .heroContent {
+    display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
+    align-content: center;
+    gap: 32px;
   }
 }
 .heroRight .media img {
