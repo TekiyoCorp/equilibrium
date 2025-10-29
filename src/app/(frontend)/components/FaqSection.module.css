@@ -114,6 +114,23 @@
   border-radius: 24px;
 }
 
+/* Landscape adjustments for the right image */
+.smallLandscape {
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .smallLandscape {
+    height: auto;
+  }
+}
+
+.imageContain {
+  height: auto;
+  object-fit: contain;
+  width: 100%;
+}
+
 /* Responsive spacing */
 @media (max-width: 900px) {
   .container {

@@ -26,6 +26,11 @@ export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps & { sectionId?: st
   sectionId,
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const smallMediaMeta = (typeof smallImage === 'object' ? (smallImage as Media) : undefined)
+  const initialSmallIsLandscape = !!(smallMediaMeta?.width && smallMediaMeta?.height)
+    ? (smallMediaMeta.width as number) > (smallMediaMeta.height as number)
+    : false
+  const [isSmallLandscape, setIsSmallLandscape] = useState<boolean>(initialSmallIsLandscape)
   
   // Check if any images are present
   const hasImages = (typeof largeImage === 'object' && (largeImage as Media)?.url) || 
@@ -92,12 +97,18 @@ export const AnimatedFaqBlock: React.FC<AnimatedFaqBlockProps & { sectionId?: st
             </div>
 
             {typeof smallImage === 'object' && (smallImage as Media)?.url && (
-              <div className={styles.smallImageWrap}>
+              <div className={`${styles.smallImageWrap} ${isSmallLandscape ? styles.smallLandscape : ''}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={transformMediaUrl((smallImage as Media).url) as string}
                   alt={(smallImage as Media).alt || ''}
-                  className={styles.imageCover}
+                  className={`${styles.imageCover} ${isSmallLandscape ? styles.imageContain : ''}`}
+                  onLoad={(e) => {
+                    const img = e.currentTarget
+                    if (img.naturalWidth && img.naturalHeight) {
+                      setIsSmallLandscape(img.naturalWidth > img.naturalHeight)
+                    }
+                  }}
                 />
               </div>
             )}
