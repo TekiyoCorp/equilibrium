@@ -515,6 +515,32 @@ export interface Page {
             blockType: 'conceptIconsSection';
           }
         | {
+            items: {
+              title: string;
+              content: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              image: number | Media;
+              imagePosition: 'left' | 'right';
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'aboutUsSection';
+          }
+        | {
             label: string;
             linkType?: ('url' | 'page') | null;
             href?: string | null;
@@ -1047,6 +1073,21 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               backgroundColor?: T;
               customBackgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        aboutUsSection?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    image?: T;
+                    imagePosition?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

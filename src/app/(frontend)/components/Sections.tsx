@@ -13,6 +13,7 @@ import { TextImageBlock } from './TextImageBlock'
 import { Location } from './Location'
 import { ChatSection } from './ChatSection'
 import { ConceptIconsSection } from './ConceptIconsSection'
+import { AboutUsSection } from './AboutUsSection'
 
 type SectionsProps = {
   sections?: Array<{
@@ -205,6 +206,16 @@ export function Sections({ sections }: SectionsProps) {
               items={b.items}
               backgroundColor={b.backgroundColor}
               customBackgroundColor={b.customBackgroundColor}
+            />
+          )
+        }
+        if ((block as any).blockType === 'aboutUsSection') {
+          const b = block as any
+          return (
+            <AboutUsSection
+              key={key}
+              sectionId={sectionId}
+              items={b.items || []}
             />
           )
         }

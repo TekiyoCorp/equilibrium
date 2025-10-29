@@ -16,6 +16,7 @@ import { TextImageBlock } from '../blocks/TextImageBlock'
 import { Location } from '../blocks/Location'
 import { ChatSection } from '../blocks/ChatSection'
 import { ConceptIconsSection } from '../blocks/ConceptIconsSection'
+import { AboutUsSection } from '../blocks/AboutUsSection'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -104,6 +105,7 @@ export const Pages: CollectionConfig = {
         Location,
         ChatSection,
         ConceptIconsSection,
+        AboutUsSection,
         Button,
       ],
     },
