@@ -36,6 +36,11 @@
   padding-bottom: 37px;
 }
 
+/* Ensure hero titles use Amsterdam Four */
+.hero h1 {
+  font-family: 'Amsterdam Four', cursive;
+}
+
 /* Mobile Hero Styles - Apply to all hero types */
 @media (max-width: 900px) {
   .hero {
